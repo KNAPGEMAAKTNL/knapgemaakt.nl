@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/KNAPGEMAAKTNL/knapgemaakt.nl/compare/v1.0.1...v1.0.2) (2026-01-15)
+
+
+### Bug Fixes
+
+* **ci:** add step to create GitHub release after PR merge ([c2c3f17](https://github.com/KNAPGEMAAKTNL/knapgemaakt.nl/commit/c2c3f17d7afbeee06efd89b1f34a9cf9cb4072af))
+* **ci:** remove duplicate release creation step ([1c5e77d](https://github.com/KNAPGEMAAKTNL/knapgemaakt.nl/commit/1c5e77da390723e09c719717b9e63ab6b63f8a4d))
+
 ## [1.0.1](https://github.com/KNAPGEMAAKTNL/knapgemaakt.nl/compare/v1.0.0...v1.0.1) (2026-01-15)
 
 
