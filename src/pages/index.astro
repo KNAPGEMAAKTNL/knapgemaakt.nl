@@ -1,16 +1,97 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import BentoItem from "../components/BentoItem.astro";
+import { VisualCard } from "../components/VisualCard";
+import OfferSection from "../components/OfferSection.astro";
+import Footer from "../components/Footer.astro";
+import { TextReveal } from "../components/TextReveal";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="KNAP GEMAAKT.">
+	<main class="bg-canvas">
+		<div class="min-h-screen p-4 md:p-8 pb-0">
+			<BentoGrid class="h-[95vh]">
+				<!-- Block 1: Logo/Home -->
+				<BentoItem
+					colSpan="md:col-span-3"
+					rowSpan="md:row-span-2"
+					className="flex flex-col justify-between p-6 border-r border-ink/10 md:border-r-0"
+				>
+					<h1
+						class="text-4xl font-black tracking-tighter uppercase leading-none"
+					>
+						Knap<br />Gemaakt.
+					</h1>
+					<div
+						class="text-sm font-mono uppercase tracking-widest text-ink/60"
+					>
+						[Digitaal Vakmanschap]
+					</div>
+				</BentoItem>
+
+				<!-- Block 2: Plan een gesprek (CTA) -->
+				<BentoItem
+					colSpan="md:col-span-9"
+					rowSpan="md:row-span-2"
+					noHover={true}
+					className="flex items-center justify-end p-6 bg-acid relative overflow-hidden group/cta transition-colors duration-300 hover:bg-black"
+				>
+					<a
+						href="/aanvragen"
+						class="relative z-10 text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-3 transition-all duration-300 group-hover/cta:-translate-x-3 group-hover/cta:text-acid"
+					>
+						<span class="relative">
+							VRAAG JE WEBSITE AAN
+							<span
+								class="absolute -bottom-1 left-0 w-full h-1 bg-acid scale-x-0 transition-transform duration-300 origin-left group-hover/cta:scale-x-100"
+							></span>
+						</span>
+						<span class="text-3xl md:text-4xl leading-none"
+							>&rarr;</span
+						>
+					</a>
+				</BentoItem>
+
+				<!-- Block 3: Hero Text -->
+				<BentoItem
+					colSpan="md:col-span-8"
+					rowSpan="md:row-span-6"
+					className="flex items-center justify-center p-8 md:p-16 border-t border-ink/10 md:border-t-0"
+				>
+					<div class="flex flex-col items-center justify-center py-4">
+						<TextReveal
+							client:load
+							text="Jouw Nieuwe Website."
+							className="text-4xl md:text-9xl font-bold uppercase tracking-tighter leading-[0.9] text-center"
+						/>
+						<TextReveal
+							client:load
+							text="In 7 Dagen."
+							delay={0.2}
+							className="text-[10vw] md:text-9xl font-bold uppercase tracking-tighter leading-[0.9] text-center"
+						/>
+						<TextReveal
+							client:load
+							text="€595."
+							delay={0.4}
+							className="text-6xl md:text-9xl font-bold uppercase tracking-tighter leading-[0.9] text-center text-electric"
+						/>
+					</div>
+				</BentoItem>
+
+				<!-- Block 4: Visual Card -->
+				<BentoItem
+					colSpan="md:col-span-4"
+					rowSpan="md:row-span-6"
+					className="relative p-0 border-l border-ink/10 md:border-l-0 overflow-hidden"
+				>
+					<VisualCard client:load />
+				</BentoItem>
+			</BentoGrid>
+		</div>
+
+		<OfferSection />
+		<Footer />
+	</main>
+</Layout>

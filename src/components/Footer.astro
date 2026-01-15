@@ -1,0 +1,55 @@
+---
+import BentoGrid from "./BentoGrid.astro";
+import BentoItem from "./BentoItem.astro";
+import { TextReveal } from "./TextReveal";
+---
+
+<footer class="bg-canvas p-4 md:p-8 pt-0">
+    <BentoGrid>
+        <BentoItem
+            colSpan="md:col-span-12"
+            rowSpan="md:row-span-2"
+            noHover={true}
+            className="flex items-end justify-between p-6 bg-ink text-canvas cursor-default"
+        >
+            <div class="flex flex-col w-full">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-0 mb-12 md:mb-32"
+                >
+                    <div
+                        class="flex flex-wrap gap-x-6 gap-y-3 md:gap-8 font-mono text-xs md:text-sm text-canvas/60 uppercase tracking-widest"
+                    >
+                        <a
+                            href="/algemene-voorwaarden"
+                            class="hover:text-acid transition-colors whitespace-nowrap"
+                            >Algemene Voorwaarden</a
+                        >
+
+                        <a
+                            href="/privacy"
+                            class="hover:text-acid transition-colors whitespace-nowrap"
+                            >Privacy</a
+                        >
+                        <a
+                            href="/sitemap"
+                            class="hover:text-acid transition-colors whitespace-nowrap"
+                            >Sitemap</a
+                        >
+                    </div>
+                </div>
+
+                <TextReveal
+                    client:visible
+                    text="KNAP GEMAAKT."
+                    className="text-[12vw] md:text-[11vw] font-black leading-[0.8] tracking-tighter text-center md:text-left select-none block md:pr-4"
+                />
+
+                <div
+                    class="mt-8 md:mt-0 font-mono text-xs md:text-sm text-canvas/60 whitespace-nowrap md:absolute md:top-6 md:right-6"
+                >
+                    © 2026 Knap Gemaakt.
+                </div>
+            </div>
+        </BentoItem>
+    </BentoGrid>
+</footer>

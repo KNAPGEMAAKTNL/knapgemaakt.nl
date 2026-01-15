@@ -1,0 +1,158 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import BentoItem from "../components/BentoItem.astro";
+---
+
+<Layout title="Sitemap | Knap Gemaakt">
+    <main class="min-h-screen bg-canvas p-4 md:p-8">
+        <BentoGrid class="h-auto">
+            <BentoItem colSpan="md:col-span-12" className="p-8 md:p-12">
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <h1
+                        class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8"
+                    >
+                        Sitemap
+                    </h1>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <section class="space-y-4">
+                            <h2
+                                class="text-xl font-bold uppercase tracking-tight text-electric"
+                            >
+                                Hoofdpagina's
+                            </h2>
+                            <ul class="space-y-2 text-ink/70 font-medium">
+                                <li>
+                                    <a
+                                        href="/"
+                                        class="hover:text-ink transition-colors"
+                                        >Home</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/aanvragen"
+                                        class="hover:text-ink transition-colors"
+                                        >Aanvragen</a
+                                    >
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-xl font-bold uppercase tracking-tight text-electric"
+                            >
+                                Juridisch
+                            </h2>
+                            <ul class="space-y-2 text-ink/70 font-medium">
+                                <li>
+                                    <a
+                                        href="/algemene-voorwaarden"
+                                        class="hover:text-ink transition-colors"
+                                        >Algemene Voorwaarden</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/privacy"
+                                        class="hover:text-ink transition-colors"
+                                        >Privacyverklaring</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/sitemap"
+                                        class="hover:text-ink transition-colors"
+                                        >Sitemap</a
+                                    >
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-xl font-bold uppercase tracking-tight text-electric"
+                            >
+                                Regio's
+                            </h2>
+                            <ul class="space-y-2 text-ink/70 font-medium">
+                                <li>
+                                    <a
+                                        href="/webdesign-culemborg"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Culemborg</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-utrecht"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Utrecht</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-houten"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Houten</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-nieuwegein"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Nieuwegein</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-geldermalsen"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Geldermalsen</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-tiel"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Tiel</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-vianen"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Vianen</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-ijsselstein"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign IJsselstein</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-beesd"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Beesd</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="/webdesign-buren"
+                                        class="hover:text-ink transition-colors"
+                                        >Webdesign Buren</a
+                                    >
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </BentoItem>
+        </BentoGrid>
+    </main>
+</Layout>

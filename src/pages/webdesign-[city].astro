@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import BentoItem from "../components/BentoItem.astro";
+import OfferSection from "../components/OfferSection.astro";
+import ConceptShowcase from "../components/ConceptShowcase.astro";
+import { TextReveal } from "../components/TextReveal";
+
+export function getStaticPaths() {
+    const cities = [
+        "Culemborg",
+        "Utrecht",
+        "Houten",
+        "Nieuwegein",
+        "Geldermalsen",
+        "Tiel",
+        "Vianen",
+        "IJsselstein",
+        "Beesd",
+        "Buren",
+    ];
+
+    return cities.map((city) => ({
+        params: { city: city.toLowerCase() },
+        props: { city },
+    }));
+}
+
+const { city } = Astro.props;
+
+// Check if specific city image exists
+import fs from "node:fs";
+import path from "node:path";
+
+const cityImageFilename = `${city.toLowerCase()}.png`;
+const cityImagePath = path.join(
+    process.cwd(),
+    "public",
+    "cities",
+    cityImageFilename,
+);
+const hasCityImage = fs.existsSync(cityImagePath);
+
+const mapImage = hasCityImage
+    ? `/cities/${cityImageFilename}`
+    : "/city_map.png";
+---
+
+<Layout title={`Webdesign ${city} | Knap Gemaakt - Premium Websites`}>
+    <main>
+        <!-- Similar to Index but localized -->
+        <section class="bg-canvas p-4 md:p-8 pt-6 md:pt-8 pb-0 mb-0">
+            <BentoGrid class="h-auto md:h-[50vh] lg:h-[55vh]">
+                <BentoItem
+                    colSpan="md:col-span-8"
+                    rowSpan="md:row-span-4"
+                    className="p-8 md:p-12 border-b border-ink/10 md:border-b-0"
+                >
+                    <div
+                        class="h-full flex flex-col justify-between gap-8 md:gap-0"
+                    >
+                        <div
+                            class="font-mono text-sm text-ink/60 uppercase tracking-widest"
+                        >
+                            Knap Gemaakt
+                        </div>
+                        <div class="flex flex-col z-10 my-4 md:my-0">
+                            <h1 class="sr-only">Webdesign Bureau {city}</h1>
+                            <div
+                                class="text-4xl sm:text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none md:leading-[0.9] mb-4 break-words"
+                            >
+                                Webdesign in <br class="md:hidden" />
+                                <span class="text-electric">{city}.</span>
+                            </div>
+                            <div
+                                class="text-xl md:text-2xl font-medium text-ink/80 max-w-2xl"
+                            >
+                                Wij bouwen premium websites voor ondernemers in {
+                                    city
+                                } en omgeving. Snel, professioneel en zonder gedoe.
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <a
+                                href="/aanvragen"
+                                class="bg-acid text-ink px-6 py-4 md:px-8 md:py-6 text-lg md:text-xl font-black uppercase tracking-tighter group-hover:bg-black group-hover:text-acid transition-all duration-300 flex items-center gap-3 group/btn"
+                            >
+                                <span
+                                    class="relative group-hover/btn:-translate-x-2 transition-transform duration-300"
+                                >
+                                    VRAAG JE WEBSITE AAN
+                                    <span
+                                        class="absolute -bottom-1 left-0 w-full h-0.5 bg-current scale-x-0 transition-transform duration-300 origin-left group-hover/btn:scale-x-100"
+                                    ></span>
+                                </span>
+                                <span
+                                    class="group-hover/btn:translate-x-1 transition-transform duration-300"
+                                    >&rarr;</span
+                                >
+                            </a>
+                        </div>
+                    </div>
+                </BentoItem>
+
+                <BentoItem
+                    colSpan="md:col-span-4"
+                    rowSpan="md:row-span-4"
+                    className="relative group overflow-hidden border-l border-ink/10 md:border-l-0 min-h-[300px] md:min-h-0 bg-acid"
+                >
+                    <!-- Background Map (Raw) -->
+                    <img
+                        src={mapImage}
+                        alt={`Map of ${city}`}
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+
+                    <!-- Subtle Dark Gradient for Contrast -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80"
+                    >
+                    </div>
+
+                    <div
+                        class="relative z-10 w-full h-full flex flex-col justify-end items-center p-8 pb-12 md:pb-12"
+                    >
+                        <div class="text-center space-y-2">
+                            <div
+                                class="font-bold uppercase tracking-[0.2em] text-acid text-sm drop-shadow-md"
+                            >
+                                Actief in
+                            </div>
+                            <div
+                                class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white drop-shadow-lg"
+                            >
+                                {city}
+                            </div>
+                            <div
+                                class="font-bold uppercase tracking-widest text-white/60 text-xs"
+                            >
+                                & Omgeving
+                            </div>
+                        </div>
+                    </div>
+                </BentoItem>
+            </BentoGrid>
+        </section>
+    </main>
+
+    <ConceptShowcase city={city} />
+
+    <OfferSection />
+</Layout>

@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import BentoItem from "../components/BentoItem.astro";
+---
+
+<Layout title="Privacyverklaring | Knap Gemaakt">
+    <main class="min-h-screen bg-canvas p-4 md:p-8">
+        <BentoGrid class="h-auto">
+            <BentoItem colSpan="md:col-span-12" className="p-8 md:p-12">
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <h1
+                        class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8"
+                    >
+                        Privacyverklaring
+                    </h1>
+
+                    <div class="prose prose-lg prose-invert">
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                Gegevens die wij verwerken
+                            </h2>
+                            <p class="text-ink/70">
+                                Wij verwerken persoonsgegevens die je aan ons
+                                verstrekt via het contactformulier of bij het
+                                aangaan van een overeenkomst (naam, e-mail,
+                                telefoonnummer, bedrijfsgegevens).
+                            </p>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                Doel van verwerking
+                            </h2>
+                            <p class="text-ink/70">
+                                Wij gebruiken deze gegevens uitsluitend om onze
+                                diensten te leveren, contact met je op te nemen,
+                                en te voldoen aan wettelijke verplichtingen.
+                            </p>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                Bewaartermijn
+                            </h2>
+                            <p class="text-ink/70">
+                                Wij bewaren je gegevens niet langer dan strikt
+                                nodig is om de doelen te realiseren waarvoor je
+                                gegevens worden verzameld.
+                            </p>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                Delen met derden
+                            </h2>
+                            <p class="text-ink/70">
+                                Knap Gemaakt verkoopt jouw gegevens niet aan
+                                derden en zal deze uitsluitend verstrekken
+                                indien dit nodig is voor de uitvoering van onze
+                                overeenkomst met jou of om te voldoen aan een
+                                wettelijke verplichting.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </BentoItem>
+        </BentoGrid>
+    </main>
+</Layout>

@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BentoGrid from "../components/BentoGrid.astro";
+import BentoItem from "../components/BentoItem.astro";
+---
+
+<Layout title="Algemene Voorwaarden | Knap Gemaakt">
+    <main class="min-h-screen bg-canvas p-4 md:p-8">
+        <BentoGrid class="h-auto">
+            <BentoItem colSpan="md:col-span-12" className="p-8 md:p-12">
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <h1
+                        class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8"
+                    >
+                        Algemene Voorwaarden
+                    </h1>
+
+                    <div class="prose prose-lg prose-invert">
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                1. Diensten
+                            </h2>
+                            <p class="text-ink/70">
+                                Knap Gemaakt levert webdesign en
+                                onderhoudsdiensten. Wij streven naar de hoogste
+                                kwaliteit en snelheid in onze levering.
+                            </p>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                2. Betaling
+                            </h2>
+                            <p class="text-ink/70">
+                                De eenmalige investering voor de website wordt
+                                vooraf of bij oplevering gefactureerd. Het
+                                beheerpakket wordt maandelijks gefactureerd via
+                                automatische incasso.
+                            </p>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                3. Looptijd & Opzegging
+                            </h2>
+                            <p class="text-ink/70">
+                                Het beheerpakket is maandelijks opzegbaar met
+                                een opzegtermijn van één maand.
+                            </p>
+                        </section>
+
+                        <section class="space-y-4">
+                            <h2
+                                class="text-2xl font-bold uppercase tracking-tight"
+                            >
+                                4. Aansprakelijkheid
+                            </h2>
+                            <p class="text-ink/70">
+                                Knap Gemaakt is niet aansprakelijk voor
+                                indirecte schade of gevolgschade. Onze
+                                aansprakelijkheid is beperkt tot het bedrag van
+                                de factuur.
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </BentoItem>
+        </BentoGrid>
+    </main>
+</Layout>
