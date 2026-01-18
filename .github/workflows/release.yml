@@ -20,11 +20,3 @@ jobs:
         with:
           release-type: simple
           token: ${{ secrets.RELEASE_PAT }}
-
-      - name: Auto-merge Release PR
-        if: steps.release.outputs.pr
-        run: |
-          PR_NUMBER=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.number')
-          gh pr merge "$PR_NUMBER" --squash
-        env:
-          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
