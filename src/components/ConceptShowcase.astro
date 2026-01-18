@@ -26,7 +26,7 @@ const projects: Project[] = [
         type: "LIVE",
         color: "bg-ink",
         colSpan: "md:col-span-6",
-        image: "/fitcityculemborg.png",
+        image: "/fitcityculemborg.webp",
         url: "https://fitcityculemborg.knapgemaakt.nl",
     },
     {
@@ -35,7 +35,7 @@ const projects: Project[] = [
         type: "CONCEPT",
         color: "bg-ink",
         colSpan: "md:col-span-6",
-        image: "/byshakir.png",
+        image: "/byshakir.webp",
         url: "https://byshakir.knapgemaakt.nl",
     },
 ];
@@ -88,18 +88,15 @@ const projects: Project[] = [
                     {/* Image Container - takes full space */}
                     <div class="absolute inset-0 bg-ink pointer-events-none">
                         {project.image && (
-                            <picture>
-                                <source srcset={project.image.replace('.png', '.webp')} type="image/webp" />
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    width={1200}
-                                    height={800}
-                                    loading="lazy"
-                                    decoding="async"
-                                    class="w-full h-full object-cover object-center md:object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                                />
-                            </picture>
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                width={1200}
+                                height={800}
+                                loading="lazy"
+                                decoding="async"
+                                class="w-full h-full object-cover object-center md:object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                            />
                         )}
 
                         {/* Premium Gradient Overlay */}
