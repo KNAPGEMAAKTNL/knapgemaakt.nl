@@ -1,6 +1,6 @@
 # Booking System Deployment Checklist
 
-**Current Status:** Code ready, testing n8n workflows before production merge
+**Current Status:** ✅ n8n Workflow 1 working - 43 blocked times synced | Next: Test UI & create Workflow 2
 
 ---
 
@@ -23,13 +23,13 @@
 
 ---
 
-## 🔄 Phase 2: n8n Workflow Setup & Testing (IN PROGRESS)
+## ✅ Phase 2: n8n Workflow Setup & Testing (COMPLETE)
 
 ### n8n Workflow 1: Google Calendar → D1 Sync
 
 **Purpose:** Every 5 minutes, fetch busy times from Google Calendar and sync to D1 `blocked_times` table
 
-**Status:** ✅ Created in n8n
+**Status:** ✅ Tested and working (43 blocked times synced successfully)
 
 **Nodes configured:**
 1. ✅ Schedule Trigger (every 5 minutes)
@@ -62,15 +62,12 @@
    - Header: `Authorization: Bearer [API_SECRET_TOKEN]`
    - Body: `{{ $json }}`
 
-**To test this workflow:**
-- [ ] Deploy code to preview (use `/test`)
-- [ ] Set `API_SECRET_TOKEN` in Cloudflare Pages environment variables
-- [ ] Update HTTP Request URL to preview URL
-- [ ] Manually trigger workflow in n8n
-- [ ] Verify blocked_times are written to D1:
-  ```bash
-  npx wrangler d1 execute knapgemaakt-bookings --remote --command "SELECT * FROM blocked_times ORDER BY start_time DESC LIMIT 10"
-  ```
+**Testing completed:**
+- [x] Deploy code to preview (use `/test`)
+- [x] Set `API_SECRET_TOKEN` in Cloudflare Pages environment variables
+- [x] Update HTTP Request URL to preview URL
+- [x] Manually trigger workflow in n8n
+- [x] Verify blocked_times are written to D1 (43 rows synced successfully)
 
 ---
 
@@ -137,25 +134,21 @@ curl -X POST https://n8n.summitlab.dev/webhook-test/9adef783-f324-498e-b880-a4ae
 
 **In Cloudflare Pages → Settings → Environment Variables (Preview):**
 
-- [ ] Set `API_SECRET_TOKEN`
-  - Generate: `openssl rand -hex 32`
+- [x] Set `API_SECRET_TOKEN`
   - Current value: `fc38c4bc174b6bf80b6f1ad63fe601c9f43686e97b51627672e4c971653acce3`
-  - Use in n8n Workflow 1 Authorization header
+  - Used in n8n Workflow 1 Authorization header
 
-- [ ] Set `N8N_BOOKING_WEBHOOK`
+- [x] Set `N8N_BOOKING_WEBHOOK`
   - Value: `https://n8n.summitlab.dev/webhook-test/9adef783-f324-498e-b880-a4aeccff1dd0`
   - Used by `/api/bookings` to trigger calendar event creation
 
-### Test Workflow 1: Google Calendar Sync
+### Test Workflow 1: Google Calendar Sync ✅ COMPLETE
 
-1. [ ] Update n8n HTTP Request URL to preview URL
-2. [ ] Manually trigger workflow in n8n
-3. [ ] Check n8n execution log for success
-4. [ ] Verify blocked times in D1:
-   ```bash
-   npx wrangler d1 execute knapgemaakt-bookings --remote --command "SELECT COUNT(*) as count FROM blocked_times WHERE source = 'google_calendar'"
-   ```
-5. [ ] Check preview site shows blocked times excluded from available slots
+1. [x] Update n8n HTTP Request URL to preview URL
+2. [x] Manually trigger workflow in n8n
+3. [x] Check n8n execution log for success
+4. [x] Verify blocked times in D1 (43 blocked times synced)
+5. [ ] Check preview site shows blocked times excluded from available slots (needs manual verification)
 
 ### Test Workflow 2: Booking Confirmation
 
@@ -223,7 +216,7 @@ curl -X POST https://n8n.summitlab.dev/webhook-test/9adef783-f324-498e-b880-a4ae
 **Database:**
 - ✅ `availability_rules` - 5 rows (Mon-Fri, 9-17, 15-min slots)
 - ✅ `bookings` - 0 rows (empty, ready for production)
-- ✅ `blocked_times` - 0 rows (will populate when Workflow 1 runs)
+- ✅ `blocked_times` - 43 rows (synced from Google Calendar)
 
 ---
 
@@ -231,14 +224,14 @@ curl -X POST https://n8n.summitlab.dev/webhook-test/9adef783-f324-498e-b880-a4ae
 
 The booking system is considered fully operational when:
 
-✅ n8n Workflow 1 runs every 5 minutes without errors
-✅ Google Calendar busy times sync to D1 `blocked_times` table
-✅ Available slots on booking calendar exclude blocked times
-✅ User can book a time slot successfully
-✅ Booking creates Google Calendar event via n8n Workflow 2
-✅ User receives confirmation email
-✅ You receive notification email
-✅ Booking is stored in D1 database
+- ✅ n8n Workflow 1 runs without errors (tested successfully)
+- ✅ Google Calendar busy times sync to D1 `blocked_times` table (43 rows synced)
+- ⚠️ Available slots on booking calendar exclude blocked times (needs manual verification)
+- ⏳ User can book a time slot successfully (needs testing)
+- ⏳ Booking creates Google Calendar event via n8n Workflow 2 (needs Workflow 2 setup)
+- ⏳ User receives confirmation email (needs Workflow 2 setup)
+- ⏳ You receive notification email (needs Workflow 2 setup)
+- ⏳ Booking is stored in D1 database (needs end-to-end test)
 
 ---
 
@@ -263,14 +256,29 @@ The booking system is considered fully operational when:
 
 ---
 
-## 📝 Next Immediate Action
+## 📝 Next Immediate Actions
 
-**Test n8n Workflow 1 (Google Calendar Sync):**
+**Workflow 1 Status:** ✅ Complete - 43 blocked times synced successfully
 
-1. Run `/test` to deploy to preview
-2. Set `API_SECRET_TOKEN` in Cloudflare Pages preview environment
-3. Update n8n HTTP Request node URL to preview URL
-4. Manually trigger workflow
-5. Verify blocked_times populate in D1
+**Next Steps:**
 
-Once Workflow 1 is confirmed working, proceed to create and test Workflow 2.
+1. **Verify blocked times work in UI:**
+   - Visit `https://test-24-add-in-house-calenda.knapgemaakt-nl.pages.dev/aanvragen`
+   - Fill out form and check calendar
+   - Verify slots that conflict with Google Calendar events are not shown
+
+2. **Create n8n Workflow 2 (Booking Confirmation):**
+   - Webhook trigger for booking confirmations
+   - Create Google Calendar events
+   - Send confirmation emails
+
+3. **Test full booking flow:**
+   - Make a test booking through preview site
+   - Verify webhook triggers Workflow 2
+   - Check Google Calendar event created
+   - Verify emails sent
+
+4. **Deploy to production:**
+   - Merge to master
+   - Update n8n Workflow 1 URL to production
+   - Activate Workflow 1 schedule (every 5 minutes)
