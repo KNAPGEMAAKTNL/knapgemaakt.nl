@@ -117,32 +117,33 @@ export const POST: APIRoute = async ({ request, locals }) => {
       endTime.toISOString()
     ).run();
 
-    // Trigger n8n webhook (fire-and-forget)
+    // Trigger n8n webhook (must await to ensure it completes before worker terminates)
     const webhookUrl = (locals.runtime.env as Env).N8N_BOOKING_WEBHOOK;
     console.log('[Bookings API] Webhook URL:', webhookUrl ? 'found' : 'NOT FOUND');
 
     if (webhookUrl) {
       console.log('[Bookings API] Triggering webhook for booking:', bookingId);
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          booking_id: bookingId,
-          user_name: body.user_name,
-          user_email: body.user_email,
-          user_phone: body.user_phone,
-          user_company: body.user_company,
-          user_industry: body.user_industry,
-          start_time: startTime.toISOString(),
-          end_time: endTime.toISOString(),
-          created_at: new Date().toISOString()
-        })
-      })
-      .then(() => console.log('[Bookings API] Webhook triggered successfully'))
-      .catch(err => {
+      try {
+        const webhookResponse = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            booking_id: bookingId,
+            user_name: body.user_name,
+            user_email: body.user_email,
+            user_phone: body.user_phone,
+            user_company: body.user_company,
+            user_industry: body.user_industry,
+            start_time: startTime.toISOString(),
+            end_time: endTime.toISOString(),
+            created_at: new Date().toISOString()
+          })
+        });
+        console.log('[Bookings API] Webhook triggered successfully, status:', webhookResponse.status);
+      } catch (err) {
         console.error('[Bookings API] Failed to trigger n8n webhook:', err);
         // Don't fail the booking if webhook fails
-      });
+      }
     } else {
       console.warn('[Bookings API] N8N_BOOKING_WEBHOOK environment variable not set - skipping webhook');
     }
