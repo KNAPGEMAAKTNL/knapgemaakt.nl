@@ -1,0 +1,7 @@
+name = "knapgemaakt-nl"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "knapgemaakt_bookings"
+database_name = "knapgemaakt-bookings"
+database_id = "a0fcdfee-288f-4937-926e-3efbf5c4cc48"
