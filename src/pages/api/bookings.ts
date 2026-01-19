@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { randomUUID } from 'crypto';
 
 interface Env {
   knapgemaakt_bookings: D1Database;
@@ -99,8 +98,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       });
     }
 
-    // Create booking
-    const bookingId = randomUUID();
+    // Create booking (use Web Crypto API available in Cloudflare Workers)
+    const bookingId = crypto.randomUUID();
 
     await db.prepare(`
       INSERT INTO bookings (
