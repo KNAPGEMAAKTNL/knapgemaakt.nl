@@ -144,11 +144,32 @@ function generateTimeSlots(date: Date, startTime: string, endTime: string, durat
   const [startHour, startMinute] = startTime.split(':').map(Number);
   const [endHour, endMinute] = endTime.split(':').map(Number);
 
-  const slotStart = new Date(date);
-  slotStart.setHours(startHour, startMinute, 0, 0);
+  // Calculate timezone offset for Europe/Amsterdam on this date
+  // CET (UTC+1) in winter, CEST (UTC+2) in summer
+  const tzOffset = getAmsterdamOffset(date);
 
-  const slotEnd = new Date(date);
-  slotEnd.setHours(endHour, endMinute, 0, 0);
+  // Create slot times in Amsterdam timezone by adjusting UTC date
+  // For 09:00 CET (UTC+1): we need 08:00 UTC
+  // For 09:00 CEST (UTC+2): we need 07:00 UTC
+  const slotStart = new Date(Date.UTC(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    startHour,
+    startMinute,
+    0,
+    0
+  ) - tzOffset);
+
+  const slotEnd = new Date(Date.UTC(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    endHour,
+    endMinute,
+    0,
+    0
+  ) - tzOffset);
 
   let current = slotStart.getTime();
   const end = slotEnd.getTime();
@@ -164,8 +185,55 @@ function generateTimeSlots(date: Date, startTime: string, endTime: string, durat
   return slots;
 }
 
+/**
+ * Calculate UTC offset for Europe/Amsterdam timezone on a given date
+ * Returns offset in milliseconds
+ * CET (winter): UTC+1 = 3600000ms
+ * CEST (summer): UTC+2 = 7200000ms
+ */
+function getAmsterdamOffset(date: Date): number {
+  const year = date.getFullYear();
+
+  // DST starts: Last Sunday of March at 2am → 3am
+  const marchLastSunday = getLastSundayOfMonth(year, 2); // Month 2 = March
+  const dstStart = new Date(Date.UTC(year, 2, marchLastSunday, 1, 0, 0)); // 2am CET = 1am UTC
+
+  // DST ends: Last Sunday of October at 3am → 2am
+  const octoberLastSunday = getLastSundayOfMonth(year, 9); // Month 9 = October
+  const dstEnd = new Date(Date.UTC(year, 9, octoberLastSunday, 1, 0, 0)); // 3am CEST = 1am UTC
+
+  const dateTime = date.getTime();
+
+  // If date is between last Sunday of March and last Sunday of October: CEST (UTC+2)
+  if (dateTime >= dstStart.getTime() && dateTime < dstEnd.getTime()) {
+    return 7200000; // UTC+2 (CEST)
+  }
+
+  // Otherwise: CET (UTC+1)
+  return 3600000; // UTC+1 (CET)
+}
+
+/**
+ * Get the day number of the last Sunday of a given month
+ */
+function getLastSundayOfMonth(year: number, month: number): number {
+  const lastDay = new Date(year, month + 1, 0); // Last day of the month
+  const lastDayOfWeek = lastDay.getDay(); // 0 = Sunday
+  const lastDayDate = lastDay.getDate();
+
+  // If last day is Sunday, return it; otherwise, go back to previous Sunday
+  if (lastDayOfWeek === 0) {
+    return lastDayDate;
+  }
+  return lastDayDate - lastDayOfWeek;
+}
+
 function formatTimeSlot(date: Date): string {
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
+  // Convert UTC time to Amsterdam time for display
+  const tzOffset = getAmsterdamOffset(date);
+  const amsterdamTime = new Date(date.getTime() + tzOffset);
+
+  const hours = amsterdamTime.getUTCHours().toString().padStart(2, '0');
+  const minutes = amsterdamTime.getUTCMinutes().toString().padStart(2, '0');
   return `${hours}:${minutes}`;
 }
