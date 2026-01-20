@@ -1,0 +1,28 @@
+---
+import { HorizontalProjectScroll } from "./HorizontalProjectScroll";
+
+const projects = [
+    {
+        title: "Fitcity Culemborg",
+        category: "Concept",
+        description:
+            "Een premium fitness experience case study. Focus op high-end uitstraling, ledenwerving en community building.",
+        image: "/fitcityculemborg.webp",
+        mobileImage: "/fitcity-mobile.webp",
+        year: "2026",
+        link: "https://fitcityculemborg.knapgemaakt.nl",
+    },
+    {
+        title: "ByShakir",
+        category: "Concept",
+        description:
+            "Luxe branding voor een exclusieve herenkapper. Combineert klassiek vakmanschap met een moderne digitale ervaring.",
+        image: "/byshakir.webp",
+        mobileImage: "/byshakir-mobile.webp",
+        year: "2026",
+        link: "https://byshakir.knapgemaakt.nl",
+    },
+];
+---
+
+<HorizontalProjectScroll client:load projects={projects} />
