@@ -16,7 +16,8 @@ import { TextReveal } from "../components/TextReveal";
                 <p
                     class="text-xl md:text-2xl text-ink/60 font-medium max-w-4xl leading-relaxed"
                 >
-                    Vul het formulier in en wij nemen zo snel mogelijk contact met je op.<br />
+                    Vul het formulier in en wij nemen zo snel mogelijk contact
+                    met je op.<br />
                     Geen verplichtingen, wel direct actie.
                 </p>
             </div>
@@ -237,9 +238,11 @@ import { TextReveal } from "../components/TextReveal";
                 </div>
 
                 <!-- Calendar Section -->
-                <div class="space-y-6">
+                <div
+                    class="space-y-6 -mx-4 px-4 py-8 bg-black text-white lg:bg-transparent lg:text-ink lg:p-0 lg:mx-0"
+                >
                     <h2
-                        class="text-2xl font-black uppercase tracking-tighter flex items-center gap-3 border-b border-ink/10 pb-4"
+                        class="text-2xl font-black uppercase tracking-tighter flex items-center gap-3 border-b border-white/10 lg:border-ink/10 pb-4"
                     >
                         <span class="text-electric font-mono text-lg">[03]</span
                         >
@@ -249,18 +252,17 @@ import { TextReveal } from "../components/TextReveal";
                     <!-- Placeholder (shown until form complete) -->
                     <div
                         id="cal-placeholder"
-                        class="py-12 border border-dashed border-ink/20 text-center"
+                        class="py-12 border border-dashed border-white/20 text-center lg:border-ink/20"
                     >
-                        <p class="text-ink/40 font-medium">
+                        <p class="text-white/40 font-medium lg:text-ink/40">
                             Vul eerst je gegevens in om een moment te kiezen
                         </p>
                     </div>
 
-                    <!-- Calendar embed (hidden until form complete) -->
+                    <!-- Calendar component (hidden until form complete) -->
                     <div
-                        id="cal-embed"
-                        class="hidden"
-                        style="width:100%;min-height:500px;overflow:hidden;"
+                        id="calendar-container"
+                        class="hidden -mx-4 w-[calc(100%+2rem)] lg:mx-0 lg:w-full"
                     >
                     </div>
                 </div>
@@ -309,7 +311,7 @@ import { TextReveal } from "../components/TextReveal";
                         </span>
                     </button>
                     <p class="mt-4 text-xs font-mono text-ink/40">
-                        * Wij nemen doorgaans binnen 2 uur contact op.
+                        * Je ontvangt direct een bevestiging per e-mail. We bellen je op het gekozen tijdstip.
                     </p>
                 </div>
 
@@ -371,12 +373,10 @@ import { TextReveal } from "../components/TextReveal";
 <script>
     declare global {
         interface Window {
-            Cal: any;
+            selectedBookingSlot?: { start: string; end: string } | null;
         }
     }
 
-    const WEBHOOK_URL =
-        "https://n8n.summitlab.dev/webhook-test/adae2bce-2f0a-497c-9ad3-25401bfaf7b5";
     const STORAGE_KEY = "kg_aanvraag_form";
 
     const form = document.getElementById("aanvraag-form") as HTMLFormElement;
@@ -401,7 +401,9 @@ import { TextReveal } from "../components/TextReveal";
     const calPlaceholder = document.getElementById(
         "cal-placeholder",
     ) as HTMLDivElement;
-    const calEmbed = document.getElementById("cal-embed") as HTMLDivElement;
+    const calendarContainer = document.getElementById(
+        "calendar-container",
+    ) as HTMLDivElement;
 
     // Normalize URL - add https:// if missing
     function normalizeUrl(url: string): string | null {
@@ -494,78 +496,35 @@ import { TextReveal } from "../components/TextReveal";
     // Restore on page load
     restoreFormData();
 
-    // Cal.com embed logic
-    let calInitialized = false;
+    // Track if calendar has been mounted
+    let calendarMounted = false;
 
-    function initCalEmbed() {
-        if (calInitialized) return;
+    // Dynamically mount the React calendar component
+    async function mountCalendar() {
+        if (calendarMounted) return;
 
-        const naam = (document.getElementById("naam") as HTMLInputElement)
-            .value;
-        const email = (document.getElementById("email") as HTMLInputElement)
-            .value;
+        const container = document.getElementById("calendar-container");
+        if (!container) return;
 
-        // Load Cal.com script
-        (function (C: any, A: string, L: string) {
-            let p = function (a: any, ar: any) {
-                a.q.push(ar);
-            };
-            let d = C.document;
-            C.Cal =
-                C.Cal ||
-                function () {
-                    let cal = C.Cal;
-                    let ar = arguments;
-                    if (!cal.loaded) {
-                        cal.ns = {};
-                        cal.q = cal.q || [];
-                        d.head.appendChild(d.createElement("script")).src = A;
-                        cal.loaded = true;
-                    }
-                    if (ar[0] === L) {
-                        const api = function () {
-                            p(api, arguments);
-                        };
-                        const namespace = ar[1];
-                        (api as any).q = (api as any).q || [];
-                        if (typeof namespace === "string") {
-                            cal.ns[namespace] = cal.ns[namespace] || api;
-                            p(cal.ns[namespace], ar);
-                            p(cal, ["initNamespace", namespace]);
-                        } else p(cal, ar);
-                        return;
-                    }
-                    p(cal, ar);
-                };
-        })(window, "https://app.cal.com/embed/embed.js", "init");
+        try {
+            // Dynamically import React, ReactDOM, and the calendar component
+            const [React, ReactDOM, BookingCalendarModule] = await Promise.all([
+                import("react"),
+                import("react-dom/client"),
+                import("../components/BookingCalendar"),
+            ]);
 
-        window.Cal("init", "intro-call-15-min", {
-            origin: "https://app.cal.com",
-        });
+            const BookingCalendar = BookingCalendarModule.default;
+            const root = ReactDOM.createRoot(container);
+            root.render(React.createElement(BookingCalendar));
 
-        window.Cal.ns["intro-call-15-min"]("inline", {
-            elementOrSelector: "#cal-embed",
-            calLink: "yannick-veldhuisen/intro-call-15-min",
-            config: {
-                layout: "month_view",
-                theme: "dark",
-                name: naam,
-                email: email,
-            },
-        });
-
-        window.Cal.ns["intro-call-15-min"]("ui", {
-            theme: "dark",
-            cssVarsPerTheme: {
-                dark: { "cal-brand": "#CCFF00" },
-            },
-            hideEventTypeDetails: true,
-            layout: "month_view",
-        });
-
-        calInitialized = true;
+            calendarMounted = true;
+        } catch (error) {
+            console.error("Failed to mount calendar:", error);
+        }
     }
 
+    // Check if form is complete to show calendar
     function checkFormComplete() {
         const naam = (document.getElementById("naam") as HTMLInputElement)
             .value;
@@ -583,11 +542,12 @@ import { TextReveal } from "../components/TextReveal";
 
         if (naam && email && telefoon && branche && hasWebsite) {
             calPlaceholder.classList.add("hidden");
-            calEmbed.classList.remove("hidden");
-            initCalEmbed();
+            calendarContainer.classList.remove("hidden");
+            // Mount the calendar when form is complete
+            mountCalendar();
         } else {
             calPlaceholder.classList.remove("hidden");
-            calEmbed.classList.add("hidden");
+            calendarContainer.classList.add("hidden");
         }
     }
 
@@ -599,6 +559,14 @@ import { TextReveal } from "../components/TextReveal";
     });
     document.querySelectorAll('input[name="has_website"]').forEach((el) => {
         el.addEventListener("change", checkFormComplete);
+    });
+
+    // Auto-scroll to submit button when a time slot is selected
+    window.addEventListener("slotSelected", () => {
+        // Small delay to allow the UI to update visually
+        setTimeout(() => {
+            submitBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 300);
     });
 
     // Check on page load (for restored form data)
@@ -631,6 +599,15 @@ import { TextReveal } from "../components/TextReveal";
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         hideError();
+
+        // Check if time slot is selected
+        if (!window.selectedBookingSlot) {
+            errorMessage.textContent =
+                "Selecteer eerst een tijdstip voor je gesprek.";
+            showError();
+            return;
+        }
+
         setLoading(true);
 
         const formData = new FormData(form);
@@ -639,34 +616,43 @@ import { TextReveal } from "../components/TextReveal";
         const rawUrl = formData.get("website_url") as string;
         const websiteUrl = normalizeUrl(rawUrl);
 
-        // Build payload
-        const payload = {
-            name: formData.get("naam") as string,
-            company: formData.get("bedrijfsnaam") as string,
-            email: formData.get("email") as string,
-            phone: formData.get("telefoon") as string,
-            industry: formData.get("branche") as string,
-            has_website: formData.get("has_website") === "ja",
-            website_url: websiteUrl,
-            submitted_at: new Date().toISOString(),
+        // Build booking payload
+        const bookingPayload = {
+            user_name: formData.get("naam") as string,
+            user_email: formData.get("email") as string,
+            user_phone: formData.get("telefoon") as string,
+            user_company: formData.get("bedrijfsnaam") as string,
+            user_industry: formData.get("branche") as string,
+            user_website: websiteUrl,
+            start_time: window.selectedBookingSlot.start,
+            end_time: window.selectedBookingSlot.end,
         };
 
         try {
-            const response = await fetch(WEBHOOK_URL, {
+            // Create booking via API
+            const response = await fetch("/api/bookings", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(payload),
+                body: JSON.stringify(bookingPayload),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(
+                    data.error || `HTTP error! status: ${response.status}`,
+                );
             }
 
             showSuccess();
         } catch (error) {
-            console.error("Form submission error:", error);
+            console.error("Booking submission error:", error);
+            errorMessage.textContent =
+                error instanceof Error
+                    ? error.message
+                    : "Er ging iets mis bij het boeken. Probeer het opnieuw.";
             showError();
         } finally {
             setLoading(false);
