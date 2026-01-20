@@ -16,7 +16,8 @@ import { TextReveal } from "../components/TextReveal";
                 <p
                     class="text-xl md:text-2xl text-ink/60 font-medium max-w-4xl leading-relaxed"
                 >
-                    Vul het formulier in en wij nemen zo snel mogelijk contact met je op.<br />
+                    Vul het formulier in en wij nemen zo snel mogelijk contact
+                    met je op.<br />
                     Geen verplichtingen, wel direct actie.
                 </p>
             </div>
@@ -237,9 +238,11 @@ import { TextReveal } from "../components/TextReveal";
                 </div>
 
                 <!-- Calendar Section -->
-                <div class="space-y-6">
+                <div
+                    class="space-y-6 -mx-4 px-4 py-8 bg-black text-white lg:bg-transparent lg:text-ink lg:p-0 lg:mx-0"
+                >
                     <h2
-                        class="text-2xl font-black uppercase tracking-tighter flex items-center gap-3 border-b border-ink/10 pb-4"
+                        class="text-2xl font-black uppercase tracking-tighter flex items-center gap-3 border-b border-white/10 lg:border-ink/10 pb-4"
                     >
                         <span class="text-electric font-mono text-lg">[03]</span
                         >
@@ -249,15 +252,19 @@ import { TextReveal } from "../components/TextReveal";
                     <!-- Placeholder (shown until form complete) -->
                     <div
                         id="cal-placeholder"
-                        class="py-12 border border-dashed border-ink/20 text-center"
+                        class="py-12 border border-dashed border-white/20 text-center lg:border-ink/20"
                     >
-                        <p class="text-ink/40 font-medium">
+                        <p class="text-white/40 font-medium lg:text-ink/40">
                             Vul eerst je gegevens in om een moment te kiezen
                         </p>
                     </div>
 
                     <!-- Calendar component (hidden until form complete) -->
-                    <div id="calendar-container" class="hidden"></div>
+                    <div
+                        id="calendar-container"
+                        class="hidden -mx-4 w-[calc(100%+2rem)] lg:mx-0 lg:w-full"
+                    >
+                    </div>
                 </div>
 
                 <!-- Submit -->
@@ -304,7 +311,7 @@ import { TextReveal } from "../components/TextReveal";
                         </span>
                     </button>
                     <p class="mt-4 text-xs font-mono text-ink/40">
-                        * Wij nemen doorgaans binnen 2 uur contact op.
+                        * Je ontvangt direct een bevestiging per e-mail. We bellen je op het gekozen tijdstip.
                     </p>
                 </div>
 
@@ -394,7 +401,9 @@ import { TextReveal } from "../components/TextReveal";
     const calPlaceholder = document.getElementById(
         "cal-placeholder",
     ) as HTMLDivElement;
-    const calendarContainer = document.getElementById("calendar-container") as HTMLDivElement;
+    const calendarContainer = document.getElementById(
+        "calendar-container",
+    ) as HTMLDivElement;
 
     // Normalize URL - add https:// if missing
     function normalizeUrl(url: string): string | null {
@@ -494,15 +503,15 @@ import { TextReveal } from "../components/TextReveal";
     async function mountCalendar() {
         if (calendarMounted) return;
 
-        const container = document.getElementById('calendar-container');
+        const container = document.getElementById("calendar-container");
         if (!container) return;
 
         try {
             // Dynamically import React, ReactDOM, and the calendar component
             const [React, ReactDOM, BookingCalendarModule] = await Promise.all([
-                import('react'),
-                import('react-dom/client'),
-                import('../components/BookingCalendar')
+                import("react"),
+                import("react-dom/client"),
+                import("../components/BookingCalendar"),
             ]);
 
             const BookingCalendar = BookingCalendarModule.default;
@@ -511,7 +520,7 @@ import { TextReveal } from "../components/TextReveal";
 
             calendarMounted = true;
         } catch (error) {
-            console.error('Failed to mount calendar:', error);
+            console.error("Failed to mount calendar:", error);
         }
     }
 
@@ -552,6 +561,14 @@ import { TextReveal } from "../components/TextReveal";
         el.addEventListener("change", checkFormComplete);
     });
 
+    // Auto-scroll to submit button when a time slot is selected
+    window.addEventListener("slotSelected", () => {
+        // Small delay to allow the UI to update visually
+        setTimeout(() => {
+            submitBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 300);
+    });
+
     // Check on page load (for restored form data)
     checkFormComplete();
 
@@ -585,7 +602,8 @@ import { TextReveal } from "../components/TextReveal";
 
         // Check if time slot is selected
         if (!window.selectedBookingSlot) {
-            errorMessage.textContent = "Selecteer eerst een tijdstip voor je gesprek.";
+            errorMessage.textContent =
+                "Selecteer eerst een tijdstip voor je gesprek.";
             showError();
             return;
         }
@@ -623,13 +641,18 @@ import { TextReveal } from "../components/TextReveal";
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || `HTTP error! status: ${response.status}`);
+                throw new Error(
+                    data.error || `HTTP error! status: ${response.status}`,
+                );
             }
 
             showSuccess();
         } catch (error) {
             console.error("Booking submission error:", error);
-            errorMessage.textContent = error instanceof Error ? error.message : "Er ging iets mis bij het boeken. Probeer het opnieuw.";
+            errorMessage.textContent =
+                error instanceof Error
+                    ? error.message
+                    : "Er ging iets mis bij het boeken. Probeer het opnieuw.";
             showError();
         } finally {
             setLoading(false);

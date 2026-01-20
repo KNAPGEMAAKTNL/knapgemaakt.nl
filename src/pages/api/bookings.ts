@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import availabilityConfig from '../../config/availability.json';
 
 interface Env {
   knapgemaakt_bookings: D1Database;
@@ -55,10 +56,24 @@ export const POST: APIRoute = async ({ request, locals }) => {
       });
     }
 
-    // Check if booking is in the future
+    // Check if booking meets minimum advance booking requirement
     const now = new Date();
-    if (startTime < now) {
-      return new Response(JSON.stringify({ error: 'Cannot book in the past' }), {
+    const minBookingTime = new Date(now.getTime() + availabilityConfig.minAdvanceBooking * 60000);
+    if (startTime < minBookingTime) {
+      return new Response(JSON.stringify({
+        error: `Bookings must be made at least ${Math.floor(availabilityConfig.minAdvanceBooking / 60)} hours in advance`
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Check if booking is not too far in advance
+    const maxBookingDate = new Date(now.getTime() + availabilityConfig.maxAdvanceBooking * 24 * 60 * 60000);
+    if (startTime > maxBookingDate) {
+      return new Response(JSON.stringify({
+        error: `Bookings can only be made up to ${availabilityConfig.maxAdvanceBooking} days in advance`
+      }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });

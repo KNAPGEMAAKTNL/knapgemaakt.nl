@@ -46,32 +46,10 @@ export const GET: APIRoute = async ({ request, locals }) => {
       });
     }
 
-    // Check if date is in the past
+    // Calculate booking time window
     const now = new Date();
     const minBookingTime = new Date(now.getTime() + availabilityConfig.minAdvanceBooking * 60000);
-    if (requestedDate < minBookingTime) {
-      return new Response(JSON.stringify({
-        date: dateParam,
-        slots: [],
-        message: 'Cannot book in the past or too soon'
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
-    // Check if date is too far in the future
     const maxBookingDate = new Date(now.getTime() + availabilityConfig.maxAdvanceBooking * 24 * 60 * 60000);
-    if (requestedDate > maxBookingDate) {
-      return new Response(JSON.stringify({
-        date: dateParam,
-        slots: [],
-        message: 'Cannot book that far in advance'
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
 
     // Generate time slots based on business hours
     const slots = generateTimeSlots(
@@ -96,10 +74,15 @@ export const GET: APIRoute = async ({ request, locals }) => {
       'SELECT start_time, end_time FROM blocked_times WHERE start_time >= ? AND start_time < ?'
     ).bind(startOfDay.toISOString(), endOfDay.toISOString()).all();
 
-    // Filter out booked and blocked slots
+    // Filter out unavailable slots (booked, blocked, too soon, or too far in advance)
     const availableSlots = slots.filter(slot => {
       const slotStart = slot.start;
       const slotEnd = slot.end;
+
+      // Check if slot is too soon or too far in advance
+      if (slotStart < minBookingTime.getTime() || slotStart > maxBookingDate.getTime()) {
+        return false;
+      }
 
       // Check if slot overlaps with any booking
       const isBooked = bookedSlots.results.some((booking: any) => {
