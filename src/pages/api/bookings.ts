@@ -82,12 +82,22 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const db = (locals.runtime.env as Env).knapgemaakt_bookings;
 
     // Check for conflicts with existing bookings
+    console.log('[Bookings API] Checking booking conflicts for:', {
+      requestedStart: startTime.toISOString(),
+      requestedEnd: endTime.toISOString()
+    });
+
     const conflicts = await db.prepare(`
-      SELECT id FROM bookings
+      SELECT id, start_time, end_time FROM bookings
       WHERE status = 'confirmed'
-      AND start_time < ?
-      AND end_time > ?
+      AND datetime(start_time) < datetime(?)
+      AND datetime(end_time) > datetime(?)
     `).bind(endTime.toISOString(), startTime.toISOString()).all();
+
+    console.log('[Bookings API] Booking conflicts query results:', {
+      count: conflicts.results.length,
+      conflicts: conflicts.results
+    });
 
     if (conflicts.results.length > 0) {
       return new Response(JSON.stringify({
@@ -99,11 +109,21 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     // Check for conflicts with blocked times
+    console.log('[Bookings API] Checking blocked times conflicts for:', {
+      requestedStart: startTime.toISOString(),
+      requestedEnd: endTime.toISOString()
+    });
+
     const blockedConflicts = await db.prepare(`
-      SELECT id FROM blocked_times
-      WHERE start_time < ?
-      AND end_time > ?
+      SELECT id, start_time, end_time FROM blocked_times
+      WHERE datetime(start_time) < datetime(?)
+      AND datetime(end_time) > datetime(?)
     `).bind(endTime.toISOString(), startTime.toISOString()).all();
+
+    console.log('[Bookings API] Blocked times query results:', {
+      count: blockedConflicts.results.length,
+      conflicts: blockedConflicts.results
+    });
 
     if (blockedConflicts.results.length > 0) {
       return new Response(JSON.stringify({

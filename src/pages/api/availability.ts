@@ -66,12 +66,12 @@ export const GET: APIRoute = async ({ request, locals }) => {
     endOfDay.setHours(23, 59, 59, 999);
 
     const bookedSlots = await db.prepare(
-      'SELECT start_time, end_time FROM bookings WHERE status = ? AND start_time >= ? AND start_time < ?'
+      'SELECT start_time, end_time FROM bookings WHERE status = ? AND datetime(start_time) >= datetime(?) AND datetime(start_time) < datetime(?)'
     ).bind('confirmed', startOfDay.toISOString(), endOfDay.toISOString()).all();
 
     // Get blocked times
     const blockedSlots = await db.prepare(
-      'SELECT start_time, end_time FROM blocked_times WHERE start_time >= ? AND start_time < ?'
+      'SELECT start_time, end_time FROM blocked_times WHERE datetime(start_time) >= datetime(?) AND datetime(start_time) < datetime(?)'
     ).bind(startOfDay.toISOString(), endOfDay.toISOString()).all();
 
     // Filter out unavailable slots (booked, blocked, too soon, or too far in advance)
