@@ -80,12 +80,12 @@
 **Webhook URL:** `https://n8n.summitlab.dev/webhook-test/9adef783-f324-498e-b880-a4aeccff1dd0`
 
 **Nodes to configure:**
-1. [ ] Webhook Trigger Node
+1. [x] Webhook Trigger Node
    - Method: POST
    - Path: `9adef783-f324-498e-b880-a4aeccff1dd0`
    - Respond: Immediately
 
-2. [ ] Google Calendar Node
+2. [x] Google Calendar Node
    - Operation: Create
    - Calendar: Your calendar
    - Start: `{{ $json.start_time }}`
@@ -148,7 +148,7 @@ curl -X POST https://n8n.summitlab.dev/webhook-test/9adef783-f324-498e-b880-a4ae
 2. [x] Manually trigger workflow in n8n
 3. [x] Check n8n execution log for success
 4. [x] Verify blocked times in D1 (43 blocked times synced)
-5. [ ] Check preview site shows blocked times excluded from available slots (needs manual verification)
+5. [x] Check preview site shows blocked times excluded from available slots (needs manual verification)
 
 ### Test Workflow 2: Booking Confirmation
 
