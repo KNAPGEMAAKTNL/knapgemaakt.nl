@@ -1,14 +1,14 @@
 ---
-// Import critical font weights via @fontsource to prevent CLS on hero elements
-// 900: "KNAP GEMAAKT." logo | 700: TextReveal hero text
-import "@fontsource/inter-tight/latin-700.css";
-import "@fontsource/inter-tight/latin-900.css";
+// No @fontsource CSS imports - they use font-display: swap which causes CLS
+// Instead, we use custom @font-face with font-display: optional + preloading
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import { SmoothScroll } from "../components/SmoothScroll";
 
-// Import font file for preloading (400 only - 700/900 handled by @fontsource imports)
+// Import font files for preloading - all critical weights
 import interTight400 from "@fontsource/inter-tight/files/inter-tight-latin-400-normal.woff2";
+import interTight700 from "@fontsource/inter-tight/files/inter-tight-latin-700-normal.woff2";
+import interTight900 from "@fontsource/inter-tight/files/inter-tight-latin-900-normal.woff2";
 
 interface Props {
   title: string;
@@ -27,9 +27,11 @@ const { title } = Astro.props;
     />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon_final.svg" />
-    <!-- Preload font 400 (700/900 handled by @fontsource CSS imports) -->
+    <!-- Preload all font weights - ensures they arrive within 100ms for font-display: optional -->
     <link rel="preload" href={interTight400} as="font" type="font/woff2" crossorigin />
-    <!-- Custom @font-face for 400 with font-display: optional (body text, non-critical) -->
+    <link rel="preload" href={interTight700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interTight900} as="font" type="font/woff2" crossorigin />
+    <!-- Custom @font-face with font-display: optional - no swap = no CLS -->
     <style set:html={`
       @font-face {
         font-family: 'Inter Tight';
@@ -37,6 +39,20 @@ const { title } = Astro.props;
         font-display: optional;
         font-weight: 400;
         src: url('${interTight400}') format('woff2');
+      }
+      @font-face {
+        font-family: 'Inter Tight';
+        font-style: normal;
+        font-display: optional;
+        font-weight: 700;
+        src: url('${interTight700}') format('woff2');
+      }
+      @font-face {
+        font-family: 'Inter Tight';
+        font-style: normal;
+        font-display: optional;
+        font-weight: 900;
+        src: url('${interTight900}') format('woff2');
       }
     `} />
     <meta name="generator" content={Astro.generator} />
