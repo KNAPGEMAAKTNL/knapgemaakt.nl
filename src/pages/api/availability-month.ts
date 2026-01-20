@@ -27,12 +27,12 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
     // Fetch all bookings for the month
     const bookings = await db.prepare(
-      'SELECT start_time, end_time FROM bookings WHERE status = ? AND start_time >= ? AND start_time <= ?'
+      'SELECT start_time, end_time FROM bookings WHERE status = ? AND datetime(start_time) >= datetime(?) AND datetime(start_time) <= datetime(?)'
     ).bind('confirmed', monthStart.toISOString(), monthEnd.toISOString()).all();
 
     // Fetch all blocked times for the month
     const blockedTimes = await db.prepare(
-      'SELECT start_time, end_time FROM blocked_times WHERE start_time >= ? AND start_time <= ?'
+      'SELECT start_time, end_time FROM blocked_times WHERE datetime(start_time) >= datetime(?) AND datetime(start_time) <= datetime(?)'
     ).bind(monthStart.toISOString(), monthEnd.toISOString()).all();
 
     return new Response(JSON.stringify({
