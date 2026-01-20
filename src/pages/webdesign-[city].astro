@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import BentoGrid from "../components/BentoGrid.astro";
 import BentoItem from "../components/BentoItem.astro";
 import OfferSection from "../components/OfferSection.astro";
-import ConceptShowcase from "../components/ConceptShowcase.astro";
+import HorizontalProjectScroll from "../components/HorizontalProjectScroll.astro";
 import { TextReveal } from "../components/TextReveal";
 
 export const prerender = true;
@@ -152,7 +152,7 @@ const mapImage = hasCityImage
         </section>
     </main>
 
-    <ConceptShowcase city={city} />
+    <HorizontalProjectScroll client:load />
 
     <OfferSection />
 </Layout>
