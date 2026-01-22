@@ -85,29 +85,22 @@ const ogImageURL = new URL(image, Astro.site);
     <!-- Prevent rapid navigation (double-click) from crashing ViewTransitions -->
     <script is:inline>
       (function() {
-        let isNavigating = false;
+        var lastNavTime = 0;
 
-        // Block rapid clicks during navigation (capture phase runs before ViewTransitions)
+        // Block rapid clicks with 500ms cooldown (capture phase runs before everything)
         document.addEventListener('click', function(e) {
-          const link = e.target.closest('a[href]');
+          var link = e.target.closest('a[href]');
           if (!link) return;
 
-          if (isNavigating) {
+          var now = Date.now();
+          if (now - lastNavTime < 500) {
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
+            return;
           }
+          lastNavTime = now;
         }, { capture: true });
-
-        // Set flag when navigation starts
-        document.addEventListener('astro:before-preparation', function() {
-          isNavigating = true;
-        });
-
-        // Clear flag when navigation completes
-        document.addEventListener('astro:page-load', function() {
-          isNavigating = false;
-        });
       })();
     </script>
   </head>
