@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { TextReveal } from "../components/TextReveal";
+import TextRevealCSS from "../components/TextRevealCSS.astro";
 ---
 
 <Layout title="Website Aanvragen | Start Je Project - €595 in 7 Dagen">
@@ -8,10 +8,9 @@ import { TextReveal } from "../components/TextReveal";
         <div class="max-w-4xl mx-auto">
             <!-- Header -->
             <div class="mb-16" id="page-header">
-                <TextReveal
-                    client:visible
+                <TextRevealCSS
                     text="Start Je Aanvraag."
-                    className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6"
+                    class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6"
                 />
                 <p
                     class="text-xl md:text-2xl text-ink/60 font-medium max-w-4xl leading-relaxed"
