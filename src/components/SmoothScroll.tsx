@@ -66,7 +66,9 @@ export function SmoothScroll() {
         document.addEventListener('click', handleAnchorClick, { capture: true });
 
         // Stop any ongoing scroll animation before ViewTransitions swaps the page
+        // Cancel RAF immediately to prevent race conditions on rapid navigation (e.g., double-click)
         function handleBeforeSwap() {
+            cancelAnimationFrame(rafId);
             lenis.stop();
         }
         document.addEventListener('astro:before-swap', handleBeforeSwap);
