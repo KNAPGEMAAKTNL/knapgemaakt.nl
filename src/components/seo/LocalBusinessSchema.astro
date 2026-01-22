@@ -1,0 +1,83 @@
+---
+/**
+ * LocalBusiness Schema Component
+ * Generates JSON-LD structured data for local business SEO
+ * https://schema.org/LocalBusiness
+ */
+
+interface Props {
+    type?: string; // LocalBusiness subtype (e.g., "ProfessionalService")
+    name?: string;
+    description?: string;
+    url?: string;
+    email?: string;
+    addressLocality?: string;
+    addressCountry?: string;
+    areaServed?: string[];
+    priceRange?: string;
+}
+
+const {
+    type = "ProfessionalService",
+    name = "Knap Gemaakt",
+    description = "Webdesign bureau dat premium websites bouwt voor ondernemers. Jouw nieuwe website in 7 dagen voor €595. Snel, professioneel en zonder gedoe.",
+    url = "https://knapgemaakt.nl",
+    email = "info@knapgemaakt.nl",
+    addressLocality = "Buren",
+    addressCountry = "NL",
+    areaServed = ["Culemborg", "Utrecht", "Houten", "Nieuwegein", "Geldermalsen", "Tiel", "Vianen", "IJsselstein", "Beesd", "Buren"],
+    priceRange = "€€"
+} = Astro.props;
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${url}/#organization`,
+    name,
+    description,
+    url,
+    email,
+    address: {
+        "@type": "PostalAddress",
+        addressLocality,
+        addressCountry
+    },
+    areaServed: areaServed.map(city => ({
+        "@type": "City",
+        name: city
+    })),
+    priceRange,
+    // Dutch business identifiers (E-E-A-T signals)
+    identifier: [
+        {
+            "@type": "PropertyValue",
+            name: "KvK-nummer",
+            value: "73652377"
+        },
+        {
+            "@type": "PropertyValue",
+            name: "BTW-nummer",
+            value: "NL002383577B12"
+        }
+    ],
+    // Services offered
+    knowsAbout: [
+        "Webdesign",
+        "Website ontwikkeling",
+        "SEO",
+        "Webhosting",
+        "Website onderhoud"
+    ],
+    // What we offer
+    makesOffer: {
+        "@type": "Offer",
+        name: "Premium Website",
+        description: "Professionele website in 7 dagen",
+        price: "595",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock"
+    }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema, null, 2)} />

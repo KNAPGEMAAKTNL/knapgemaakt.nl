@@ -1,41 +1,67 @@
+import { getAllProjects } from "../data/projects";
+import { getAllCities } from "../data/cities";
+
 const site = import.meta.env.SITE ?? "https://knapgemaakt.nl";
 
-const staticPages = [
-  "/",
-  "/aanvragen",
-  "/algemene-voorwaarden",
-  "/privacy",
-  "/sitemap",
+// Current date in ISO format for lastmod
+const today = new Date().toISOString().split("T")[0];
+
+interface PageEntry {
+    path: string;
+    lastmod: string;
+    changefreq: "daily" | "weekly" | "monthly" | "yearly";
+    priority: string;
+}
+
+const staticPages: PageEntry[] = [
+    { path: "/", lastmod: today, changefreq: "weekly", priority: "1.0" },
+    { path: "/aanvragen", lastmod: today, changefreq: "monthly", priority: "0.9" },
+    { path: "/portfolio", lastmod: today, changefreq: "weekly", priority: "0.8" },
+    { path: "/algemene-voorwaarden", lastmod: "2026-01-20", changefreq: "yearly", priority: "0.3" },
+    { path: "/privacy", lastmod: "2026-01-20", changefreq: "yearly", priority: "0.3" },
+    { path: "/sitemap", lastmod: today, changefreq: "weekly", priority: "0.5" },
 ];
 
-const cities = [
-  "Culemborg",
-  "Utrecht",
-  "Houten",
-  "Nieuwegein",
-  "Geldermalsen",
-  "Tiel",
-  "Vianen",
-  "IJsselstein",
-  "Beesd",
-  "Buren",
-];
+// Dynamically generate project pages from data
+const projectPages: PageEntry[] = getAllProjects().map((project) => ({
+    path: `/project/${project.slug}`,
+    lastmod: today,
+    changefreq: "monthly" as const,
+    priority: "0.7",
+}));
 
-const cityPages = cities.map((city) => `/webdesign-${city.toLowerCase()}`);
+// Dynamically generate city pages from data
+const cityPages: PageEntry[] = getAllCities().map((city) => ({
+    path: `/webdesign-${city.slug}`,
+    lastmod: today,
+    changefreq: "weekly" as const,
+    priority: "0.8",
+}));
 
-const urlEntries = [...staticPages, ...cityPages]
-  .map((path) => `  <url>\n    <loc>${site}${path}</loc>\n  </url>`)
-  .join("\n");
+const allPages = [...staticPages, ...projectPages, ...cityPages];
 
-const body = `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  `${urlEntries}\n` +
-  `</urlset>\n`;
+const urlEntries = allPages
+    .map(
+        (page) =>
+            `  <url>
+    <loc>${site}${page.path}</loc>
+    <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`
+    )
+    .join("\n");
+
+const body =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `${urlEntries}\n` +
+    `</urlset>\n`;
 
 export function GET() {
-  return new Response(body, {
-    headers: {
-      "Content-Type": "application/xml; charset=utf-8",
-    },
-  });
+    return new Response(body, {
+        headers: {
+            "Content-Type": "application/xml; charset=utf-8",
+        },
+    });
 }

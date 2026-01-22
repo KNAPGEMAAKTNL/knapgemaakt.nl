@@ -2,97 +2,263 @@
 export const prerender = true;
 
 import Layout from "../layouts/Layout.astro";
-import BentoGrid from "../components/BentoGrid.astro";
-import BentoItem from "../components/BentoItem.astro";
-import { VisualCard } from "../components/VisualCard";
 import OfferSection from "../components/OfferSection.astro";
-import HorizontalProjectScroll from "../components/HorizontalProjectScroll.astro";
+import PortfolioSection from "../components/PortfolioSection.astro";
+import ProcessSection from "../components/ProcessSection.astro";
 import Footer from "../components/Footer.astro";
 import TextRevealCSS from "../components/TextRevealCSS.astro";
+import LocalBusinessSchema from "../components/seo/LocalBusinessSchema.astro";
 ---
 
-<Layout title="Jouw Nieuwe Website in 7 Dagen. €595 | Knap Gemaakt">
+<Layout title="Webdesign Bureau Nederland | Website Laten Maken - €595 in 7 Dagen">
+	<LocalBusinessSchema />
 	<main class="bg-canvas">
-		<div class="min-h-screen p-4 md:p-8 pb-0">
-			<BentoGrid class="h-[95vh]">
-				<!-- Block 1: Logo/Home -->
-				<BentoItem
-					colSpan="md:col-span-3"
-					rowSpan="md:row-span-2"
-					className="flex flex-col justify-between p-6 border-r border-ink/10 md:border-r-0"
-				>
-					<h1
-						class="text-4xl font-black tracking-tighter uppercase leading-none"
-					>
-						Knap<br />Gemaakt.
-					</h1>
-					<div
-						class="text-sm font-mono uppercase tracking-widest text-ink/60"
-					>
-						[Digitaal Vakmanschap]
-					</div>
-				</BentoItem>
+		<!-- HERO SECTION -->
+		<section class="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 md:px-12 lg:px-16 py-24 bg-grid-light">
+			<!-- Subtle moving gradient overlays -->
+			<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(204,255,0,0.04),transparent_50%)] animate-[drift_20s_ease-in-out_infinite] pointer-events-none"></div>
+			<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(124,58,237,0.03),transparent_50%)] animate-[drift_25s_ease-in-out_infinite_reverse] pointer-events-none"></div>
 
-				<!-- Block 2: Plan een gesprek (CTA) -->
-				<BentoItem
-					colSpan="md:col-span-9"
-					rowSpan="md:row-span-2"
-					noHover={true}
-					className="flex items-center justify-end p-6 bg-acid relative overflow-hidden group/cta transition-colors duration-300 hover:bg-black"
+			<!-- Accent gradient blob -->
+			<div class="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-acid/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+			<div class="max-w-6xl xl:max-w-7xl mx-auto w-full relative z-10">
+				<!-- Branding -->
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-8 md:mb-12">
+					[ Knap Gemaakt . Webdesign Nederland ]
+				</div>
+
+				<!-- H1 Headline -->
+				<h1 class="mb-6 md:mb-8">
+					<TextRevealCSS
+						text="Jouw Nieuwe Website."
+						class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter leading-[0.9] block"
+					/>
+					<span class="block h-2 md:h-4"></span>
+					<TextRevealCSS
+						text="In 7 Dagen. €595."
+						delay={0.15}
+						class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter leading-[0.9] block"
+					/>
+				</h1>
+
+				<!-- Subheadline -->
+				<p class="text-lg md:text-xl lg:text-2xl text-ink/70 max-w-2xl mb-10 md:mb-12 leading-relaxed">
+					Professionele websites voor ondernemers in heel Nederland.
+					Vaste prijs, snelle levering, geen gedoe.
+				</p>
+
+				<!-- CTA -->
+				<a
+					href="/aanvragen"
+					class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group mb-12 md:mb-16"
 				>
+					<span>Plan Je Gratis Gesprek</span>
+					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+				</a>
+
+				<!-- Features -->
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8 border-t border-ink/10">
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>Vaste prijs, geen verrassingen</span>
+					</div>
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>Hosting inbegrepen</span>
+					</div>
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>SEO geoptimaliseerd</span>
+					</div>
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>Binnen 1 week online</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- INTRO / ABOUT SECTION (SEO Content) -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+					<div>
+						<div class="text-xs font-mono uppercase tracking-[0.2em] text-acid mb-6">
+							[ Over Knap Gemaakt ]
+						</div>
+						<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-6">
+							Webdesign Zonder Gedoe
+						</h2>
+					</div>
+					<div class="space-y-6 text-canvas/80 text-lg leading-relaxed">
+						<p>
+							Knap Gemaakt is een webdesign bureau uit Buren, in het hart van Nederland.
+							Wij maken professionele websites voor lokale ondernemers die hun online
+							zichtbaarheid willen verbeteren zonder maanden te wachten of duizenden
+							euro's uit te geven.
+						</p>
+						<p>
+							Ons concept is simpel: één vaste prijs van €595 voor een complete website,
+							opgeleverd binnen 7 dagen. Geen uurtje-factuurtje, geen eindeloze vergaderingen,
+							geen verborgen kosten. Wij onderzoeken jouw branche, ontwerpen een website
+							die werkt, en leveren een product waar je direct mee aan de slag kunt.
+						</p>
+						<p>
+							Met ons optionele beheerpakket van €49 per maand hoef je je nooit meer
+							zorgen te maken over hosting, updates of kleine aanpassingen. Wij regelen
+							alles, zodat jij kunt focussen op waar je goed in bent: ondernemen.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- PORTFOLIO SECTION -->
+		<section id="portfolio">
+			<PortfolioSection />
+		</section>
+
+		<!-- PROCESS SECTION -->
+		<ProcessSection />
+
+		<!-- OFFER/PRICING SECTION -->
+		<section id="prijzen">
+			<OfferSection />
+		</section>
+
+		<!-- WHY CHOOSE US SECTION (More SEO Content) -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-6">
+					[ Waarom Knap Gemaakt ]
+				</div>
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16 max-w-3xl">
+					Wat Maakt Ons Anders Dan Andere Webdesigners?
+				</h2>
+
+				<div class="grid md:grid-cols-3 gap-8 md:gap-12">
+					<div class="space-y-4">
+						<div class="text-electric font-mono text-sm">[01]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Snelheid Zonder Concessies</h3>
+						<p class="text-ink/70 leading-relaxed">
+							De meeste webdesign bureaus hebben 4 tot 8 weken nodig voor een simpele
+							website. Wij leveren binnen 7 dagen. Hoe? Door een gestroomlijnd proces
+							en gedegen marktonderzoek. We analyseren jouw branche, bestuderen wat
+							werkt bij de beste, en passen dat toe voor jouw bedrijf.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-electric font-mono text-sm">[02]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Transparante Prijzen</h3>
+						<p class="text-ink/70 leading-relaxed">
+							Bij traditionele bureaus krijg je eerst een offerte, dan komen de meerkosten.
+							Wij werken met een vaste prijs: €595 voor je website, klaar. Geen verrassingen,
+							geen discussies achteraf. Precies zoals afgesproken.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-electric font-mono text-sm">[03]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Moderne Technologie</h3>
+						<p class="text-ink/70 leading-relaxed">
+							Geen trage WordPress-sites die gehackt worden of vastlopen. Wij bouwen
+							met moderne technologie die razendsnel laadt, perfect scoort in Google,
+							en veilig is zonder constante updates. Jouw website werkt gewoon, altijd.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ SECTION (SEO Content) -->
+		<section id="faq" class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-acid mb-6">
+					[ Veelgestelde Vragen ]
+				</div>
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16">
+					Nog Vragen?
+				</h2>
+
+				<div class="grid md:grid-cols-2 gap-8 md:gap-12">
+					<div class="space-y-8">
+						<div class="space-y-3">
+							<h3 class="text-lg font-bold text-acid">Hoe werkt het proces?</h3>
+							<p class="text-canvas/70 leading-relaxed">
+								Na je aanvraag plannen we een kort telefoongesprek om je wensen te bespreken.
+								Daarna gaan wij aan de slag. Binnen 7 dagen ontvang je het eerste ontwerp.
+								Na jouw feedback maken we de laatste aanpassingen en gaat je website live.
+							</p>
+						</div>
+
+						<div class="space-y-3">
+							<h3 class="text-lg font-bold text-acid">Wat als ik niet tevreden ben?</h3>
+							<p class="text-canvas/70 leading-relaxed">
+								Wij hanteren een 100% tevredenheidsgarantie. Vind je het niks? Dan krijg
+								je je geld terug. Geen discussie, geen gedoe. We willen alleen tevreden
+								klanten.
+							</p>
+						</div>
+
+						<div class="space-y-3">
+							<h3 class="text-lg font-bold text-acid">Moet ik zelf teksten aanleveren?</h3>
+							<p class="text-canvas/70 leading-relaxed">
+								Nee, wij schrijven de teksten voor je. We onderzoeken jouw branche en
+								concurrenten, en leveren pakkende content die jouw klanten aanspreekt.
+								Wil je liever eigen teksten gebruiken of aanpassen? Geen probleem, jij
+								hebt het laatste woord.
+							</p>
+						</div>
+					</div>
+
+					<div class="space-y-8">
+						<div class="space-y-3">
+							<h3 class="text-lg font-bold text-acid">Is het beheerpakket verplicht?</h3>
+							<p class="text-canvas/70 leading-relaxed">
+								Nee, je website werkt prima zonder. Hosting is altijd inbegrepen. Met het
+								beheerpakket van €49/maand krijg je: onbeperkte kleine aanpassingen (nieuwe
+								content, foto's, blogposts), technische updates, uptime-monitoring en backups.
+								Ideaal als je website regelmatig wilt bijwerken zonder zelf iets te hoeven doen.
+							</p>
+						</div>
+
+						<div class="space-y-3">
+							<h3 class="text-lg font-bold text-acid">Kan ik later uitbreiden?</h3>
+							<p class="text-canvas/70 leading-relaxed">
+								Absoluut. Mocht je later extra pagina's, functies of een webshop willen,
+								dan bespreken we de mogelijkheden. We groeien graag mee met jouw bedrijf.
+							</p>
+						</div>
+
+						<div class="space-y-3">
+							<h3 class="text-lg font-bold text-acid">Werken jullie door heel Nederland?</h3>
+							<p class="text-canvas/70 leading-relaxed">
+								Ja, wij werken voor ondernemers in heel Nederland. Vanuit Buren bedienen
+								we klanten in Utrecht, Gelderland, Noord-Brabant en daarbuiten. Alles gaat
+								digitaal, dus locatie maakt niet uit.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Final CTA -->
+				<div class="mt-16 pt-12 border-t border-canvas/10 text-center">
+					<p class="text-xl md:text-2xl font-bold mb-6">
+						Klaar om te beginnen?
+					</p>
 					<a
 						href="/aanvragen"
-						class="relative z-10 text-xl md:text-3xl font-black uppercase tracking-tighter flex items-center gap-3 transition-all duration-300 group-hover/cta:-translate-x-3 group-hover/cta:text-acid"
+						class="bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
 					>
-						<span class="relative">
-							VRAAG JE WEBSITE AAN
-							<span
-								class="absolute -bottom-1 left-0 w-full h-1 bg-acid scale-x-0 transition-transform duration-300 origin-left group-hover/cta:scale-x-100"
-							></span>
-						</span>
-						<span class="text-3xl md:text-4xl leading-none"
-							>&rarr;</span
-						>
+						<span>Plan Je Gesprek</span>
+						<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
 					</a>
-				</BentoItem>
+				</div>
+			</div>
+		</section>
 
-				<!-- Block 3: Hero Text -->
-				<BentoItem
-					colSpan="md:col-span-8"
-					rowSpan="md:row-span-6"
-					className="flex items-center justify-center p-8 md:p-16 border-t border-ink/10 md:border-t-0"
-				>
-					<div class="flex flex-col items-center justify-center py-4">
-						<TextRevealCSS
-							text="Jouw Nieuwe Website."
-							class="text-4xl md:text-9xl font-bold uppercase tracking-tighter leading-[0.9] text-center"
-						/>
-						<TextRevealCSS
-							text="In 7 Dagen."
-							delay={0.2}
-							class="text-[10vw] md:text-9xl font-bold uppercase tracking-tighter leading-[0.9] text-center"
-						/>
-						<TextRevealCSS
-							text="€595."
-							delay={0.4}
-							class="text-6xl md:text-9xl font-bold uppercase tracking-tighter leading-[0.9] text-center text-electric"
-						/>
-					</div>
-				</BentoItem>
-
-				<!-- Block 4: Visual Card -->
-				<BentoItem
-					colSpan="md:col-span-4"
-					rowSpan="md:row-span-6"
-					className="relative p-0 border-l border-ink/10 md:border-l-0 overflow-hidden"
-				>
-					<VisualCard client:visible />
-				</BentoItem>
-			</BentoGrid>
-		</div>
-
-		<HorizontalProjectScroll />
-		<OfferSection />
 		<Footer />
 	</main>
 </Layout>

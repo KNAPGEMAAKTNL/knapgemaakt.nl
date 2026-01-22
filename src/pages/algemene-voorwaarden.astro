@@ -2,10 +2,11 @@
 export const prerender = true;
 
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Algemene Voorwaarden | Knap Gemaakt">
-    <main class="min-h-screen bg-canvas p-4 md:p-8">
+    <main class="min-h-screen bg-canvas p-4 md:p-8 bg-grid-light relative overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <!-- Header -->
             <header class="mb-16 md:mb-32 pt-12 md:pt-24">
@@ -350,4 +351,5 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </div>
     </main>
+    <Footer />
 </Layout>
