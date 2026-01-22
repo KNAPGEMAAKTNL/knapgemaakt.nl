@@ -1,0 +1,39 @@
+---
+/**
+ * FAQSchema - Generates JSON-LD FAQ structured data
+ *
+ * Use on service pages, location pages, and any page with Q&A content.
+ * FAQ rich results can significantly improve click-through rates.
+ *
+ * Requirements:
+ * - Questions must match visible content on the page
+ * - Answers should be the first 40-60 words of visible answer text
+ * - Minimum 3-5 questions recommended
+ */
+
+interface FAQItem {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	faqs: FAQItem[];
+}
+
+const { faqs } = Astro.props;
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": faqs.map((faq) => ({
+		"@type": "Question",
+		"name": faq.question,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": faq.answer
+		}
+	}))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

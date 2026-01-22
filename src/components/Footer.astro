@@ -1,55 +1,44 @@
 ---
-import BentoGrid from "./BentoGrid.astro";
-import BentoItem from "./BentoItem.astro";
 import { TextReveal } from "./TextReveal";
 ---
 
-<footer class="bg-canvas p-4 md:p-8 pt-0">
-    <BentoGrid>
-        <BentoItem
-            colSpan="md:col-span-12"
-            rowSpan="md:row-span-2"
-            noHover={true}
-            className="flex items-end justify-between p-6 bg-ink text-canvas cursor-default"
-        >
-            <div class="flex flex-col w-full">
-                <div
-                    class="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-0 mb-12 md:mb-32"
-                >
-                    <div
-                        class="flex flex-wrap gap-x-6 gap-y-3 md:gap-8 font-mono text-xs md:text-sm text-canvas/60 uppercase tracking-widest"
-                    >
-                        <a
-                            href="/algemene-voorwaarden"
-                            class="hover:text-acid transition-colors whitespace-nowrap"
-                            >Algemene Voorwaarden</a
-                        >
+<footer class="bg-ink text-canvas py-12 md:py-16 px-6 md:px-12 lg:px-16 bg-grid-dark relative overflow-hidden">
+	<div class="max-w-6xl xl:max-w-7xl mx-auto relative z-10">
+		<!-- Top row: Legal links + Copyright (desktop only) -->
+		<div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12 md:mb-16">
+			<!-- Legal Links -->
+			<div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 font-mono text-xs md:text-sm text-canvas/60 uppercase tracking-widest">
+				<a href="/algemene-voorwaarden" class="hover:text-acid transition-colors">Algemene Voorwaarden</a>
+				<a href="/privacy" class="hover:text-acid transition-colors">Privacy</a>
+				<a href="/sitemap" class="hover:text-acid transition-colors">Sitemap</a>
+			</div>
 
-                        <a
-                            href="/privacy"
-                            class="hover:text-acid transition-colors whitespace-nowrap"
-                            >Privacy</a
-                        >
-                        <a
-                            href="/sitemap"
-                            class="hover:text-acid transition-colors whitespace-nowrap"
-                            >Sitemap</a
-                        >
-                    </div>
-                </div>
+			<!-- Copyright (desktop only) -->
+			<div class="hidden md:block font-mono text-xs md:text-sm text-canvas/60">
+				© 2026 KNAP GEMAAKT.
+			</div>
+		</div>
 
-                <TextReveal
-                    client:visible
-                    text="KNAP GEMAAKT."
-                    className="text-[12vw] md:text-[11vw] font-black leading-[0.8] tracking-tighter text-center md:text-left select-none block md:pr-4"
-                />
+		<!-- Business Info row -->
+		<div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 mb-8 font-mono text-xs text-canvas/40">
+			<span>KvK: 73652377</span>
+			<span>BTW: NL002383577B12</span>
+			<span>Buren, Nederland</span>
+			<a href="mailto:info@knapgemaakt.nl" class="hover:text-acid transition-colors">info@knapgemaakt.nl</a>
+		</div>
 
-                <div
-                    class="mt-8 md:mt-0 font-mono text-xs md:text-sm text-canvas/60 whitespace-nowrap md:absolute md:top-6 md:right-6"
-                >
-                    © 2026 KNAP GEMAAKT.
-                </div>
-            </div>
-        </BentoItem>
-    </BentoGrid>
+		<!-- Big Logo -->
+		<div class="pointer-events-none">
+			<TextReveal
+				client:visible
+				text="KNAP GEMAAKT."
+				className="text-[12vw] md:text-[10vw] font-black leading-[0.8] tracking-tighter select-none block"
+			/>
+		</div>
+
+		<!-- Copyright (mobile only - at bottom) -->
+		<div class="md:hidden text-center mt-8 font-mono text-xs text-canvas/60">
+			© 2026 KNAP GEMAAKT.
+		</div>
+	</div>
 </footer>

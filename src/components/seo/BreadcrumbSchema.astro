@@ -1,0 +1,31 @@
+---
+/**
+ * BreadcrumbList Schema Component
+ * Generates JSON-LD breadcrumb structured data
+ * https://schema.org/BreadcrumbList
+ */
+
+interface BreadcrumbItem {
+    name: string;
+    url: string;
+}
+
+interface Props {
+    items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: item.url
+    }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema, null, 2)} />

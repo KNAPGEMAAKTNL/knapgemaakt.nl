@@ -1,0 +1,44 @@
+# Cloudflare Pages Headers Configuration
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Global security headers for all pages
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# HSTS - Enable strict HTTPS (1 year)
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# Aggressive caching for static assets (1 year)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache fonts aggressively (1 year)
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Cache images (1 month)
+/assets/*
+  Cache-Control: public, max-age=2592000
+
+/cities/*
+  Cache-Control: public, max-age=2592000
+
+/*.webp
+  Cache-Control: public, max-age=2592000
+
+/*.svg
+  Cache-Control: public, max-age=2592000
+
+# HTML pages - cache briefly but revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Prevent pages.dev from being indexed (if using custom domain)
+# Uncomment if you have a custom domain and want to block the .pages.dev URL
+# https://*.pages.dev/*
+#   X-Robots-Tag: noindex

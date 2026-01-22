@@ -1,0 +1,153 @@
+---
+/**
+ * Header/Navigation Component
+ * Sticky header with logo, navigation, and CTA
+ */
+
+interface Props {
+    variant?: "default" | "transparent";
+}
+
+const { variant = "default" } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/#prijzen", label: "Prijzen" },
+    { href: "/#faq", label: "FAQ" },
+];
+
+const isActive = (href: string) => {
+    if (href === "/") return currentPath === "/";
+    return currentPath.startsWith(href);
+};
+---
+
+<header
+    class:list={[
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        variant === "transparent" ? "bg-transparent" : "bg-canvas/95 backdrop-blur-sm border-b border-ink/10"
+    ]}
+    id="site-header"
+>
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
+            <a
+                href="/"
+                class="text-xl md:text-2xl font-black uppercase tracking-tighter hover:text-electric transition-colors"
+                aria-label="Knap Gemaakt - Ga naar homepagina"
+            >
+                Knap Gemaakt.
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8" aria-label="Hoofdnavigatie">
+                {navLinks.map(link => (
+                    <a
+                        href={link.href}
+                        class:list={[
+                            "font-mono text-sm uppercase tracking-widest transition-colors",
+                            isActive(link.href) ? "text-electric" : "text-ink/60 hover:text-ink"
+                        ]}
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                    >
+                        {link.label}
+                    </a>
+                ))}
+                <a
+                    href="/aanvragen"
+                    class="bg-acid text-ink px-5 py-2.5 font-bold uppercase tracking-tight text-sm hover:bg-ink hover:text-acid transition-colors duration-300"
+                >
+                    Gratis Gesprek
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button
+                type="button"
+                class="md:hidden flex items-center justify-center w-12 h-12 -mr-2 text-ink"
+                id="menu-btn"
+                aria-label="Menu"
+            >
+                <svg class="w-6 h-6" id="icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg class="w-6 h-6 hidden" id="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="md:hidden hidden bg-canvas border-t border-ink/10 px-4 py-6 space-y-4" id="mobile-nav" aria-label="Mobiele navigatie">
+        {navLinks.map(link => (
+            <a
+                href={link.href}
+                class:list={[
+                    "nav-link block font-mono text-lg uppercase tracking-widest py-2 transition-colors",
+                    isActive(link.href) ? "text-electric" : "text-ink/60 hover:text-ink"
+                ]}
+            >
+                {link.label}
+            </a>
+        ))}
+        <a href="/aanvragen" class="nav-link block bg-acid text-ink px-5 py-4 font-bold uppercase tracking-tight text-center mt-6 hover:bg-ink hover:text-acid transition-colors duration-300">
+            Gratis Gesprek
+        </a>
+    </nav>
+</header>
+
+<!-- Spacer -->
+<div class="h-16 md:h-20" aria-hidden="true"></div>
+
+<script>
+    (function() {
+        // Query fresh each time to avoid stale references
+        function getElements() {
+            return {
+                btn: document.getElementById('menu-btn'),
+                nav: document.getElementById('mobile-nav'),
+                iconOpen: document.getElementById('icon-open'),
+                iconClose: document.getElementById('icon-close')
+            };
+        }
+
+        function closeMenu() {
+            const { nav, iconOpen, iconClose } = getElements();
+            if (nav) nav.classList.add('hidden');
+            if (iconOpen) iconOpen.classList.remove('hidden');
+            if (iconClose) iconClose.classList.add('hidden');
+        }
+
+        function toggleMenu() {
+            const { nav, iconOpen, iconClose } = getElements();
+            if (!nav) return;
+
+            const isHidden = nav.classList.contains('hidden');
+            if (isHidden) {
+                nav.classList.remove('hidden');
+                if (iconOpen) iconOpen.classList.add('hidden');
+                if (iconClose) iconClose.classList.remove('hidden');
+            } else {
+                closeMenu();
+            }
+        }
+
+        // Use event delegation on document - bulletproof
+        document.addEventListener('click', function(e) {
+            // Toggle button clicked
+            if (e.target.closest('#menu-btn')) {
+                e.preventDefault();
+                toggleMenu();
+                return;
+            }
+
+            // Nav link clicked - close menu
+            if (e.target.closest('#mobile-nav .nav-link')) {
+                closeMenu();
+            }
+        });
+    })();
+</script>

@@ -1,4 +1,53 @@
+# robots.txt for knapgemaakt.nl
+# Allow all crawlers including AI for maximum discoverability
+
+# Google and general crawlers
 User-agent: *
 Allow: /
 
+# Googlebot (main search crawler)
+User-agent: Googlebot
+Allow: /
+
+# Google AI/Gemini
+User-agent: Google-Extended
+Allow: /
+
+# OpenAI GPT crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft/Bing AI
+User-agent: Bingbot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# Common crawlers
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Sitemap location
 Sitemap: https://knapgemaakt.nl/sitemap.xml

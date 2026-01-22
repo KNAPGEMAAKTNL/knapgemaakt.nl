@@ -23,6 +23,17 @@
 }
 
 @layer base {
+  /* Account for fixed header when scrolling to anchors */
+  html {
+    scroll-padding-top: 4rem; /* 64px = h-16 header height on mobile */
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 5rem; /* 80px = h-20 header height on desktop */
+    }
+  }
+
   body {
     background-color: var(--color-canvas);
     color: var(--color-ink);
@@ -39,4 +50,27 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Subtle background drift animation for hero */
+@keyframes drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+}
+
+/* Reusable grid backgrounds */
+.bg-grid-light {
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(0,0,0,0.03) 80px, rgba(0,0,0,0.03) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(0,0,0,0.03) 80px, rgba(0,0,0,0.03) 81px);
+}
+
+.bg-grid-dark {
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(204,255,0,0.06) 80px, rgba(204,255,0,0.06) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(204,255,0,0.06) 80px, rgba(204,255,0,0.06) 81px);
 }

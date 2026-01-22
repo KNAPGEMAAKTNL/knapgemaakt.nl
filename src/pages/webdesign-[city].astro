@@ -1,10 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BentoGrid from "../components/BentoGrid.astro";
-import BentoItem from "../components/BentoItem.astro";
 import OfferSection from "../components/OfferSection.astro";
-import HorizontalProjectScroll from "../components/HorizontalProjectScroll.astro";
-import { TextReveal } from "../components/TextReveal";
+import PortfolioSection from "../components/PortfolioSection.astro";
+import LocalSEOSection from "../components/LocalSEOSection.astro";
+import Footer from "../components/Footer.astro";
+import { getCityBySlug, getAllCities } from "../data/cities";
+import LocalBusinessSchema from "../components/seo/LocalBusinessSchema.astro";
+import BreadcrumbSchema from "../components/seo/BreadcrumbSchema.astro";
+import FAQSchema from "../components/seo/FAQSchema.astro";
 
 export const prerender = true;
 
@@ -17,142 +20,113 @@ export function getStaticPaths() {
         ),
     );
 
-    const cities = [
-        "Culemborg",
-        "Utrecht",
-        "Houten",
-        "Nieuwegein",
-        "Geldermalsen",
-        "Tiel",
-        "Vianen",
-        "IJsselstein",
-        "Beesd",
-        "Buren",
-    ];
+    // Get all cities from our data file
+    const allCities = getAllCities();
 
-    return cities.map((city) => ({
-        params: { city: city.toLowerCase() },
+    return allCities.map((cityData) => ({
+        params: { city: cityData.slug },
         props: {
-            city,
-            hasCityImage: availableCityImages.has(city.toLowerCase()),
+            cityData,
+            hasCityImage: availableCityImages.has(cityData.slug),
         },
     }));
 }
 
-const { city, hasCityImage } = Astro.props;
+const { cityData, hasCityImage } = Astro.props;
+const city = cityData.name;
 
-const cityImageFilename = `${city.toLowerCase()}.webp`;
+const cityImageFilename = `${cityData.slug}.webp`;
 const mapImage = hasCityImage
     ? `/cities/${cityImageFilename}`
     : "/city_map.webp";
+
+// SEO-optimized meta description using city data
+const metaDescription = `Professionele webdesign in ${city}. Wij bouwen snelle, moderne websites voor ondernemers in ${cityData.region}. Klaar in 7 dagen voor €595. Vraag nu aan!`;
+
+// SEO-optimized title (no brand name - it's the domain)
+const pageTitle = `Webdesign ${city} | Website Laten Maken in ${cityData.region} - €595`;
+
+// Breadcrumb data for this page
+const breadcrumbs = [
+	{ name: "Home", url: "https://knapgemaakt.nl/" },
+	{ name: `Webdesign ${city}`, url: `https://knapgemaakt.nl/webdesign-${cityData.slug}/` }
+];
 ---
 
-<Layout title={`Webdesign ${city} | Knap Gemaakt - Premium Websites`}>
-    <main>
-        <!-- Similar to Index but localized -->
-        <section class="bg-canvas p-4 md:p-8 pt-6 md:pt-8 pb-0 mb-0">
-            <BentoGrid class="h-auto md:h-[50vh] lg:h-[55vh]">
-                <BentoItem
-                    colSpan="md:col-span-8"
-                    rowSpan="md:row-span-4"
-                    className="p-8 md:p-12 border-b border-ink/10 md:border-b-0"
-                >
-                    <div
-                        class="h-full flex flex-col justify-between gap-8 md:gap-0"
-                    >
-                        <div
-                            class="font-mono text-sm text-ink/60 uppercase tracking-widest"
+<Layout
+	title={pageTitle}
+	description={metaDescription}
+>
+	<LocalBusinessSchema />
+	<BreadcrumbSchema items={breadcrumbs} />
+	{cityData.faqs && <FAQSchema faqs={cityData.faqs} />}
+	<main>
+        <!-- Hero Section -->
+        <section class="flex items-start bg-canvas bg-grid-light relative overflow-hidden pt-24 md:pt-32 pb-16 md:pb-24">
+            <div class="max-w-6xl xl:max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <!-- Text Content -->
+                    <div class="space-y-6">
+                        <div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40">
+                            [ Knap Gemaakt . {cityData.region} ]
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.9]">
+                            Webdesign in<br />
+                            <span class="text-electric">{city}.</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-ink/70">
+                            Je onderneming verdient beter dan een matige website.
+                        </p>
+                        <a
+                            href="/aanvragen"
+                            class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
                         >
-                            Knap Gemaakt
-                        </div>
-                        <div class="flex flex-col z-10 my-4 md:my-0">
-                            <h1 class="sr-only">Webdesign Bureau {city}</h1>
-                            <div
-                                class="text-4xl sm:text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none md:leading-[0.9] mb-4 break-words"
-                            >
-                                Webdesign in <br class="md:hidden" />
-                                <span class="text-electric">{city}.</span>
-                            </div>
-                            <div
-                                class="text-xl md:text-2xl font-medium text-ink/80 max-w-2xl"
-                            >
-                                Wij bouwen premium websites voor ondernemers in {
-                                    city
-                                } en omgeving. Snel, professioneel en zonder gedoe.
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <a
-                                href="/aanvragen"
-                                class="bg-acid text-ink px-6 py-4 md:px-8 md:py-6 text-lg md:text-xl font-black uppercase tracking-tighter group-hover:bg-black group-hover:text-acid transition-all duration-300 flex items-center gap-3 group/btn"
-                            >
-                                <span
-                                    class="relative group-hover/btn:-translate-x-2 transition-transform duration-300"
-                                >
-                                    VRAAG JE WEBSITE AAN
-                                    <span
-                                        class="absolute -bottom-1 left-0 w-full h-0.5 bg-current scale-x-0 transition-transform duration-300 origin-left group-hover/btn:scale-x-100"
-                                    ></span>
-                                </span>
-                                <span
-                                    class="group-hover/btn:translate-x-1 transition-transform duration-300"
-                                    >&rarr;</span
-                                >
-                            </a>
-                        </div>
-                    </div>
-                </BentoItem>
-
-                <BentoItem
-                    colSpan="md:col-span-4"
-                    rowSpan="md:row-span-4"
-                    className="relative group overflow-hidden border-l border-ink/10 md:border-l-0 min-h-[300px] md:min-h-0 bg-acid"
-                >
-                    <!-- Background Map (WebP optimized) -->
-                    <img
-                        src={mapImage}
-                        alt={`Map of ${city}`}
-                        width={1024}
-                        height={768}
-                        loading="eager"
-                        fetchpriority="high"
-                        decoding="async"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-
-                    <!-- Subtle Dark Gradient for Contrast -->
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80"
-                    >
+                            <span>Plan Je Gratis Gesprek</span>
+                            <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </a>
                     </div>
 
-                    <div
-                        class="relative z-10 w-full h-full flex flex-col justify-end items-center p-8 pb-12 md:pb-12"
-                    >
-                        <div class="text-center space-y-2">
-                            <div
-                                class="font-bold uppercase tracking-[0.2em] text-acid text-sm drop-shadow-md"
-                            >
-                                Actief in
-                            </div>
-                            <div
-                                class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white drop-shadow-lg"
-                            >
-                                {city}
-                            </div>
-                            <div
-                                class="font-bold uppercase tracking-widest text-white/60 text-xs"
-                            >
-                                & Omgeving
+                    <!-- Map Image -->
+                    <div class="relative">
+                        <div class="aspect-square md:aspect-[4/3] relative overflow-hidden group">
+                            <img
+                                src={mapImage}
+                                alt={`Kaart van ${city} - Knap Gemaakt webdesign actief in ${cityData.region}`}
+                                width={1024}
+                                height={768}
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-center">
+                                <div class="font-mono uppercase tracking-[0.2em] text-acid text-xs mb-1">
+                                    Actief in
+                                </div>
+                                <div class="font-black uppercase tracking-tighter text-canvas" style="font-size: clamp(1.25rem, 5vw, 2.5rem);">
+                                    {city}
+                                </div>
+                                <div class="font-mono uppercase tracking-widest text-canvas/60 text-xs mt-1">
+                                    & Omgeving
+                                </div>
                             </div>
                         </div>
                     </div>
-                </BentoItem>
-            </BentoGrid>
+                </div>
+            </div>
         </section>
+
+        <!-- Local SEO Content Section -->
+        <LocalSEOSection city={cityData} />
+
+        <!-- Portfolio -->
+        <PortfolioSection />
+
+        <!-- Pricing & Offer -->
+        <OfferSection />
+
+        <!-- Footer -->
+        <Footer />
     </main>
-
-    <HorizontalProjectScroll />
-
-    <OfferSection />
 </Layout>

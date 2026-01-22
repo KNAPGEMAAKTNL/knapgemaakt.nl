@@ -1,158 +1,167 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BentoGrid from "../components/BentoGrid.astro";
-import BentoItem from "../components/BentoItem.astro";
+import Footer from "../components/Footer.astro";
+import { getAllProjects } from "../data/projects";
+
+const projects = getAllProjects();
 ---
 
 <Layout title="Sitemap | Knap Gemaakt">
-    <main class="min-h-screen bg-canvas p-4 md:p-8">
-        <BentoGrid class="h-auto">
-            <BentoItem colSpan="md:col-span-12" className="p-8 md:p-12">
-                <div class="max-w-3xl mx-auto space-y-8">
-                    <h1
-                        class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8"
-                    >
-                        Sitemap
-                    </h1>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <section class="space-y-4">
-                            <h2
-                                class="text-xl font-bold uppercase tracking-tight text-electric"
-                            >
-                                Hoofdpagina's
-                            </h2>
-                            <ul class="space-y-2 text-ink/70 font-medium">
-                                <li>
-                                    <a
-                                        href="/"
-                                        class="hover:text-ink transition-colors"
-                                        >Home</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/aanvragen"
-                                        class="hover:text-ink transition-colors"
-                                        >Aanvragen</a
-                                    >
-                                </li>
-                            </ul>
-                        </section>
-
-                        <section class="space-y-4">
-                            <h2
-                                class="text-xl font-bold uppercase tracking-tight text-electric"
-                            >
-                                Juridisch
-                            </h2>
-                            <ul class="space-y-2 text-ink/70 font-medium">
-                                <li>
-                                    <a
-                                        href="/algemene-voorwaarden"
-                                        class="hover:text-ink transition-colors"
-                                        >Algemene Voorwaarden</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/privacy"
-                                        class="hover:text-ink transition-colors"
-                                        >Privacyverklaring</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/sitemap"
-                                        class="hover:text-ink transition-colors"
-                                        >Sitemap</a
-                                    >
-                                </li>
-                            </ul>
-                        </section>
-
-                        <section class="space-y-4">
-                            <h2
-                                class="text-xl font-bold uppercase tracking-tight text-electric"
-                            >
-                                Regio's
-                            </h2>
-                            <ul class="space-y-2 text-ink/70 font-medium">
-                                <li>
-                                    <a
-                                        href="/webdesign-culemborg"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Culemborg</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-utrecht"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Utrecht</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-houten"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Houten</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-nieuwegein"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Nieuwegein</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-geldermalsen"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Geldermalsen</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-tiel"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Tiel</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-vianen"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Vianen</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-ijsselstein"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign IJsselstein</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-beesd"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Beesd</a
-                                    >
-                                </li>
-                                <li>
-                                    <a
-                                        href="/webdesign-buren"
-                                        class="hover:text-ink transition-colors"
-                                        >Webdesign Buren</a
-                                    >
-                                </li>
-                            </ul>
-                        </section>
-                    </div>
+    <main class="min-h-screen bg-canvas pt-32 pb-24 px-6 md:px-12 lg:px-16 bg-grid-light relative overflow-hidden">
+        <div class="max-w-6xl xl:max-w-7xl mx-auto relative z-10">
+            <!-- Header -->
+            <div class="mb-16">
+                <div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-4">
+                    [ Navigatie ]
                 </div>
-            </BentoItem>
-        </BentoGrid>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+                    Sitemap
+                </h1>
+                <p class="text-xl md:text-2xl text-ink/60 max-w-2xl">
+                    Alle pagina's van KNAP GEMAAKT. op een rij.
+                </p>
+            </div>
+
+            <!-- Links Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                <!-- Main Pages -->
+                <section class="space-y-6">
+                    <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
+                        <span class="text-electric font-mono text-sm">[01]</span>
+                        Hoofdpagina's
+                    </h2>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/portfolio" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#prijzen" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Prijzen
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/#faq" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                FAQ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/aanvragen" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Aanvragen
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Projects -->
+                <section class="space-y-6">
+                    <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
+                        <span class="text-electric font-mono text-sm">[02]</span>
+                        Projecten
+                    </h2>
+                    <ul class="space-y-3">
+                        {projects.map((project) => (
+                            <li>
+                                <a href={`/project/${project.slug}`} class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                    {project.title}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
+                <!-- City Pages -->
+                <section class="space-y-6">
+                    <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
+                        <span class="text-electric font-mono text-sm">[03]</span>
+                        Regio's
+                    </h2>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/webdesign-culemborg" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Culemborg
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-utrecht" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Utrecht
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-houten" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Houten
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-nieuwegein" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Nieuwegein
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-geldermalsen" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Geldermalsen
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-tiel" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Tiel
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-vianen" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Vianen
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-ijsselstein" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign IJsselstein
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-beesd" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Beesd
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/webdesign-buren" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Webdesign Buren
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Legal -->
+                <section class="space-y-6">
+                    <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
+                        <span class="text-electric font-mono text-sm">[04]</span>
+                        Juridisch
+                    </h2>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/algemene-voorwaarden" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Algemene Voorwaarden
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/privacy" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Privacyverklaring
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/sitemap" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Sitemap
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
     </main>
+    <Footer />
 </Layout>
