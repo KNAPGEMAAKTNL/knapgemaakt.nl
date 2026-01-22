@@ -82,26 +82,40 @@ const ogImageURL = new URL(image, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
-    <!-- Prevent rapid navigation (double-click) from crashing ViewTransitions -->
+    <!-- Prevent same-page navigation and rapid double-clicks from crashing ViewTransitions -->
     <script is:inline>
-      (function() {
-        var lastNavTime = 0;
+      // Only initialize once (ViewTransitions re-runs is:inline scripts)
+      if (!window.__navGuardInit) {
+        window.__navGuardInit = true;
+        window.__lastNavTime = 0;
 
-        // Block rapid clicks with 500ms cooldown (capture phase runs before everything)
         document.addEventListener('click', function(e) {
           var link = e.target.closest('a[href]');
           if (!link) return;
 
+          var href = link.getAttribute('href');
+          var currentPath = window.location.pathname;
+
+          // Prevent same-page navigation - just scroll to top instead
+          if (href === '/' && currentPath === '/') {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+          }
+
+          // Block rapid clicks with 500ms cooldown
           var now = Date.now();
-          if (now - lastNavTime < 500) {
+          if (now - window.__lastNavTime < 500) {
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
             return;
           }
-          lastNavTime = now;
+          window.__lastNavTime = now;
         }, { capture: true });
-      })();
+      }
     </script>
   </head>
   <body
