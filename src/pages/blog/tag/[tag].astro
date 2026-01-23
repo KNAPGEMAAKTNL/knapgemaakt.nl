@@ -1,0 +1,147 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Footer from "../../../components/Footer.astro";
+import BlogCard from "../../../components/blog/BlogCard.astro";
+import BreadcrumbSchema from "../../../components/seo/BreadcrumbSchema.astro";
+import { getCollection } from "astro:content";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+
+	// Get all unique tags
+	const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))];
+
+	return allTags.map((tag) => ({
+		params: { tag: tag.toLowerCase().replace(/\s+/g, "-") },
+		props: {
+			tag,
+			posts: allPosts
+				.filter((post) => post.data.tags.includes(tag))
+				.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+		},
+	}));
+}
+
+interface Props {
+	tag: string;
+	posts: Awaited<ReturnType<typeof getCollection<"blog">>>;
+}
+
+const { tag, posts } = Astro.props;
+const tagSlug = Astro.params.tag;
+
+// Get all tags for the filter bar
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags))].sort();
+
+// SEO
+const metaTitle = `${tag} | Blog | KNAP GEMAAKT.`;
+const metaDescription = `Artikelen over ${tag.toLowerCase()}. Tips en inzichten voor ondernemers over webdesign en online zichtbaarheid.`;
+
+const breadcrumbs = [
+	{ name: "Home", url: "https://knapgemaakt.nl/" },
+	{ name: "Blog", url: "https://knapgemaakt.nl/blog/" },
+	{ name: tag, url: `https://knapgemaakt.nl/blog/tag/${tagSlug}/` },
+];
+---
+
+<Layout title={metaTitle} description={metaDescription}>
+	<BreadcrumbSchema items={breadcrumbs} />
+
+	<main>
+		<!-- Hero Section -->
+		<section class="pt-32 pb-16 md:pb-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto relative z-10">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-4">
+					[ Artikelen over {tag} ]
+				</div>
+				<h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+					{tag}
+				</h1>
+				<p class="text-xl md:text-2xl text-ink/60 max-w-2xl">
+					{posts.length} {posts.length === 1 ? "artikel" : "artikelen"} over {tag.toLowerCase()}.
+				</p>
+			</div>
+		</section>
+
+		<!-- Tags Filter -->
+		<section class="px-6 md:px-12 lg:px-16 bg-canvas border-b border-ink/10">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto py-6">
+				<div class="flex flex-wrap items-center gap-3">
+					<span class="text-xs font-mono uppercase tracking-wider text-ink/40">
+						Filter:
+					</span>
+					<a
+						href="/blog"
+						class="px-3 py-1.5 text-xs font-mono uppercase tracking-wider bg-ink/5 text-ink/60 hover:bg-acid hover:text-ink transition-colors"
+					>
+						Alle
+					</a>
+					{allTags.map((t) => (
+						<a
+							href={`/blog/tag/${t.toLowerCase().replace(/\s+/g, "-")}`}
+							class:list={[
+								"px-3 py-1.5 text-xs font-mono uppercase tracking-wider transition-colors",
+								t === tag
+									? "bg-acid text-ink"
+									: "bg-ink/5 text-ink/60 hover:bg-acid hover:text-ink"
+							]}
+						>
+							{t}
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Blog Posts Grid -->
+		<section class="py-16 md:py-24 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+				{posts.length > 0 ? (
+					<div class="grid md:grid-cols-2 gap-8">
+						{posts.map((post) => (
+							<BlogCard
+								title={post.data.title}
+								description={post.data.description}
+								publishDate={post.data.publishDate}
+								slug={post.slug}
+								tags={post.data.tags}
+								readingTime={post.data.readingTime}
+							/>
+						))}
+					</div>
+				) : (
+					<div class="text-center py-16">
+						<p class="text-canvas/60 text-lg">
+							Nog geen artikelen met deze tag.
+						</p>
+					</div>
+				)}
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto text-center">
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-6">
+					Klaar Voor Je Eigen Website?
+				</h2>
+				<p class="text-xl text-ink/60 max-w-2xl mx-auto mb-8">
+					Na al dat lezen ben je misschien wel klaar om de stap te zetten.
+					Plan een gratis gesprek en ontdek wat wij voor jouw bedrijf kunnen betekenen.
+				</p>
+				<a
+					href="/aanvragen"
+					class="bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+				>
+					<span>Plan Je Gratis Gesprek</span>
+					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+				</a>
+			</div>
+		</section>
+
+		<Footer />
+	</main>
+</Layout>

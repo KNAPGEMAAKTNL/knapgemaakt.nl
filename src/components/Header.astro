@@ -13,6 +13,7 @@ const currentPath = Astro.url.pathname;
 
 const navLinks = [
     { href: "/portfolio", label: "Portfolio" },
+    { href: "/blog", label: "Blog" },
     { href: "/#prijzen", label: "Prijzen" },
     { href: "/#faq", label: "FAQ" },
 ];
@@ -36,9 +37,9 @@ const isActive = (href: string) => {
             <a
                 href="/"
                 class="text-xl md:text-2xl font-black uppercase tracking-tighter hover:text-electric transition-colors"
-                aria-label="Knap Gemaakt - Ga naar homepagina"
+                aria-label="KNAP GEMAAKT. - Ga naar homepagina"
             >
-                Knap Gemaakt.
+                KNAP GEMAAKT.
             </a>
 
             <!-- Desktop Navigation -->

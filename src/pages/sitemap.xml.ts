@@ -1,5 +1,6 @@
 import { getAllProjects } from "../data/projects";
 import { getAllCities } from "../data/cities";
+import { getAllBlogPosts } from "../data/blog";
 
 const site = import.meta.env.SITE ?? "https://knapgemaakt.nl";
 
@@ -19,6 +20,7 @@ function generateSitemap(): string {
         { path: "/aanvragen", lastmod: today, changefreq: "monthly", priority: "0.9" },
         { path: "/aanvragen/bedankt", lastmod: today, changefreq: "monthly", priority: "0.3" },
         { path: "/portfolio", lastmod: today, changefreq: "weekly", priority: "0.8" },
+        { path: "/blog", lastmod: today, changefreq: "weekly", priority: "0.8" },
         { path: "/algemene-voorwaarden", lastmod: "2026-01-20", changefreq: "yearly", priority: "0.3" },
         { path: "/privacy", lastmod: "2026-01-20", changefreq: "yearly", priority: "0.3" },
     ];
@@ -39,7 +41,15 @@ function generateSitemap(): string {
         priority: "0.8",
     }));
 
-    const allPages = [...staticPages, ...projectPages, ...cityPages];
+    // Dynamically generate blog post pages from data
+    const blogPages: PageEntry[] = getAllBlogPosts().map((post) => ({
+        path: `/blog/${post.slug}`,
+        lastmod: post.publishDate,
+        changefreq: "monthly" as const,
+        priority: "0.7",
+    }));
+
+    const allPages = [...staticPages, ...projectPages, ...cityPages, ...blogPages];
 
     const urlEntries = allPages
         .map(

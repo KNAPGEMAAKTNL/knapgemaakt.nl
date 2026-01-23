@@ -66,7 +66,7 @@ Een website voor een schildersbedrijf moet vertrouwen wekken. Potentiële klante
 Veel schildersbedrijven vertrouwen nog op mond-tot-mondreclame en een vermelding in de Gouden Gids. Maar steeds meer huiseigenaren en bedrijven oriënteren zich online. Ze googelen "buitenschilderwerk offerte" of "schilder in de buurt" en verwachten een professionele website met portfolio en contactmogelijkheden.`,
 		solution: `We hebben gekozen voor een strak, modern design met veel wit en subtiele accenten. Grote, kwalitatieve foto's van het werk staan centraal. De typografie is verfijnd en professioneel. Elke pagina ademt vakmanschap en betrouwbaarheid.
 
-De website is gebouwd met moderne technologie die razendsnel laadt — cruciaal voor bezoekers die vanaf hun telefoon zoeken naar een schilder. Alle diensten hebben een eigen pagina met gerichte content, waardoor de site beter vindbaar is voor specifieke zoekopdrachten zoals "marmerpleister Geldermalsen" of "houtrot reparatie Betuwe".`,
+De website is gebouwd met moderne technologie die razendsnel laadt. Cruciaal voor bezoekers die vanaf hun telefoon zoeken naar een schilder. Alle diensten hebben een eigen pagina met gerichte content, waardoor de site beter vindbaar is voor specifieke zoekopdrachten zoals "marmerpleister Geldermalsen" of "houtrot reparatie Betuwe".`,
 		features: [
 			"Responsive design voor alle apparaten",
 			"Portfolio met projectfoto's per dienst",
@@ -89,9 +89,9 @@ De website is gebouwd met moderne technologie die razendsnel laadt — cruciaal 
 			"Laadtijd < 1 seconde op mobiel",
 			"Lighthouse Performance score 95+",
 			"Geoptimaliseerd voor 'schilder + [stad]' zoekopdrachten",
-			"Geen WordPress — geen onderhoud of beveiligingsrisico's",
+			"Geen WordPress, geen onderhoud of beveiligingsrisico's",
 		],
-		industryContext: "De schildersbranche is traditioneel, maar klanten zoeken steeds vaker online. Een schildersbedrijf zonder professionele website mist potentiële opdrachten aan concurrenten die wél vindbaar zijn. Lokale SEO is essentieel: 76% van de mensen die lokaal zoeken, neemt binnen 24 uur contact op.",
+		industryContext: "De schildersbranche is traditioneel, maar klanten zoeken steeds vaker online. Een schildersbedrijf zonder professionele website mist potentiële opdrachten aan concurrenten die wél vindbaar zijn. Lokale SEO is belangrijk: 76% van de mensen die lokaal zoeken, neemt binnen 24 uur contact op.",
 	},
 	{
 		slug: "fitcity-culemborg",
@@ -113,7 +113,7 @@ Voor sportscholen is online vindbaarheid cruciaal. Mensen zoeken "sportschool Cu
 In de fitnessbranche domineren grote ketens met dure marketingbudgetten de zoekresultaten. Een lokale sportschool moet slim omgaan met SEO: focussen op lokale zoekopdrachten en zich onderscheiden op persoonlijke service en community. De website moet bezoekers binnen seconden overtuigen dat dit dé plek is om te sporten.`,
 		solution: `We creëerden een frisse, energieke website die de community en toegankelijkheid benadrukt. De nadruk ligt op de betaalbare prijzen, ruime openingstijden (7 dagen per week) en de laagdrempelige sfeer. Call-to-actions zijn helder en direct.
 
-De website is geoptimaliseerd voor conversie: de "Word Lid" knop is altijd zichtbaar, prijzen staan transparant op de homepage, en het aanmeldformulier is kort en simpel. Geen eindeloos scrollen — bezoekers krijgen direct de informatie die ze zoeken.`,
+De website is geoptimaliseerd voor conversie: de "Word Lid" knop is altijd zichtbaar, prijzen staan transparant op de homepage, en het aanmeldformulier is kort en simpel. Geen eindeloos scrollen: bezoekers krijgen direct de informatie die ze zoeken.`,
 		features: [
 			"Ledenwerving optimalisatie met duidelijke CTA's",
 			"Openingstijden en prijzen direct zichtbaar",
@@ -151,13 +151,13 @@ De website is geoptimaliseerd voor conversie: de "Word Lid" knop is altijd zicht
 		shortDescription: "Metropolitan Luxury voor exclusieve interieurs.",
 		fullDescription: `By Shakir | Metropolitan Luxury is een luxe interieurzaak in Tiel, geleid door de Nederlandse ontwerper Shakir. Al meer dan 15 jaar creëren zij op maat gemaakte, high-end meubels en complete interieuroplossingen voor veeleisende klanten in binnen- en buitenland.
 
-Een website voor een luxe interieurzaak is meer dan een digitale brochure — het is een verlengstuk van de showroom. Bezoekers moeten direct de kwaliteit en exclusiviteit voelen. Van de eerste scroll tot het contactformulier moet alles premium aanvoelen. Potentiële klanten zoeken naar "luxe meubels op maat" of "interieurontwerper Nederland" en verwachten een online ervaring die past bij het prijssegment.`,
+Een website voor een luxe interieurzaak is meer dan een digitale brochure: het is een verlengstuk van de showroom. Bezoekers moeten direct de kwaliteit en exclusiviteit voelen. Van de eerste scroll tot het contactformulier moet alles premium aanvoelen. Potentiële klanten zoeken naar "luxe meubels op maat" of "interieurontwerper Nederland" en verwachten een online ervaring die past bij het prijssegment.`,
 		challenge: `De luxe interieurmarkt vraagt om een online presentatie die de exclusiviteit en het vakmanschap weerspiegelt. By Shakir wilde een website die dezelfde "Metropolitan Luxury" uitstraalt als hun showroom aan de Gijbert Stoutweg in Tiel.
 
 In het premium segment bepaalt de website vaak de eerste indruk. Klanten die €10.000+ uitgeven aan een maatwerk bank verwachten geen standaard template-site. De uitdaging was om een digitale ervaring te creëren die de showroom eer aandoet en tegelijkertijd functioneel is: bezoekers moeten eenvoudig de collectie kunnen bekijken en contact kunnen opnemen voor advies.`,
 		solution: `We ontwierpen een website met een donker, luxueus kleurenpalet en elegante typografie die past bij het premium segment. Grote beelden van exclusieve meubels en interieurs staan centraal. De sfeer ademt exclusiviteit en ambachtelijk vakmanschap.
 
-Elke pagina is een showcase. Producten worden gepresenteerd met ruimte om te ademen — geen drukke layouts, geen afleidende elementen. De navigatie is intuïtief, de call-to-actions subtiel maar duidelijk. Het resultaat is een website die net zo premium aanvoelt als de meubels die erin worden getoond.`,
+Elke pagina is een showcase. Producten worden gepresenteerd met ruimte om te ademen. Geen drukke layouts, geen afleidende elementen. De navigatie is intuïtief, de call-to-actions subtiel maar duidelijk. Het resultaat is een website die net zo premium aanvoelt als de meubels die erin worden getoond.`,
 		features: [
 			"Luxe productpresentatie met grote beelden",
 			"Collectie showcase per categorie",
