@@ -8,6 +8,7 @@ import ProcessSection from "../components/ProcessSection.astro";
 import Footer from "../components/Footer.astro";
 import TextRevealCSS from "../components/TextRevealCSS.astro";
 import LocalBusinessSchema from "../components/seo/LocalBusinessSchema.astro";
+import { TypingRotator } from "../components/TypingRotator";
 import { getAllCities } from "../data/cities";
 
 const cities = getAllCities();
@@ -29,11 +30,6 @@ const cities = getAllCities();
 			<div class="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-acid/5 rounded-full blur-[120px] pointer-events-none"></div>
 
 			<div class="max-w-6xl xl:max-w-7xl mx-auto w-full relative z-10">
-				<!-- Branding -->
-				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-8 md:mb-12">
-					[ KNAP GEMAAKT. Webdesign Nederland ]
-				</div>
-
 				<!-- H1 Headline -->
 				<h1 class="mb-6 md:mb-8">
 					<TextRevealCSS
@@ -48,10 +44,18 @@ const cities = getAllCities();
 					/>
 				</h1>
 
-				<!-- Subheadline -->
+				<!-- Subheadline with typing animation -->
 				<p class="text-lg md:text-xl lg:text-2xl text-ink/70 max-w-2xl mb-10 md:mb-12 leading-relaxed">
-					Professionele websites voor ondernemers in heel Nederland.
-					Vaste prijs, snelle levering, geen gedoe.
+					{/* Server-rendered placeholder for SEO & CLS prevention */}
+					<span id="typing-placeholder">Professionele websites voor ondernemers.</span>
+					<TypingRotator
+						client:load
+						prefix="Professionele websites voor "
+						words={["ondernemers", "schilders", "personal trainers", "kappers", "coaches", "gyms", "aanpakkers"]}
+						typingSpeed={80}
+						deletingSpeed={40}
+						pauseDuration={2500}
+					/>
 				</p>
 
 				<!-- CTA -->
@@ -59,7 +63,7 @@ const cities = getAllCities();
 					href="/aanvragen"
 					class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group mb-12 md:mb-16"
 				>
-					<span>Plan Je Gratis Gesprek</span>
+					<span>Plan Een Kennismaking</span>
 					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
 				</a>
 
@@ -111,7 +115,7 @@ const cities = getAllCities();
 						</p>
 						<p>
 							En ja, we schrijven ook je teksten. Want laten we eerlijk zijn: jij bent goed in je vak,
-							niet in het staren naar een leeg Word-document om 23:00. Wij regelen het. Jij ondernemt.
+							niet in het staren naar een leeg Word-document om 23:00. Wij regelen het. Jij onderneemt.
 						</p>
 					</div>
 				</div>
@@ -294,7 +298,7 @@ const cities = getAllCities();
 						href="/aanvragen"
 						class="bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
 					>
-						<span>Plan Je Gesprek</span>
+						<span>Plan Een Kennismaking</span>
 						<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
 					</a>
 				</div>

@@ -64,6 +64,16 @@
   }
 }
 
+/* Typing cursor blink animation */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 /* Reusable grid backgrounds */
 .bg-grid-light {
   background-image:
