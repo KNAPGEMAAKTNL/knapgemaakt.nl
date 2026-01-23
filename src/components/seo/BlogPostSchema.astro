@@ -1,0 +1,82 @@
+---
+/**
+ * BlogPosting Schema Component
+ * Generates JSON-LD structured data for blog posts
+ * https://schema.org/BlogPosting
+ */
+
+interface Props {
+	title: string;
+	description: string;
+	publishDate: Date;
+	updatedDate?: Date;
+	author?: string;
+	slug: string;
+	tags?: string[];
+	readingTime?: number;
+	image?: string;
+}
+
+const {
+	title,
+	description,
+	publishDate,
+	updatedDate,
+	author = "KNAP GEMAAKT.",
+	slug,
+	tags = [],
+	readingTime,
+	image,
+} = Astro.props;
+
+const url = `https://knapgemaakt.nl/blog/${slug}`;
+const logoUrl = "https://knapgemaakt.nl/favicon_final.svg";
+const imageUrl = image ? `https://knapgemaakt.nl${image}` : logoUrl;
+
+// Calculate word count estimate from reading time (200 words/min)
+const wordCount = readingTime ? readingTime * 200 : 1000;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	"@id": url,
+	mainEntityOfPage: {
+		"@type": "WebPage",
+		"@id": url,
+	},
+	headline: title,
+	description: description,
+	image: imageUrl,
+	datePublished: publishDate.toISOString(),
+	dateModified: (updatedDate || publishDate).toISOString(),
+	author: {
+		"@type": "Organization",
+		name: author,
+		url: "https://knapgemaakt.nl",
+		logo: {
+			"@type": "ImageObject",
+			url: logoUrl,
+		},
+	},
+	publisher: {
+		"@type": "Organization",
+		name: "KNAP GEMAAKT.",
+		url: "https://knapgemaakt.nl",
+		logo: {
+			"@type": "ImageObject",
+			url: logoUrl,
+		},
+	},
+	keywords: tags.join(", "),
+	wordCount: wordCount,
+	inLanguage: "nl-NL",
+	isPartOf: {
+		"@type": "Blog",
+		"@id": "https://knapgemaakt.nl/blog",
+		name: "KNAP GEMAAKT. Blog",
+		description: "Tips, gidsen en inzichten over webdesign voor ondernemers",
+	},
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema, null, 2)} />

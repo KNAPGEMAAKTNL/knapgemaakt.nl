@@ -2,11 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import { getAllProjects } from "../data/projects";
+import { getAllCities } from "../data/cities";
+import { getAllBlogPosts } from "../data/blog";
 
 const projects = getAllProjects();
+const cities = getAllCities();
+const blogPosts = getAllBlogPosts();
 ---
 
-<Layout title="Sitemap | Knap Gemaakt">
+<Layout title="Sitemap | KNAP GEMAAKT.">
     <main class="min-h-screen bg-canvas pt-32 pb-24 px-6 md:px-12 lg:px-16 bg-grid-light relative overflow-hidden">
         <div class="max-w-6xl xl:max-w-7xl mx-auto relative z-10">
             <!-- Header -->
@@ -23,7 +27,7 @@ const projects = getAllProjects();
             </div>
 
             <!-- Links Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-12 lg:gap-8">
                 <!-- Main Pages -->
                 <section class="space-y-6">
                     <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
@@ -39,6 +43,11 @@ const projects = getAllProjects();
                         <li>
                             <a href="/portfolio" class="text-ink/70 hover:text-electric transition-colors font-medium">
                                 Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/blog" class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                Blog
                             </a>
                         </li>
                         <li>
@@ -76,70 +85,44 @@ const projects = getAllProjects();
                     </ul>
                 </section>
 
-                <!-- City Pages -->
+                <!-- Blog Posts -->
                 <section class="space-y-6">
                     <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
                         <span class="text-electric font-mono text-sm">[03]</span>
+                        Artikelen
+                    </h2>
+                    <ul class="space-y-3">
+                        {blogPosts.map((post) => (
+                            <li>
+                                <a href={`/blog/${post.slug}`} class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                    {post.title}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
+                <!-- City Pages -->
+                <section class="space-y-6">
+                    <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
+                        <span class="text-electric font-mono text-sm">[04]</span>
                         Regio's
                     </h2>
                     <ul class="space-y-3">
-                        <li>
-                            <a href="/webdesign-culemborg" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Culemborg
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-utrecht" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Utrecht
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-houten" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Houten
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-nieuwegein" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Nieuwegein
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-geldermalsen" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Geldermalsen
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-tiel" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Tiel
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-vianen" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Vianen
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-ijsselstein" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign IJsselstein
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-beesd" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Beesd
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/webdesign-buren" class="text-ink/70 hover:text-electric transition-colors font-medium">
-                                Webdesign Buren
-                            </a>
-                        </li>
+                        {cities.map((city) => (
+                            <li>
+                                <a href={`/webdesign-${city.slug}`} class="text-ink/70 hover:text-electric transition-colors font-medium">
+                                    Webdesign {city.name}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </section>
 
                 <!-- Legal -->
                 <section class="space-y-6">
                     <h2 class="text-lg font-bold uppercase tracking-tight flex items-center gap-3">
-                        <span class="text-electric font-mono text-sm">[04]</span>
+                        <span class="text-electric font-mono text-sm">[05]</span>
                         Juridisch
                     </h2>
                     <ul class="space-y-3">

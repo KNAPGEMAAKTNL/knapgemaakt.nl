@@ -1,0 +1,71 @@
+---
+/**
+ * BlogCard Component
+ * Displays a preview of a blog post in the listing page
+ * Matches the dark ink/acid design system
+ */
+
+interface Props {
+	title: string;
+	description: string;
+	publishDate: Date;
+	slug: string;
+	tags?: string[];
+	readingTime?: number;
+}
+
+const { title, description, publishDate, slug, tags = [], readingTime } = Astro.props;
+
+// Format date in Dutch
+const formattedDate = publishDate.toLocaleDateString("nl-NL", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+
+// Calculate reading time estimate if not provided
+const estimatedReadingTime = readingTime || 5;
+---
+
+<article class="group relative">
+	<a href={`/blog/${slug}`} class="block">
+		<!-- Card Container -->
+		<div class="bg-canvas/5 border border-canvas/10 p-6 md:p-8 hover:border-acid/50 transition-all duration-300">
+			<!-- Meta Row -->
+			<div class="flex flex-wrap items-center gap-3 mb-4 text-xs font-mono uppercase tracking-wider text-canvas/50">
+				<time datetime={publishDate.toISOString()}>
+					{formattedDate}
+				</time>
+				<span class="w-1 h-1 bg-canvas/30 rounded-full"></span>
+				<span>{estimatedReadingTime} min lezen</span>
+			</div>
+
+			<!-- Title -->
+			<h2 class="text-xl md:text-2xl font-black uppercase tracking-tight text-canvas leading-tight mb-3 group-hover:text-acid transition-colors duration-300">
+				{title}
+			</h2>
+
+			<!-- Description -->
+			<p class="text-canvas/60 leading-relaxed mb-4 line-clamp-2">
+				{description}
+			</p>
+
+			<!-- Tags -->
+			{tags.length > 0 && (
+				<div class="flex flex-wrap gap-2 mb-4">
+					{tags.slice(0, 3).map((tag) => (
+						<span class="px-2 py-1 bg-acid/10 text-acid text-xs font-mono uppercase tracking-wider">
+							{tag}
+						</span>
+					))}
+				</div>
+			)}
+
+			<!-- Read More Link -->
+			<div class="flex items-center gap-2 text-acid font-mono text-sm uppercase tracking-wider">
+				<span>Lees meer</span>
+				<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+			</div>
+		</div>
+	</a>
+</article>
