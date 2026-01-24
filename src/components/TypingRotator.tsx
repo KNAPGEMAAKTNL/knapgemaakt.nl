@@ -27,9 +27,10 @@ export function TypingRotator({
 	const currentWord = words[currentWordIndex];
 
 	// Hide the server-rendered placeholder when component mounts
+	// Use visibility: hidden to preserve layout space and prevent CLS
 	useEffect(() => {
 		const placeholder = document.getElementById("typing-placeholder");
-		if (placeholder) placeholder.style.display = "none";
+		if (placeholder) placeholder.style.visibility = "hidden";
 	}, []);
 
 	// Initial pause before starting to delete the first word

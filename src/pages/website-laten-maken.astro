@@ -1,0 +1,355 @@
+---
+export const prerender = true;
+
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import TextRevealCSS from "../components/TextRevealCSS.astro";
+import LocalBusinessSchema from "../components/seo/LocalBusinessSchema.astro";
+import FAQSchema from "../components/seo/FAQSchema.astro";
+
+const faqs = [
+	{
+		question: "Wat kost een website laten maken bij KNAP GEMAAKT.?",
+		answer: "€595 vast. Dat is inclusief design, teksten, hosting, en SEO-basis. Geen verborgen kosten, geen offertes die oplopen. Je weet vooraf wat je betaalt.",
+	},
+	{
+		question: "Hoe lang duurt het om een website te laten maken?",
+		answer: "7 dagen. Na een kort kennismakingsgesprek van 15 minuten gaan wij aan de slag. Binnen een week staat je website live.",
+	},
+	{
+		question: "Moet ik zelf teksten en foto's aanleveren?",
+		answer: "Teksten schrijven wij. Foto's zijn wel handig als je ze hebt, want eigen beelden maken je website persoonlijker dan stockfoto's. Heb je niks? Dan regelen wij het.",
+	},
+	{
+		question: "Kan ik later aanpassingen laten doen?",
+		answer: "Ja. Kleine wijzigingen zitten in ons beheerpakket (€49/maand). Grotere aanpassingen? Daar maken we een losse offerte voor.",
+	},
+	{
+		question: "Wat als ik niet tevreden ben met het resultaat?",
+		answer: "Geld terug. We hebben een 100% tevredenheidsgarantie. Vind je het niks? Dan krijg je je geld terug. Geen discussie.",
+	},
+];
+---
+
+<Layout
+	title="Website Laten Maken | €595 Vast | 7 Dagen Live | KNAP GEMAAKT."
+	description="Website laten maken? €595 vast, binnen 7 dagen live. Inclusief design, teksten, hosting. Geen gedoe, wel resultaat. Vraag vandaag een vrijblijvend gesprek aan."
+>
+	<LocalBusinessSchema />
+	<FAQSchema faqs={faqs} />
+
+	<main class="bg-canvas">
+		<!-- HERO SECTION -->
+		<section class="min-h-[80vh] flex flex-col justify-center relative overflow-hidden px-6 md:px-12 lg:px-16 py-24 bg-grid-light">
+			<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(204,255,0,0.04),transparent_50%)] pointer-events-none"></div>
+			<div class="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-acid/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+			<div class="max-w-6xl xl:max-w-7xl mx-auto w-full relative z-10">
+				<h1 class="mb-6 md:mb-8">
+					<TextRevealCSS
+						text="Website Laten Maken."
+						class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] block"
+					/>
+					<span class="block h-2 md:h-4"></span>
+					<TextRevealCSS
+						text="€595. In 7 Dagen."
+						delay={0.15}
+						class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] block"
+					/>
+				</h1>
+
+				<p class="text-lg md:text-xl lg:text-2xl text-ink/70 max-w-2xl mb-10 md:mb-12 leading-relaxed">
+					Vaste prijs. Alles inbegrepen. Jij voert één gesprek, wij bouwen je website.
+					Binnen een week online.
+				</p>
+
+				<a
+					href="/aanvragen"
+					class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group mb-12 md:mb-16"
+				>
+					<span class="sm:hidden">Aan De Slag</span>
+					<span class="hidden sm:inline">Plan Een Kennismaking</span>
+					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+				</a>
+
+				<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-8 border-t border-ink/10">
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>Design op maat</span>
+					</div>
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>Teksten inbegrepen</span>
+					</div>
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>Hosting inbegrepen</span>
+					</div>
+					<div class="flex items-center gap-2 text-sm md:text-base text-ink/70">
+						<span class="w-2 h-2 bg-acid rounded-full shrink-0"></span>
+						<span>100% tevredenheidsgarantie</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- WHAT'S INCLUDED SECTION -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-acid mb-6">
+					[ Wat Je Krijgt ]
+				</div>
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16 max-w-3xl">
+					Alles Wat Je Nodig Hebt. Zonder Gedoe.
+				</h2>
+
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+					<div class="space-y-4">
+						<div class="text-acid font-mono text-sm">[01]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Uniek Design</h3>
+						<p class="text-canvas/70 leading-relaxed">
+							Geen templates. Elk ontwerp wordt vanaf nul gebouwd, specifiek voor jouw bedrijf.
+							Je website ziet er anders uit dan die van je concurrent.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-acid font-mono text-sm">[02]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Teksten Schrijven Wij</h3>
+						<p class="text-canvas/70 leading-relaxed">
+							Geen lege Word-documenten om 23:00. Wij onderzoeken je branche, bekijken je concurrenten,
+							en schrijven teksten die klanten aanspreken.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-acid font-mono text-sm">[03]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">SEO Geoptimaliseerd</h3>
+						<p class="text-canvas/70 leading-relaxed">
+							Vindbaar in Google. We zorgen voor de technische basis: snelle laadtijden,
+							juiste structuur, meta-tags. Zodat klanten je vinden.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-acid font-mono text-sm">[04]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Hosting Inbegrepen</h3>
+						<p class="text-canvas/70 leading-relaxed">
+							Hosting zit in de prijs. Altijd. Razendsnelle servers, SSL-certificaat,
+							backups. Geen extra kosten.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-acid font-mono text-sm">[05]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Mobiel Vriendelijk</h3>
+						<p class="text-canvas/70 leading-relaxed">
+							60% van je bezoekers komt via telefoon. Je website werkt perfect op elk scherm,
+							van smartphone tot desktop.
+						</p>
+					</div>
+
+					<div class="space-y-4">
+						<div class="text-acid font-mono text-sm">[06]</div>
+						<h3 class="text-xl font-black uppercase tracking-tight">Geld-Terug-Garantie</h3>
+						<p class="text-canvas/70 leading-relaxed">
+							Niet tevreden? Geld terug. Geen discussie, geen gedoe. We willen alleen
+							tevreden klanten.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- HOW IT WORKS -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-6">
+					[ Hoe Het Werkt ]
+				</div>
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16 max-w-3xl">
+					Van Gesprek Tot Live In 7 Dagen.
+				</h2>
+
+				<div class="grid md:grid-cols-3 gap-8 md:gap-12">
+					<div class="relative">
+						<div class="text-8xl font-black text-ink/5 absolute -top-4 -left-2">1</div>
+						<div class="relative space-y-4 pt-8">
+							<h3 class="text-xl font-black uppercase tracking-tight">Kennismaking</h3>
+							<p class="text-ink/70 leading-relaxed">
+								15 minuten bellen. We bespreken je bedrijf, je doelen, wat je wilt bereiken.
+								Geen verplichtingen.
+							</p>
+						</div>
+					</div>
+
+					<div class="relative">
+						<div class="text-8xl font-black text-ink/5 absolute -top-4 -left-2">2</div>
+						<div class="relative space-y-4 pt-8">
+							<h3 class="text-xl font-black uppercase tracking-tight">Wij Bouwen</h3>
+							<p class="text-ink/70 leading-relaxed">
+								Wij gaan aan de slag. Design, teksten, techniek. Jij hoeft niks te doen.
+								Na 5 dagen krijg je het eerste ontwerp.
+							</p>
+						</div>
+					</div>
+
+					<div class="relative">
+						<div class="text-8xl font-black text-ink/5 absolute -top-4 -left-2">3</div>
+						<div class="relative space-y-4 pt-8">
+							<h3 class="text-xl font-black uppercase tracking-tight">Live</h3>
+							<p class="text-ink/70 leading-relaxed">
+								Feedback verwerken we direct. Dan gaat je website live.
+								Klaar om klanten binnen te halen.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mt-12 pt-8 border-t border-ink/10">
+					<a
+						href="/aanvragen"
+						class="bg-ink text-canvas px-8 py-5 font-bold uppercase tracking-tight hover:bg-acid hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+					>
+						<span class="sm:hidden">Aan De Slag</span>
+						<span class="hidden sm:inline">Plan Je Kennismaking</span>
+						<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- PRICING COMPARISON -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-acid mb-6">
+					[ Eerlijke Prijzen ]
+				</div>
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-6 max-w-3xl">
+					Traditionele Bureaus vs. KNAP GEMAAKT.
+				</h2>
+				<p class="text-canvas/70 text-lg mb-12 max-w-2xl">
+					Andere bureaus rekenen €2.000 tot €5.000. Wij niet.
+					Dezelfde kwaliteit, zonder de overhead.
+				</p>
+
+				<div class="grid md:grid-cols-2 gap-8">
+					<!-- Traditional -->
+					<div class="p-8 border border-canvas/10 bg-canvas/5">
+						<div class="text-canvas/40 font-mono text-xs uppercase tracking-widest mb-4">Traditioneel Bureau</div>
+						<div class="text-4xl font-black mb-6">€2.000 - €5.000</div>
+						<ul class="space-y-3 text-canvas/60">
+							<li class="flex items-start gap-3">
+								<span class="text-red-400 mt-1">✕</span>
+								<span>Weken wachten op offerte</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-red-400 mt-1">✕</span>
+								<span>Zelf teksten aanleveren</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-red-400 mt-1">✕</span>
+								<span>Eindeloze feedbackrondes</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-red-400 mt-1">✕</span>
+								<span>4-8 weken doorlooptijd</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-red-400 mt-1">✕</span>
+								<span>Extra kosten voor hosting</span>
+							</li>
+						</ul>
+					</div>
+
+					<!-- KNAP GEMAAKT -->
+					<div class="p-8 border-2 border-acid bg-acid/10 relative">
+						<div class="absolute -top-3 right-8 bg-acid text-ink px-3 py-1 text-xs font-bold uppercase">Onze aanpak</div>
+						<div class="text-acid font-mono text-xs uppercase tracking-widest mb-4">KNAP GEMAAKT.</div>
+						<div class="text-4xl font-black mb-6">€595</div>
+						<ul class="space-y-3 text-canvas/80">
+							<li class="flex items-start gap-3">
+								<span class="text-acid mt-1">✓</span>
+								<span>Vaste prijs, geen verrassingen</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-acid mt-1">✓</span>
+								<span>Wij schrijven de teksten</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-acid mt-1">✓</span>
+								<span>7 dagen doorlooptijd</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-acid mt-1">✓</span>
+								<span>Hosting altijd inbegrepen</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="text-acid mt-1">✓</span>
+								<span>100% tevredenheidsgarantie</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<p class="text-canvas/50 text-sm mt-8 font-mono">
+					Webshop nodig? Die bouwen we voor €1795, klaar in 2-3 weken.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ SECTION -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-6">
+					[ Veelgestelde Vragen ]
+				</div>
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-12 md:mb-16">
+					Vragen Over Website Laten Maken?
+				</h2>
+
+				<div class="grid md:grid-cols-2 gap-8 md:gap-12">
+					<div class="space-y-8">
+						{faqs.slice(0, 3).map((faq) => (
+							<div class="space-y-3">
+								<h3 class="text-lg font-bold text-electric">{faq.question}</h3>
+								<p class="text-ink/70 leading-relaxed">{faq.answer}</p>
+							</div>
+						))}
+					</div>
+					<div class="space-y-8">
+						{faqs.slice(3).map((faq) => (
+							<div class="space-y-3">
+								<h3 class="text-lg font-bold text-electric">{faq.question}</h3>
+								<p class="text-ink/70 leading-relaxed">{faq.answer}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FINAL CTA -->
+		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
+			<div class="max-w-6xl xl:max-w-7xl mx-auto text-center">
+				<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-6">
+					Klaar Om Te Beginnen?
+				</h2>
+				<p class="text-canvas/70 text-lg mb-10 max-w-xl mx-auto">
+					Plan een vrijblijvend kennismakingsgesprek. 15 minuten, geen verplichtingen.
+					Je kiest zelf een moment dat jou uitkomt.
+				</p>
+				<a
+					href="/aanvragen"
+					class="bg-acid text-ink px-10 py-6 font-bold uppercase tracking-tight text-xl hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+				>
+					<span class="sm:hidden">Aan De Slag</span>
+					<span class="hidden sm:inline">Plan Een Kennismaking</span>
+					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+				</a>
+			</div>
+		</section>
+
+		<Footer />
+	</main>
+</Layout>
