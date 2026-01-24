@@ -2,6 +2,7 @@
 export const prerender = true;
 
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="404 - Verdwaald? | KNAP GEMAAKT.">
@@ -51,16 +52,43 @@ import Layout from "../layouts/Layout.astro";
                 </p>
             </div>
 
-            <a
-                href="/"
-                class="inline-flex items-center justify-center gap-3 px-8 py-[18px] border-2 border-ink text-ink hover:bg-ink hover:text-canvas transition-colors duration-300 font-bold uppercase tracking-tight group"
-            >
-                <span>Red mij hieruit</span>
-                <span
-                    class="text-xl leading-none transition-transform duration-300 group-hover:translate-x-1"
-                    >&rarr;</span
-                >
-            </a>
+            <!-- Quick Navigation -->
+            <div class="mt-12 w-full max-w-xl">
+                <p class="text-sm font-mono text-ink/40 uppercase tracking-widest mb-6">
+                    Misschien zoek je dit?
+                </p>
+                <div class="grid grid-cols-2 gap-3">
+                    <a
+                        href="/portfolio"
+                        class="group p-4 border border-ink/10 hover:border-ink hover:bg-ink hover:text-canvas transition-all duration-300 text-left"
+                    >
+                        <span class="font-bold uppercase tracking-tight text-sm">Portfolio</span>
+                        <span class="block text-xs text-ink/50 group-hover:text-canvas/60 mt-1">Bekijk ons werk</span>
+                    </a>
+                    <a
+                        href="/aanvragen"
+                        class="group p-4 border border-ink/10 hover:border-ink hover:bg-ink hover:text-canvas transition-all duration-300 text-left"
+                    >
+                        <span class="font-bold uppercase tracking-tight text-sm">Aanvragen</span>
+                        <span class="block text-xs text-ink/50 group-hover:text-canvas/60 mt-1">Start je project</span>
+                    </a>
+                    <a
+                        href="/website-laten-maken"
+                        class="group p-4 border border-ink/10 hover:border-ink hover:bg-ink hover:text-canvas transition-all duration-300 text-left"
+                    >
+                        <span class="font-bold uppercase tracking-tight text-sm">Diensten</span>
+                        <span class="block text-xs text-ink/50 group-hover:text-canvas/60 mt-1">Wat wij doen</span>
+                    </a>
+                    <a
+                        href="/contact"
+                        class="group p-4 border border-ink/10 hover:border-ink hover:bg-ink hover:text-canvas transition-all duration-300 text-left"
+                    >
+                        <span class="font-bold uppercase tracking-tight text-sm">Contact</span>
+                        <span class="block text-xs text-ink/50 group-hover:text-canvas/60 mt-1">Stel een vraag</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
+    <Footer />
 </Layout>
