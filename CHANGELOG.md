@@ -1,5 +1,40 @@
 # Changelog
 
+## [1.6.0](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/compare/v1.5.0...v1.6.0) (2026-01-24)
+
+
+### Features
+
+* add animated underline hover effect to nav menu ✨ ([#104](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/104)) ([766036e](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/766036e38dc98ed9159234795ea22dc816bc1807)), closes [#103](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/103)
+* add blog page for improved SEO ✨ ([#90](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/90)) ([e5c7575](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/e5c757551049a082a535d269a4fcd35d30bd8981))
+* add contact page with alternative contact methods ✨ ([#109](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/109)) ([d8d16a5](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/d8d16a5b5bb2f379dcf8a5c50764b7044098c1ee)), closes [#108](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/108)
+* add dedicated thank-you page for conversion tracking ✨ ([#95](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/95)) ([2881d24](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/2881d243916a6af4c4cf70466f44e09082c9c49f)), closes [#94](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/94)
+* **analytics:** add Microsoft Clarity for heatmaps & session recordings ✨ ([b693668](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/b69366885951d8aee7fe06f214c8194ac29344e6))
+* **cookies:** add GDPR-compliant cookie consent system ✨ ([#116](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/116)) ([296be34](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/296be345819490f33f66341f0e7ff626e4fb5786))
+* enhance mobile hamburger menu with fullscreen design ✨ ([#105](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/105)) ([ab64b4f](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/ab64b4f04a61c1cc6a4b241ba3a28f538a2440ab))
+* improve city page SEO with internal linking and unique content ✨ ([#92](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/92)) ([370228d](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/370228d7bb1e7495609f6f7340af53a52f9d1419)), closes [#91](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/91)
+* optimize meta tags and fix sitemap dates ✨ ([#97](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/97)) ([516ac95](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/516ac9503b1d9850330239e68ea8c9cf12edaf96)), closes [#96](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/96)
+* redesign 404 page with navigation options ✨ ([#115](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/115)) ([281052f](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/281052fad70dc1279be197b83ae79fbfb137ecf4)), closes [#107](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/107)
+* restore GDPR consent requirement for tracking scripts ✨ ([#121](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/121)) ([f024776](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/f0247767c5e7b41b637d42867b95aaa385894314))
+
+
+### Bug Fixes
+
+* calendar auto-selects first available day including today 🐛 ([#102](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/102)) ([f661a1c](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/f661a1c6dae2d1f1261e8967dff8f00f26455f47)), closes [#101](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/101)
+* clear Clarity sessionStorage on consent revoke 🐛 ([#129](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/129)) ([0b070c8](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/0b070c86a2bfee72f00ca357f0eb3616f015abcd))
+* **cookies:** delete tracking cookies when consent is revoked 🐛 ([17c0f1a](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/17c0f1a8536664f1b51160f0770e3d66091670c5))
+* fix Clarity consent API timing issue 🐛 ([#128](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/128)) ([d40a98b](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/d40a98b9bb05d501acc1c1e417f1360cab88ad2d))
+* improve cookie consent LCP/FCP and link accessibility 🐛 ([#124](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/124)) ([0dc75b5](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/0dc75b57f0d13fd90bd33755deb69a12c8aa22db)), closes [#123](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/123)
+* improve mobile menu performance with visibility toggle 🐛 ([#111](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/111)) ([2d29246](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/2d29246785f06b6dbb3e7dd5de3ffe0fd9168b16)), closes [#110](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/110)
+* integrate Microsoft Clarity Consent API v2 🐛 ([#127](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/127)) ([8cefdb3](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/8cefdb3d050ac034fd8c80f3d3be5256d00e81e3))
+* remove Leadinfo to fix GDPR consent violation 🐛 ([#126](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/126)) ([27459ac](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/27459acbf9910d4e4f9d88a505cfac85e9080b54)), closes [#125](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/125)
+* resolve mobile menu lag at scroll position 0 🐛 ([#113](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/113)) ([c0b12f3](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/c0b12f39d96dd13e3871a8194b5566c4a5f576f7)), closes [#112](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/112)
+
+
+### Performance Improvements
+
+* improve LCP and fix CLS on homepage ⚡ ([#114](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/114)) ([ec7c52a](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/ec7c52a867a7af7a9946d11608b020606f09db5b))
+
 ## [1.5.0](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/compare/v1.4.0...v1.5.0) (2026-01-22)
 
 
