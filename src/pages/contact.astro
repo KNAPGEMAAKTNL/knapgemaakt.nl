@@ -8,7 +8,7 @@ import TextRevealCSS from "../components/TextRevealCSS.astro";
 
 <Layout
 	title="Contact | Neem Contact Op | KNAP GEMAAKT."
-	description="Heb je een vraag? Neem contact op via e-mail. We reageren meestal binnen 24 uur. Of plan direct een vrijblijvende kennismaking."
+	description="Heb je een vraag? Neem contact op via e-mail. We reageren meestal binnen 24 uur. Of plan direct een gratis strategie-gesprek."
 >
 	<main class="min-h-screen bg-canvas pt-32 pb-24 px-4 md:px-8 bg-grid-light relative overflow-hidden">
 		<div class="max-w-4xl mx-auto">
@@ -90,18 +90,19 @@ import TextRevealCSS from "../components/TextRevealCSS.astro";
 			<!-- CTA Section -->
 			<div class="p-8 md:p-12 bg-ink text-canvas relative overflow-hidden">
 				<div class="absolute inset-0 bg-grid-dark opacity-50"></div>
-				<div class="relative z-10">
+				<div class="relative z-10 text-center">
 					<h2 class="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-4">
 						Klaar om te starten?
 					</h2>
-					<p class="text-canvas/60 text-lg mb-8 max-w-xl">
-						Plan een vrijblijvende kennismaking en ontdek hoe wij jouw website binnen 7 dagen kunnen bouwen.
+					<p class="text-canvas/60 text-lg mb-8 max-w-xl mx-auto">
+						Plan een gratis strategie-gesprek en ontdek hoe wij jouw website binnen 7 dagen kunnen bouwen.
 					</p>
 					<a
 						href="/aanvragen"
-						class="inline-flex items-center justify-center gap-3 px-8 py-[18px] bg-acid text-ink font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 group"
+						class="btn-bracket btn-bracket-acid inline-flex items-center justify-center gap-3 px-8 py-[18px] bg-acid text-ink font-bold uppercase tracking-tight hover:bg-acid/80 transition-colors duration-300 group"
 					>
-						<span>Plan Een Kennismaking</span>
+						<span class="sm:hidden">Plan Je Strategie-Gesprek</span>
+						<span class="hidden sm:inline">Plan Je Gratis Strategie-Gesprek</span>
 						<span class="text-xl leading-none transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
 					</a>
 				</div>

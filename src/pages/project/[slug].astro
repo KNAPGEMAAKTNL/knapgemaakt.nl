@@ -20,8 +20,8 @@ const metaDescription = `${project.title} - ${project.shortDescription} Bekijk d
 
 const breadcrumbs = [
 	{ name: "Home", url: "https://knapgemaakt.nl/" },
-	{ name: "Portfolio", url: "https://knapgemaakt.nl/portfolio/" },
-	{ name: project.title, url: `https://knapgemaakt.nl/project/${project.slug}/` },
+	{ name: "Portfolio", url: "https://knapgemaakt.nl/portfolio" },
+	{ name: project.title, url: `https://knapgemaakt.nl/project/${project.slug}` },
 ];
 
 // SEO title with industry keyword
@@ -72,7 +72,7 @@ const pageTitle = `${project.title} | Website ${project.industry} Voorbeeld`;
 								href={project.link}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+								class="btn-bracket btn-bracket-ink w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
 							>
 								<span>Bekijk Live</span>
 								<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
@@ -212,7 +212,7 @@ const pageTitle = `${project.title} | Website ${project.industry} Voorbeeld`;
 							</p>
 							<a
 								href="/aanvragen"
-								class="w-full bg-ink text-acid py-4 font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+								class="btn-bracket btn-bracket-ink w-full sm:w-auto bg-ink text-acid px-8 py-4 font-bold uppercase tracking-tight hover:bg-ink/80 transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
 							>
 								<span>Start Jouw Project</span>
 							</a>
@@ -236,7 +236,7 @@ const pageTitle = `${project.title} | Website ${project.industry} Voorbeeld`;
 				</div>
 				<a
 					href="/portfolio"
-					class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+					class="btn-bracket btn-bracket-acid w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-acid/80 transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
 				>
 					<span>Naar Portfolio</span>
 					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
