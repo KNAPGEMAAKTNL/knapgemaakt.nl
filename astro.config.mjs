@@ -8,6 +8,7 @@ import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   site: "https://knapgemaakt.nl",
+  trailingSlash: "never",
   output: 'server', // Server-side rendering with Cloudflare Workers
   adapter: cloudflare({
     platformProxy: {

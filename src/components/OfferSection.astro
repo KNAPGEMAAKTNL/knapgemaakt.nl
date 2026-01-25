@@ -1,272 +1,188 @@
 ---
 /**
  * OfferSection - Pricing for local business owners
- * Two products: Essentieel (€595) and Webshop (€1795)
- * Each with attached Beheer option (€49/€89 per month)
+ * Three tiers: Start (€595) / Slim (€1,295) / Systeem (€1,895)
+ * Clean, minimal design matching site aesthetic
  */
 ---
 
-<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
+<section id="prijzen" class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
 	<div class="max-w-6xl xl:max-w-7xl mx-auto">
 		<!-- Section Header -->
 		<div class="text-center mb-12 md:mb-16">
 			<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/60 mb-4">
-				[ Onze Prijzen ]
+				[ Onze Pakketten ]
 			</div>
 			<h2 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
-				Simpel & Transparant.
+				Kies Je Digitale Medewerker.
 			</h2>
 		</div>
 
-		<!-- Product Cards with Attached Beheer -->
-		<div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
+		<!-- Three Tier Cards -->
+		<div class="grid md:grid-cols-3 gap-4 lg:gap-6 mb-12">
 
-			<!-- Essentieel Card -->
-			<div class="flex flex-col">
-				<!-- Main Card -->
-				<div class="bg-acid p-8 md:p-10 relative overflow-hidden flex-grow">
-					<div class="relative z-10">
-						<div class="text-sm font-mono uppercase tracking-[0.2em] mb-6 bg-ink text-canvas px-3 py-1.5 inline-block">
-							Essentieel
-						</div>
+			<!-- TIER 1: Start -->
+			<div class="border-2 border-ink/10 p-6 lg:p-8 flex flex-col bg-canvas hover:border-ink/20 transition-colors">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/40 mb-6">
+					[ Start ]
+				</div>
 
-						<div class="mb-2">
-							<span class="text-6xl md:text-8xl font-black tracking-tight leading-none">€595</span>
-							<span class="text-xl md:text-2xl font-bold ml-2 opacity-60">eenmalig excl. BTW</span>
-						</div>
-						<p class="text-ink/60 font-mono text-sm mb-8">Levertijd: 7 dagen</p>
+				<div class="mb-6">
+					<span class="text-4xl lg:text-5xl font-black tracking-tight leading-none">€595</span>
+					<p class="text-ink/40 font-mono text-xs mt-2">eenmalig excl. BTW</p>
+				</div>
 
-						<ul class="space-y-4 mb-8">
-							<li class="flex items-start gap-3">
-								<span class="text-ink font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium">Professioneel design op maat</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-ink font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium">Teksten worden voor je geschreven</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-ink font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium">Mobiel-vriendelijk & razendsnel</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-ink font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium">Hosting inbegrepen</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-ink font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium">100% tevredenheidsgarantie</span>
-							</li>
-						</ul>
+				<p class="text-ink/60 text-sm mb-6 leading-relaxed">
+					Professioneel online in 1 week. Een website die bezoekers overtuigt en automatisch reageert.
+				</p>
 
-						<a
-							href="/aanvragen"
-							class="w-full bg-ink text-acid py-4 font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
-						>
-							<span>Start Jouw Project</span>
-						</a>
+				<ul class="space-y-3 mb-8 flex-grow text-sm">
+					<li class="flex items-start gap-2">
+						<span class="text-ink/40">—</span>
+						<span class="text-ink/70">Professioneel design op maat</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink/40">—</span>
+						<span class="text-ink/70">Teksten geschreven</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink/40">—</span>
+						<span class="text-ink/70">Mobiel-vriendelijk & razendsnel</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink/40">—</span>
+						<span class="text-ink/70">Hosting inbegrepen</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink/40">—</span>
+						<span class="text-ink/70">Automatische e-mail bevestiging</span>
+					</li>
+				</ul>
+
+				<div class="border-t border-ink/10 pt-4 mb-6">
+					<div class="flex items-baseline justify-between">
+						<span class="text-xs font-mono uppercase tracking-wider text-ink/40">Maandelijks</span>
+						<span class="font-bold">€29<span class="font-normal text-ink/40">/mo</span></span>
 					</div>
 				</div>
 
-				<!-- Attached Beheer -->
-				<div class="bg-ink text-canvas p-6 md:p-8">
-					<div class="flex items-center justify-between mb-4">
-						<div class="flex items-center gap-3">
-							<span class="text-lg font-bold">+</span>
-							<span class="font-mono text-sm uppercase tracking-wider">Beheer</span>
-							<span class="text-canvas/60 text-xs font-mono">[ optioneel ]</span>
-						</div>
-						<div class="text-right">
-							<span class="text-3xl md:text-4xl font-black">€49</span>
-							<span class="block text-canvas/60 text-sm whitespace-nowrap">/maand excl. BTW</span>
-						</div>
-					</div>
-					<ul class="space-y-2 text-sm text-canvas/70">
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>Updates & onderhoud</span>
-						</li>
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>Kleine aanpassingen</span>
-						</li>
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>WhatsApp support</span>
-						</li>
-					</ul>
-				</div>
+				<a
+					href="/aanvragen"
+					class="btn-bracket btn-bracket-ink w-full bg-ink/5 text-ink py-3 font-bold uppercase tracking-tight text-sm hover:bg-ink hover:text-canvas transition-colors duration-300 text-center"
+				>
+					Kies Start
+				</a>
 			</div>
 
-			<!-- Webshop Card -->
-			<div class="flex flex-col">
-				<!-- Main Card -->
-				<div class="bg-ink text-canvas p-8 md:p-10 relative overflow-hidden flex-grow">
-					<div class="relative z-10">
-						<div class="text-sm font-mono uppercase tracking-[0.2em] mb-6 bg-electric text-canvas px-3 py-1.5 inline-block">
-							Webshop
-						</div>
-
-						<div class="mb-2">
-							<span class="text-6xl md:text-8xl font-black tracking-tight leading-none">€1795</span>
-							<span class="text-xl md:text-2xl font-bold ml-2 opacity-60">eenmalig excl. BTW</span>
-						</div>
-						<p class="text-canvas/50 font-mono text-sm mb-8">Levertijd: 2-3 weken</p>
-
-						<ul class="space-y-4 mb-8">
-							<li class="flex items-start gap-3">
-								<span class="text-acid font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium text-canvas/90">Alles uit Essentieel, plus:</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-acid font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium text-canvas/90">Productcatalogus & beheer</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-acid font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium text-canvas/90">Winkelwagen & checkout</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-acid font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium text-canvas/90">iDEAL, creditcard & meer</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="text-acid font-bold text-lg mt-0.5">✓</span>
-								<span class="text-lg font-medium text-canvas/90">Klantaccounts & admin-paneel</span>
-							</li>
-						</ul>
-
-						<a
-							href="/aanvragen"
-							class="w-full bg-acid text-ink py-4 font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
-						>
-							<span>Start Jouw Project</span>
-						</a>
+			<!-- TIER 2: Slim (HIGHLIGHTED) -->
+			<div class="border-2 border-acid bg-acid p-6 lg:p-8 flex flex-col relative">
+				<div class="flex items-center justify-between mb-6">
+					<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/60">
+						[ Slim ]
 					</div>
-
-					<!-- Background gradient -->
-					<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(124,58,237,0.2),transparent_60%)]"></div>
+					<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/60">
+						Meest Gekozen
+					</div>
 				</div>
 
-				<!-- Attached Beheer -->
-				<div class="bg-[#1a1a1a] text-canvas p-6 md:p-8">
-					<div class="flex items-center justify-between mb-4">
-						<div class="flex items-center gap-3">
-							<span class="text-lg font-bold">+</span>
-							<span class="font-mono text-sm uppercase tracking-wider">Beheer</span>
-							<span class="text-canvas/60 text-xs font-mono">[ optioneel ]</span>
-						</div>
-						<div class="text-right">
-							<span class="text-3xl md:text-4xl font-black text-acid">€89</span>
-							<span class="block text-canvas/60 text-sm whitespace-nowrap">/maand excl. BTW</span>
-						</div>
-					</div>
-					<ul class="space-y-2 text-sm text-canvas/70">
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>Updates, onderhoud & aanpassingen</span>
-						</li>
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>Database-onderhoud & backups</span>
-						</li>
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>Betalings- & checkout monitoring</span>
-						</li>
-						<li class="flex items-center gap-2">
-							<span class="text-acid">✓</span>
-							<span>Snelle hulp bij urgente problemen</span>
-						</li>
-					</ul>
+				<div class="mb-6">
+					<span class="text-4xl lg:text-5xl font-black tracking-tight leading-none">€1.295</span>
+					<p class="text-ink/50 font-mono text-xs mt-2">eenmalig excl. BTW</p>
 				</div>
+
+				<p class="text-ink/70 text-sm mb-6 leading-relaxed font-medium">
+					Je digitale medewerker. Boekt afspraken, vraagt reviews, stuurt SMS bij gemiste oproepen.
+				</p>
+
+				<ul class="space-y-3 mb-8 flex-grow text-sm">
+					<li class="flex items-start gap-2">
+						<span class="text-ink/50">—</span>
+						<span class="text-ink/80">Alles uit Start, plus:</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink">✓</span>
+						<span class="text-ink font-medium">Booking / afsprakenplanner</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink">✓</span>
+						<span class="text-ink font-medium">Automatische review-verzoeken</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink">✓</span>
+						<span class="text-ink font-medium">Gemiste oproep SMS</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-ink">✓</span>
+						<span class="text-ink font-medium">24/7 automatisering</span>
+					</li>
+				</ul>
+
+				<div class="border-t border-ink/20 pt-4 mb-6">
+					<div class="flex items-baseline justify-between">
+						<span class="text-xs font-mono uppercase tracking-wider text-ink/50">Maandelijks</span>
+						<span class="font-bold">€59<span class="font-normal text-ink/50">/mo</span></span>
+					</div>
+				</div>
+
+				<a
+					href="/aanvragen"
+					class="btn-bracket btn-bracket-ink w-full bg-ink text-acid py-3 font-bold uppercase tracking-tight text-sm hover:bg-ink/80 transition-colors duration-300 text-center"
+				>
+					Kies Slim
+				</a>
 			</div>
-		</div>
 
-		<!-- Comparison Summary -->
-		<div class="bg-[#f5f5f5] p-6 md:p-8 text-center relative z-10 mb-8">
-			<p class="text-lg md:text-xl font-medium text-ink/80 mb-4">
-				<strong class="text-ink">Vergelijk:</strong> Traditionele webdesign bureaus vragen
-				<span class="text-electric font-bold">€2.000 - €5.000</span> en hebben
-				<span class="text-electric font-bold">4-8 weken</span> nodig.
-			</p>
-			<p class="text-ink/60">
-				Wij hebben blijkbaar een ander idee over 'normaal'.
-			</p>
-		</div>
-
-		<!-- Automatisering Section -->
-		<div class="bg-ink text-canvas p-8 md:p-10">
-			<div class="grid md:grid-cols-2 gap-8 md:gap-12">
-				<!-- Left: Explanation & Examples -->
-				<div>
-					<div class="text-sm font-mono uppercase tracking-[0.2em] mb-4 bg-electric text-canvas px-3 py-1.5 inline-block">
-						Automatisering
-					</div>
-
-					<h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight mb-4">
-						Laat Het Werk Voor Je Doen
-					</h3>
-
-					<p class="text-canvas/70 mb-6 leading-relaxed">
-						Elke ondernemer werkt anders. Vertel ons wat tijd kost, wij bouwen een oplossing.
-					</p>
-
-					<ul class="space-y-3 text-canvas/70">
-						<li class="flex items-start gap-3">
-							<span class="text-electric mt-1">→</span>
-							<span>Afsprakenplanner / booking systeem</span>
-						</li>
-						<li class="flex items-start gap-3">
-							<span class="text-electric mt-1">→</span>
-							<span>Automatische track & trace updates</span>
-						</li>
-						<li class="flex items-start gap-3">
-							<span class="text-electric mt-1">→</span>
-							<span>WhatsApp melding bij nieuwe bestelling</span>
-						</li>
-						<li class="flex items-start gap-3">
-							<span class="text-electric mt-1">→</span>
-							<span>Review-verzoeken na aankoop</span>
-						</li>
-						<li class="flex items-start gap-3">
-							<span class="text-electric mt-1">→</span>
-							<span>Formulier → CRM koppeling</span>
-						</li>
-						<li class="flex items-start gap-3">
-							<span class="text-electric mt-1">→</span>
-							<span>Voorraadwaarschuwingen</span>
-						</li>
-					</ul>
+			<!-- TIER 3: Systeem -->
+			<div class="border-2 border-ink bg-ink text-canvas p-6 lg:p-8 flex flex-col">
+				<div class="text-xs font-mono uppercase tracking-[0.2em] text-canvas/40 mb-6">
+					[ Systeem ]
 				</div>
 
-				<!-- Right: Pricing -->
-				<div class="flex flex-col justify-center">
-					<div class="space-y-6">
-						<div class="bg-canvas/5 p-6">
-							<p class="text-sm font-mono uppercase tracking-wider text-canvas/50 mb-2">Bouwkosten</p>
-							<p class="text-2xl md:text-3xl font-black">Op maat</p>
-							<p class="text-canvas/50 text-sm mt-1">Afhankelijk van complexiteit</p>
-						</div>
-
-						<div class="bg-canvas/5 p-6">
-							<p class="text-sm font-mono uppercase tracking-wider text-canvas/50 mb-2">Hosting</p>
-							<div class="flex items-baseline gap-2">
-								<span class="text-2xl md:text-3xl font-black text-electric">€19</span>
-								<span class="text-canvas/60">/maand excl. BTW</span>
-							</div>
-							<p class="text-canvas/50 text-sm mt-1">Draait zolang je het nodig hebt</p>
-						</div>
-					</div>
-
-					<a
-						href="/aanvragen"
-						class="mt-6 w-full border-2 border-canvas text-canvas py-4 font-bold uppercase tracking-tight hover:bg-canvas hover:text-ink transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
-					>
-						<span>Plan Een Kennismaking</span>
-						<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-					</a>
+				<div class="mb-6">
+					<span class="text-4xl lg:text-5xl font-black tracking-tight leading-none">€1.895</span>
+					<p class="text-canvas/40 font-mono text-xs mt-2">eenmalig excl. BTW</p>
 				</div>
+
+				<p class="text-canvas/60 text-sm mb-6 leading-relaxed">
+					Volledige controle. Van boekingen tot betalingen tot rapportages in je eigen dashboard.
+				</p>
+
+				<ul class="space-y-3 mb-8 flex-grow text-sm">
+					<li class="flex items-start gap-2">
+						<span class="text-canvas/40">—</span>
+						<span class="text-canvas/60">Alles uit Slim, plus:</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-acid">✓</span>
+						<span class="text-canvas/90">Betalingen via iDEAL</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-acid">✓</span>
+						<span class="text-canvas/90">Webshop / e-commerce</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-acid">✓</span>
+						<span class="text-canvas/90">Custom dashboard</span>
+					</li>
+					<li class="flex items-start gap-2">
+						<span class="text-acid">✓</span>
+						<span class="text-canvas/90">Prioriteit support</span>
+					</li>
+				</ul>
+
+				<div class="border-t border-canvas/20 pt-4 mb-6">
+					<div class="flex items-baseline justify-between">
+						<span class="text-xs font-mono uppercase tracking-wider text-canvas/40">Maandelijks</span>
+						<span class="font-bold text-acid">€99<span class="font-normal text-canvas/40">/mo</span></span>
+					</div>
+				</div>
+
+				<a
+					href="/aanvragen"
+					class="btn-bracket btn-bracket-acid w-full bg-acid text-ink py-3 font-bold uppercase tracking-tight text-sm hover:bg-acid/80 transition-colors duration-300 text-center"
+				>
+					Kies Systeem
+				</a>
 			</div>
 		</div>
 	</div>

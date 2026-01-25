@@ -49,7 +49,7 @@ const pageTitle = `Webdesign ${city} | Website Laten Maken in ${cityData.region}
 // Breadcrumb data for this page
 const breadcrumbs = [
 	{ name: "Home", url: "https://knapgemaakt.nl/" },
-	{ name: `Webdesign ${city}`, url: `https://knapgemaakt.nl/webdesign-${cityData.slug}/` }
+	{ name: `Webdesign ${city}`, url: `https://knapgemaakt.nl/webdesign-${cityData.slug}` }
 ];
 ---
 
@@ -79,9 +79,10 @@ const breadcrumbs = [
                         </p>
                         <a
                             href="/aanvragen"
-                            class="w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+                            class="btn-bracket btn-bracket-ink w-full sm:w-auto bg-acid text-ink px-8 py-5 font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
                         >
-                            <span>Plan Een Kennismaking</span>
+                            <span class="sm:hidden">Plan Je Strategie-Gesprek</span>
+                            <span class="hidden sm:inline">Plan Je Gratis Strategie-Gesprek</span>
                             <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                         </a>
                     </div>
