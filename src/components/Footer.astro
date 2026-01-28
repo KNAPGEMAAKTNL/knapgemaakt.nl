@@ -10,8 +10,8 @@ interface Props {
 
 const {
 	hideCTA = false,
-	ctaHeadline = "Nog steeds alles zelf aan het regelen?",
-	ctaSubtext = "Ik denk graag mee. Stuur een bericht of plan een kort gesprek in.",
+	ctaHeadline = "Website op je to-do lijst?",
+	ctaSubtext = "Laten we 'm eraf halen.",
 } = Astro.props;
 const cities = getAllCities();
 ---
@@ -20,7 +20,7 @@ const cities = getAllCities();
 	<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
 		<div class="absolute inset-0 bg-grid-dark opacity-50"></div>
 		<div class="max-w-6xl xl:max-w-7xl mx-auto text-center relative z-10">
-			<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] mb-6">
+			<h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight leading-[0.95] mb-6">
 				{ctaHeadline}
 			</h2>
 			<p class="text-canvas/60 text-lg mb-10 max-w-xl mx-auto">
@@ -36,7 +36,7 @@ const cities = getAllCities();
 				</a>
 				<a
 					href="/contact"
-					class="border border-canvas/30 text-canvas px-8 py-[18px] font-bold uppercase tracking-tight hover:bg-canvas/10 transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
+					class="bg-canvas text-ink px-8 py-[18px] font-bold uppercase tracking-tight hover:bg-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group"
 				>
 					Neem contact op
 					<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
@@ -69,7 +69,7 @@ const cities = getAllCities();
 		<div class="pointer-events-none mb-12 md:mb-16">
 			<TextRevealCSS
 				text="KNAP GEMAAKT."
-				class="text-[12vw] md:text-[10vw] font-black leading-[0.8] tracking-tighter select-none block"
+				class="text-[12vw] md:text-[10vw] font-black leading-[0.8] tracking-tight select-none block"
 			/>
 		</div>
 

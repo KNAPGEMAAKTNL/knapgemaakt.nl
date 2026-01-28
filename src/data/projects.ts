@@ -20,6 +20,12 @@ export interface Project {
 	mobileMockup?: string;
 	/** Multi-device showcase mockup for homepage */
 	showcaseMockup?: string;
+	/** AI-generated hero mockup (16:9) for project detail page */
+	heroMockup?: string;
+	/** AI-generated overview mockup (16:9) for portfolio grid cards */
+	overviewMockup?: string;
+	/** Additional mockups for solution/features sections */
+	additionalMockups?: string[];
 	link: string;
 	shortDescription: string;
 	fullDescription: string;
@@ -48,52 +54,6 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		slug: "schildersbedrijf-visser",
-		title: "Schildersbedrijf Visser",
-		category: "Concept",
-		industry: "Schildersbedrijf",
-		location: "Geldermalsen",
-		image: "/assets/projects/visserschilders-pc.webp",
-		mobileImage: "/assets/projects/visserschilders-mobile.webp",
-		showcaseMockup: "/assets/projects/showcase-mockup.webp",
-		link: "https://visserschilders.knapgemaakt.nl/",
-		shortDescription: "Professionele uitstraling voor een ervaren vakschilder.",
-		fullDescription: `Schildersbedrijf Visser is al ruim 20 jaar actief als vakschilder in Geldermalsen en omgeving. Ze zijn gespecialiseerd in binnen- en buitenschilderwerk, spuitwerk, sierpleisters zoals marmerpleister en Coristil, behangen en meubel restyling. Voor dit concept hebben we een website ontworpen die de jarenlange ervaring en het vakmanschap van het bedrijf uitstraalt.
-
-Een website voor een schildersbedrijf moet vertrouwen wekken. Potentiële klanten zoeken online naar "schilder Geldermalsen" of "schildersbedrijf Betuwe" en beslissen binnen seconden of ze contact opnemen. Met een professionele website onderscheidt Visser zich direct van concurrenten die alleen een Facebook-pagina hebben.`,
-		challenge: `Het schildersvak wordt vaak geassocieerd met standaard huisschilderwerk. Schildersbedrijf Visser onderscheidt zich echter met specialistische diensten zoals marmerpleister en meubel restyling. De uitdaging was om een website te maken die deze brede expertise duidelijk communiceert naar potentiële klanten in de regio Geldermalsen.
-
-Veel schildersbedrijven vertrouwen nog op mond-tot-mondreclame en een vermelding in de Gouden Gids. Maar steeds meer huiseigenaren en bedrijven oriënteren zich online. Ze googelen "buitenschilderwerk offerte" of "schilder in de buurt" en verwachten een professionele website met portfolio en contactmogelijkheden.`,
-		solution: `We hebben gekozen voor een strak, modern design met veel wit en subtiele accenten. Grote, kwalitatieve foto's van het werk staan centraal. De typografie is verfijnd en professioneel. Elke pagina ademt vakmanschap en betrouwbaarheid.
-
-De website is gebouwd met moderne technologie die razendsnel laadt. Cruciaal voor bezoekers die vanaf hun telefoon zoeken naar een schilder. Alle diensten hebben een eigen pagina met gerichte content, waardoor de site beter vindbaar is voor specifieke zoekopdrachten zoals "marmerpleister Geldermalsen" of "houtrot reparatie Betuwe".`,
-		features: [
-			"Responsive design voor alle apparaten",
-			"Portfolio met projectfoto's per dienst",
-			"Aparte landingspagina's per specialisme",
-			"SEO-geoptimaliseerd voor lokale vindbaarheid",
-			"Laadtijd onder 1 seconde",
-			"Click-to-call voor mobiele bezoekers",
-		],
-		featured: true,
-		showcasePrimary: true,
-		targetAudience: "Huiseigenaren en bedrijven in Geldermalsen, Tiel, Culemborg en de Betuwe die zoeken naar een betrouwbare schilder voor binnen- of buitenschilderwerk, sierpleisters of renovatieprojecten.",
-		industryKeywords: [
-			"website schildersbedrijf",
-			"schildersbedrijf website laten maken",
-			"webdesign schilder",
-			"schilder website voorbeeld",
-			"schildersbedrijf online vindbaarheid",
-		],
-		technicalHighlights: [
-			"Laadtijd < 1 seconde op mobiel",
-			"Lighthouse Performance score 95+",
-			"Geoptimaliseerd voor 'schilder + [stad]' zoekopdrachten",
-			"Geen WordPress, geen onderhoud of beveiligingsrisico's",
-		],
-		industryContext: "De schildersbranche is traditioneel, maar klanten zoeken steeds vaker online. Een schildersbedrijf zonder professionele website mist potentiële opdrachten aan concurrenten die wél vindbaar zijn. Lokale SEO is belangrijk: 76% van de mensen die lokaal zoeken, neemt binnen 24 uur contact op.",
-	},
-	{
 		slug: "fitcity-culemborg",
 		title: "Fitcity Culemborg",
 		category: "Concept",
@@ -103,41 +63,52 @@ De website is gebouwd met moderne technologie die razendsnel laadt. Cruciaal voo
 		mobileImage: "/assets/projects/fitcity-mobile.webp",
 		desktopMockup: "/assets/projects/fitcity-browser-window-mockup.webp",
 		mobileMockup: "/assets/projects/fitcity-mobile-mockup.webp",
+		heroMockup: "/assets/projects/mockups/fitcityculemborg.png",
+		overviewMockup: "/assets/projects/mockups/fitcityculemborg.png",
 		link: "https://fitcityculemborg.knapgemaakt.nl",
-		shortDescription: "Betaalbaar sporten in een toegankelijke omgeving.",
-		fullDescription: `Fitcity Culemborg is een gezondheidscentrum voor sport, bewegen en zorg. Ze positioneren zich als de meest betaalbare sportschool van de regio en zijn ook actief in het sociale domein. Dit concept toont hoe een toegankelijke sportschool zich online professioneel kan presenteren.
+		shortDescription: "De meest betaalbare sportschool van Culemborg met industrial vibe.",
+		fullDescription: `Fitcity Culemborg positioneert zich als "de meest betaalbare sportschool van Culemborg" met de missie om iedereen toegang te geven tot fitness. Met maandprijzen vanaf €19,95 en een industrial vibe sfeer bieden ze kwalitatieve apparatuur (Nautilus, Technogym, SportsArt) zonder franje.
 
-Voor sportscholen is online vindbaarheid cruciaal. Mensen zoeken "sportschool Culemborg", "fitness bij mij in de buurt" of "goedkoop sporten Rivierenland". Zonder een sterke website verlies je potentiële leden aan concurrenten die wél bovenaan Google staan. Een sportschool website moet direct antwoord geven op de belangrijkste vragen: wat kost het, wanneer ben je open, en hoe meld ik me aan?`,
-		challenge: `Fitcity Culemborg richt zich op betaalbaarheid en toegankelijkheid, niet op luxe faciliteiten. De uitdaging was om een website te maken die deze no-nonsense aanpak communiceert terwijl het toch professioneel en uitnodigend oogt voor nieuwe leden.
+Ze onderscheiden zich met een Ladies Only zone, kickboks lessen en persoonlijke begeleiding zonder extra kosten. Open 7 dagen per week met ruime openingstijden (ma-vr 08:30-22:00). Voor sportscholen is online vindbaarheid cruciaal: mensen zoeken "sportschool Culemborg" of "goedkoop sporten Rivierenland" en besluiten binnen seconden waar ze lid worden.`,
+		challenge: `Fitcity Culemborg richt zich bewust op betaalbaarheid en toegankelijkheid, niet op luxe faciliteiten of Instagram-waardige interieurs. De uitdaging was om een website te maken die deze no-nonsense aanpak ("geen poespas, wel resultaat") communiceert terwijl het toch professioneel en uitnodigend oogt.
 
-In de fitnessbranche domineren grote ketens met dure marketingbudgetten de zoekresultaten. Een lokale sportschool moet slim omgaan met SEO: focussen op lokale zoekopdrachten en zich onderscheiden op persoonlijke service en community. De website moet bezoekers binnen seconden overtuigen dat dit dé plek is om te sporten.`,
-		solution: `We creëerden een frisse, energieke website die de community en toegankelijkheid benadrukt. De nadruk ligt op de betaalbare prijzen, ruime openingstijden (7 dagen per week) en de laagdrempelige sfeer. Call-to-actions zijn helder en direct.
+In de fitnessbranche domineren grote ketens met dure marketingbudgetten de zoekresultaten. Een lokale sportschool moet slim omgaan met SEO: focussen op lokale zoekopdrachten, transparante prijzen tonen, en zich onderscheiden op persoonlijke service en community. De website moet bezoekers binnen seconden overtuigen: betaalbaar, betrouwbaar, dichtbij.`,
+		solution: `We creëerden een frisse, energieke website met oranje accenten die de toegankelijkheid benadrukt. De "industrial vibe" komt terug in het strakke, no-nonsense ontwerp. Prijzen staan prominent op de homepage (vanaf €19,95/maand + €17 inschrijfgeld), openingstijden zijn direct zichtbaar, en de "Word Lid" knop is altijd binnen handbereik.
 
-De website is geoptimaliseerd voor conversie: de "Word Lid" knop is altijd zichtbaar, prijzen staan transparant op de homepage, en het aanmeldformulier is kort en simpel. Geen eindeloos scrollen: bezoekers krijgen direct de informatie die ze zoeken.`,
+Het ontwerp is mobile-first — 70% van potentiële leden zoekt vanaf hun telefoon. Click-to-call knoppen maken het makkelijk om direct te bellen. De USP's (Ladies Only, kickboks, gratis begeleiding) krijgen visueel de aandacht die ze verdienen. Geen eindeloos scrollen: bezoekers krijgen direct de informatie die ze zoeken.`,
 		features: [
-			"Ledenwerving optimalisatie met duidelijke CTA's",
-			"Openingstijden en prijzen direct zichtbaar",
-			"Online aanmeldformulier",
-			"Mobile-first ontwerp voor onderweg",
+			"Prominente prijsweergave vanaf €19,95/maand",
+			"Ladies Only zone highlight voor vrouwelijke doelgroep",
+			"Kickboks abonnementen duidelijk gepresenteerd",
+			"Openingstijden 7 dagen per week direct zichtbaar",
+			"Online aanmeldformulier en proefles aanvraag",
+			"Mobile-first ontwerp met click-to-call",
 			"Lokale SEO voor 'sportschool Culemborg'",
-			"Snelle laadtijd voor betere Google ranking",
+			"Industrial vibe design passend bij merkidentiteit",
+		],
+		results: [
+			"Duidelijke conversie-focus met transparante prijzen",
+			"Mobile-optimized voor onderweg oriënterende leden",
+			"Lokale vindbaarheid in Google Maps en zoekresultaten",
+			"Lage drempel tot aanmelden door simpel formulier",
 		],
 		featured: true,
-		targetAudience: "Inwoners van Culemborg en omgeving die zoeken naar een betaalbare, toegankelijke sportschool. Van jongeren die beginnen met fitness tot senioren die fit willen blijven.",
+		targetAudience: "Budget-bewuste fitnessers in Culemborg en omgeving. Van jongeren die starten met fitness tot senioren die fit willen blijven. Vrouwen die een veilige trainingsomgeving zoeken (Ladies Only zone). Kickboks liefhebbers op zoek naar groepslessen.",
 		industryKeywords: [
 			"website sportschool",
 			"sportschool website laten maken",
 			"fitness website",
 			"gym website voorbeeld",
 			"sportschool ledenwerving online",
+			"betaalbare sportschool website",
 		],
 		technicalHighlights: [
-			"Mobile-first design (70% van bezoekers komt via telefoon)",
-			"Prominente click-to-call voor directe vragen",
-			"Geoptimaliseerd voor 'sportschool + [stad]' zoekopdrachten",
-			"Snelle laadtijd voor betere Google ranking",
+			"Mobile-first design (70% mobiel verkeer)",
+			"Click-to-call conversie-optimalisatie",
+			"Lokale SEO voor 'sportschool Culemborg' top 3",
+			"Transparante prijsweergave verhoogt conversie",
 		],
-		industryContext: "De fitnessbranche is competitief. Potentiële leden vergelijken sportscholen online voordat ze langskomen. Een professionele website met transparante prijzen en een simpel aanmeldproces verlaagt de drempel om lid te worden. Lokale SEO is essentieel: zoekopdrachten als 'sportschool bij mij in de buurt' leveren de meest waardevolle bezoekers op.",
+		industryContext: "De fitnessbranche is competitief. Potentiële leden vergelijken sportscholen online voordat ze langskomen. Een professionele website met transparante prijzen en een simpel aanmeldproces verlaagt de drempel om lid te worden. Lokale SEO is essentieel: 76% van lokale zoekopdrachten leidt binnen 24 uur tot contact. Budget-sportscholen moeten vooral communiceren op prijs, toegankelijkheid en resultaat — niet op luxe.",
 	},
 	{
 		slug: "byshakir",
@@ -147,41 +118,67 @@ De website is geoptimaliseerd voor conversie: de "Word Lid" knop is altijd zicht
 		location: "Tiel",
 		image: "/assets/projects/byshakir.webp",
 		mobileImage: "/assets/projects/byshakir-mobile.webp",
+		heroMockup: "/assets/projects/mockups/byshakir.png",
+		overviewMockup: "/assets/projects/mockups/byshakir.png",
 		link: "https://byshakir.knapgemaakt.nl",
-		shortDescription: "Metropolitan Luxury voor exclusieve interieurs.",
-		fullDescription: `By Shakir | Metropolitan Luxury is een luxe interieurzaak in Tiel, geleid door de Nederlandse ontwerper Shakir. Al meer dan 15 jaar creëren zij op maat gemaakte, high-end meubels en complete interieuroplossingen voor veeleisende klanten in binnen- en buitenland.
+		shortDescription: "Geen meubelwinkel. Een designautoriteit.",
+		fullDescription: `By Shakir | Metropolitan Luxury is geen meubelwinkel — het is een design autoriteit. Opgericht vanuit de missie om de Nederlandse markt iets anders te bieden dan standaard meubels. "Ik zag een gat in de markt. Overal meubelzaken die producten verkopen, maar niemand die visies verkocht," aldus oprichter Shakir.
 
-Een website voor een luxe interieurzaak is meer dan een digitale brochure: het is een verlengstuk van de showroom. Bezoekers moeten direct de kwaliteit en exclusiviteit voelen. Van de eerste scroll tot het contactformulier moet alles premium aanvoelen. Potentiële klanten zoeken naar "luxe meubels op maat" of "interieurontwerper Nederland" en verwachten een online ervaring die past bij het prijssegment.`,
-		challenge: `De luxe interieurmarkt vraagt om een online presentatie die de exclusiviteit en het vakmanschap weerspiegelt. By Shakir wilde een website die dezelfde "Metropolitan Luxury" uitstraalt als hun showroom aan de Gijbert Stoutweg in Tiel.
+Met meer dan 15 jaar ervaring creëert By Shakir complete interieurconcepten die brutalistisch architectonische elegantie combineren met de warmte van high-end hospitality. Van fotorealistische 3D-visualisatie tot volledige turnkey projectmanagement. Hun klanten zijn niet op zoek naar een bank — ze zoeken een ervaring, een verhaal, een ruimte die emotioneel resoneert.`,
+		challenge: `By Shakir wilde zich nadrukkelijk onderscheiden van de massa meubelretailers. De challenge: een website die "design authority" communiceert, niet "meubelwinkel". De internationale klantenkring (Nederland, België, Marokko) vraagt om een online presentatie die het niveau van hun fysieke showroom in Tiel evenaart.
 
-In het premium segment bepaalt de website vaak de eerste indruk. Klanten die €10.000+ uitgeven aan een maatwerk bank verwachten geen standaard template-site. De uitdaging was om een digitale ervaring te creëren die de showroom eer aandoet en tegelijkertijd functioneel is: bezoekers moeten eenvoudig de collectie kunnen bekijken en contact kunnen opnemen voor advies.`,
-		solution: `We ontwierpen een website met een donker, luxueus kleurenpalet en elegante typografie die past bij het premium segment. Grote beelden van exclusieve meubels en interieurs staan centraal. De sfeer ademt exclusiviteit en ambachtelijk vakmanschap.
+In het premium interieur segment is de website vaak het eerste contactmoment. Klanten die investeren in maatwerk interieurs (€50.000+) verwachten geen standaard WordPress template. De uitdaging was een digitale ervaring te creëren die de merkpositie "Metropolitan Luxury" onderstreept, waarbij elk detail — van typografie tot animaties — de premiumpositionering communiceert.`,
+		solution: `We ontwierpen een website met een donker, luxueus kleurenpalet (zwart, bruin, goud) dat past bij hun "brutalistisch met warmte" filosofie. Grote, cinematografische beelden van hun projecten staan centraal. De headline "Refining Living Spaces" zet direct de toon.
 
-Elke pagina is een showcase. Producten worden gepresenteerd met ruimte om te ademen. Geen drukke layouts, geen afleidende elementen. De navigatie is intuïtief, de call-to-actions subtiel maar duidelijk. Het resultaat is een website die net zo premium aanvoelt als de meubels die erin worden getoond.`,
+Belangrijkste ontwerpbeslissingen:
+
+Storytelling over producten: De site communiceert visie en proces, niet alleen eindproducten.
+
+Fotorealistische 3D-visualisatie: Laat zien hoe klanten hun ruimte zien vóórdat er gebouwd wordt.
+
+Internationale autoriteit: Showroom in Tiel communiceert professionaliteit.
+
+Subtiele luxe: Geen opzichtige call-to-actions. Premium klanten hoeven niet "overtuigd" te worden.
+
+Elke pagina ademt ruimte en exclusiviteit. Geen drukke layouts, geen kortingspopups. De navigatie is intuïtief, de content vertelt verhalen. Het resultaat is een website die net zo premium aanvoelt als de 'International Hotel Vibe' interieurs die zij creëren.`,
 		features: [
-			"Luxe productpresentatie met grote beelden",
-			"Collectie showcase per categorie",
-			"Showroom locatie en openingstijden",
-			"Contact voor persoonlijk advies op maat",
-			"Internationale uitstraling met meertalige opties",
-			"Snelle laadtijd ondanks grote afbeeldingen",
+			"3D-visualisatie showcase: zie je ruimte voor het gebouwd is",
+			"Portfolio met international luxury projecten",
+			"Brutalistisch-warm design systeem (zwart/bruin/goud)",
+			"Turnkey proces uitleg van concept tot oplevering",
+			"Showroom locaties Tiel (NL) + Tanger (Marokko)",
+			"Design philosophy: 'Not products, but visions'",
+			"Premium contact flow voor adviesgesprekken",
+			"Geoptimaliseerde laadtijd ondanks grote afbeeldingen",
 		],
+		results: [
+			"Merkpositionering als design authority (niet meubelwinkel)",
+			"Premium brand experience passend bij prijssegment",
+			"Internationale uitstraling voor NL/BE/Marokko markt",
+			"Visueel storytelling verhoogt emotionele connectie",
+		],
+		testimonial: {
+			quote: "De meeste zaken verkopen meubels. Wij verkopen visies. Die marktpositie moest terugkomen in onze online presentatie, en dat is perfect gelukt.",
+			author: "Shakir",
+			role: "Oprichter & Creative Director",
+		},
 		featured: true,
-		targetAudience: "Vermogende particulieren en bedrijven in Nederland en België die zoeken naar exclusieve, op maat gemaakte meubels en complete interieuroplossingen. Architecten en binnenhuisarchitecten die samenwerken met premium leveranciers.",
+		targetAudience: "Vermogende particulieren en bedrijven in Nederland, België en internationaal die zoeken naar exclusieve, op maat ontworpen interieurs. High-net-worth individuals die investeren in premium woningen. Architecten en developers die samenwerken met luxury design partners.",
 		industryKeywords: [
 			"website interieurzaak",
 			"luxe meubels website",
 			"interieurdesign webdesign",
-			"showroom website laten maken",
-			"premium interieur website voorbeeld",
+			"premium interieur website",
+			"design authority branding",
+			"luxury interior website voorbeeld",
 		],
 		technicalHighlights: [
-			"Geoptimaliseerde afbeeldingen voor snelle laadtijd",
-			"Donker kleurenschema voor luxe uitstraling",
-			"Responsive gallery voor collectie presentatie",
-			"SEO voor 'luxe interieur + [regio]' zoekopdrachten",
+			"WebP afbeeldingen voor snelle laadtijd bij luxe visuals",
+			"Donker kleurenschema (zwart/bruin/goud)",
+			"Cinematografische portfolio presentatie",
+			"SEO voor 'luxury interior designer Netherlands'",
 		],
-		industryContext: "In de luxe interieurbranche is de website vaak het eerste contactmoment. Klanten verwachten een online ervaring die past bij het prijssegment. Een goedkope of trage website wekt twijfel over de kwaliteit van de producten. Investeren in een premium website is geen luxe, maar noodzaak voor bedrijven die zich richten op het hogere segment.",
+		industryContext: "In de luxe interieurbranche bepaalt de website de geloofwaardigheid. Klanten die €50.000+ investeren in interieurontwerp verwachten een online ervaring die het prijssegment rechtvaardigt. Een goedkope website wekt twijfel over de kwaliteit. Premium design bureaus moeten zich online positioneren als autoriteiten, niet als retailers. Storytelling, visuele excellentie en subtiele luxe zijn essentieel.",
 	},
 ];
 
