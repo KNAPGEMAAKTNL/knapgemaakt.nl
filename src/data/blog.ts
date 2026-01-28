@@ -17,24 +17,9 @@ export interface BlogPostMeta {
  */
 export const blogPosts: BlogPostMeta[] = [
 	{
-		slug: "website-laten-maken-kosten",
-		title: "Wat Kost een Website Laten Maken in 2026?",
-		publishDate: "2026-01-20",
-	},
-	{
-		slug: "wordpress-vs-moderne-alternatieven",
-		title: "WordPress vs Moderne Alternatieven",
-		publishDate: "2026-01-18",
-	},
-	{
-		slug: "website-voor-zzp",
-		title: "Website voor ZZP'ers",
-		publishDate: "2026-01-15",
-	},
-	{
-		slug: "zelf-website-maken-of-laten-maken",
-		title: "Zelf Website Maken of Laten Maken?",
-		publishDate: "2026-01-12",
+		slug: "ideal-wordt-wero",
+		title: "iDEAL wordt Wero: Wat betekent dit voor jouw webshop?",
+		publishDate: "2026-01-29",
 	},
 ];
 

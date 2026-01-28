@@ -13,8 +13,23 @@ const sortedPosts = allPosts.sort(
 	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 
+// Separate featured post (most recent) from the rest
+const featuredPost = sortedPosts[0];
+const remainingPosts = sortedPosts.slice(1);
+
 // Extract unique tags for filtering
 const allTags = [...new Set(sortedPosts.flatMap((post) => post.data.tags))].sort();
+
+// Calculate reading time for featured post
+const featuredWordCount = featuredPost?.body.split(/\s+/).length || 0;
+const featuredReadingTime = featuredPost?.data.readingTime || Math.ceil(featuredWordCount / 200);
+
+// Format featured post date
+const featuredDate = featuredPost?.data.publishDate.toLocaleDateString("nl-NL", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
 
 // SEO
 const metaTitle = "Blog | Tips voor Ondernemers | KNAP GEMAAKT.";
@@ -32,39 +47,32 @@ const breadcrumbs = [
 
 	<main>
 		<!-- Hero Section -->
-		<section class="pt-32 pb-16 md:pb-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
-			<div class="max-w-6xl xl:max-w-7xl mx-auto relative z-10">
-				<div class="text-xs font-mono uppercase tracking-[0.2em] text-ink/60 mb-4">
-					[ Artikelen & Inzichten ]
-				</div>
-				<h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-[0.9] mb-6">
+		<section class="pt-32 pb-12 md:pb-16 px-6 md:px-12 lg:px-16 bg-canvas">
+			<div class="max-w-3xl mx-auto text-center">
+				<h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] mb-4">
 					Blog
 				</h1>
-				<p class="text-xl md:text-2xl text-ink/60 max-w-2xl">
-					Tips, gidsen en inzichten over webdesign voor ondernemers.
-					Alles wat je moet weten over het laten maken van een website.
+				<p class="text-lg md:text-xl text-ink/60 max-w-xl mx-auto">
+					Inzichten en tips over webdesign, websites bouwen en online groeien als ondernemer.
 				</p>
 			</div>
 		</section>
 
 		<!-- Tags Filter -->
 		{allTags.length > 0 && (
-			<section class="px-6 md:px-12 lg:px-16 bg-canvas border-b border-ink/10">
-				<div class="max-w-6xl xl:max-w-7xl mx-auto py-6">
-					<div class="flex flex-wrap items-center gap-3">
-						<span class="text-xs font-mono uppercase tracking-wider text-ink/60">
-							Filter:
-						</span>
+			<section class="px-6 md:px-12 lg:px-16 bg-canvas pb-8">
+				<div class="max-w-3xl mx-auto">
+					<div class="flex flex-wrap justify-center gap-2">
 						<a
 							href="/blog"
-							class="px-3 py-1.5 text-xs font-mono uppercase tracking-wider bg-acid text-ink"
+							class="px-4 py-2 text-sm font-medium bg-ink text-canvas rounded-full hover:bg-ink/80 transition-colors"
 						>
-							Alle
+							Alles
 						</a>
 						{allTags.map((tag) => (
 							<a
 								href={`/blog/tag/${tag.toLowerCase().replace(/\s+/g, "-")}`}
-								class="px-3 py-1.5 text-xs font-mono uppercase tracking-wider bg-ink/5 text-ink/60 hover:bg-acid hover:text-ink transition-colors"
+								class="px-4 py-2 text-sm font-medium bg-ink/5 text-ink/70 rounded-full hover:bg-ink/10 transition-colors"
 							>
 								{tag}
 							</a>
@@ -74,12 +82,65 @@ const breadcrumbs = [
 			</section>
 		)}
 
-		<!-- Blog Posts Grid -->
-		<section class="py-16 md:py-24 bg-ink text-canvas bg-grid-dark relative overflow-hidden">
-			<div class="max-w-6xl xl:max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-				{sortedPosts.length > 0 ? (
-					<div class="grid md:grid-cols-2 gap-8">
-						{sortedPosts.map((post) => (
+		<!-- Featured Post -->
+		{featuredPost && (
+			<section class="px-6 md:px-12 lg:px-16 bg-canvas pb-8 md:pb-12">
+				<div class="max-w-3xl mx-auto">
+					<a href={`/blog/${featuredPost.slug}`} class="group block">
+						<article class="bg-ink text-canvas rounded-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+							<!-- Featured image -->
+							<div class="aspect-[2/1] bg-ink overflow-hidden">
+								<img
+									src={featuredPost.data.image}
+									alt={featuredPost.data.imageAlt || featuredPost.data.title}
+									class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+									loading="eager"
+									fetchpriority="high"
+									decoding="async"
+								/>
+							</div>
+
+							<div class="p-6 md:p-8">
+								<!-- Tags -->
+								<div class="flex flex-wrap gap-2 mb-4">
+									{featuredPost.data.tags.slice(0, 3).map((tag) => (
+										<span class="px-3 py-1 bg-acid/20 text-acid text-xs font-medium rounded-full">
+											{tag}
+										</span>
+									))}
+								</div>
+
+								<!-- Title -->
+								<h2 class="text-2xl md:text-3xl font-bold leading-tight mb-3 group-hover:text-acid transition-colors">
+									{featuredPost.data.title}
+								</h2>
+
+								<!-- Description -->
+								<p class="text-canvas/70 leading-relaxed mb-4 line-clamp-2">
+									{featuredPost.data.description}
+								</p>
+
+								<!-- Meta -->
+								<div class="flex items-center gap-4 text-sm text-canvas/50">
+									<time datetime={featuredPost.data.publishDate.toISOString()}>
+										{featuredDate}
+									</time>
+									<span class="w-1 h-1 bg-canvas/30 rounded-full"></span>
+									<span>{featuredReadingTime} min lezen</span>
+								</div>
+							</div>
+						</article>
+					</a>
+				</div>
+			</section>
+		)}
+
+		<!-- Blog Posts List -->
+		<section class="py-8 md:py-12 bg-canvas">
+			<div class="max-w-3xl mx-auto px-6 md:px-12 lg:px-16">
+				{remainingPosts.length > 0 ? (
+					<div class="space-y-6">
+						{remainingPosts.map((post) => (
 							<BlogCard
 								title={post.data.title}
 								description={post.data.description}
@@ -90,13 +151,13 @@ const breadcrumbs = [
 							/>
 						))}
 					</div>
-				) : (
+				) : sortedPosts.length === 0 ? (
 					<div class="text-center py-16">
-						<p class="text-canvas/60 text-lg">
+						<p class="text-ink/60 text-lg">
 							Binnenkort verschijnen hier onze eerste artikelen.
 						</p>
 					</div>
-				)}
+				) : null}
 			</div>
 		</section>
 
