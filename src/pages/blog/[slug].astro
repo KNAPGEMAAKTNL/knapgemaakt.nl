@@ -22,6 +22,13 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
+// Get other posts for "More articles" section (exclude current post, max 3)
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const otherPosts = allPosts
+	.filter((p) => p.slug !== post.slug)
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 3);
+
 // Calculate reading time from content (rough estimate: 200 words/min)
 const wordCount = post.body.split(/\s+/).length;
 const readingTime = post.data.readingTime || Math.ceil(wordCount / 200);
@@ -64,86 +71,179 @@ const breadcrumbs = [
 	/>
 	<BreadcrumbSchema items={breadcrumbs} />
 
-	<main>
-		<!-- Article Header -->
-		<article class="pt-32 pb-16 md:pb-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light relative overflow-hidden">
-			<div class="max-w-3xl mx-auto relative z-10">
-				<!-- Back Link -->
-				<a
-					href="/blog"
-					class="inline-flex items-center gap-2 text-ink/50 hover:text-ink font-mono text-sm uppercase tracking-wider mb-8 transition-colors"
-				>
-					<span>&larr;</span>
-					<span>Terug naar blog</span>
-				</a>
+	<main class="bg-canvas">
+		<article class="pt-28 md:pt-32">
+			<!-- Header -->
+			<header class="px-6 md:px-12 lg:px-16 pb-8 md:pb-12">
+				<div class="max-w-2xl mx-auto">
+					<!-- Back Link -->
+					<a
+						href="/blog"
+						class="inline-flex items-center gap-2 text-ink/40 hover:text-ink text-sm mb-8 transition-colors"
+					>
+						<span>&larr;</span>
+						<span>Alle artikelen</span>
+					</a>
 
-				<!-- Meta -->
-				<div class="flex flex-wrap items-center gap-3 mb-6 text-sm font-mono uppercase tracking-wider text-ink/50">
-					<time datetime={post.data.publishDate.toISOString()}>
-						{publishDate}
-					</time>
-					<span class="w-1 h-1 bg-ink/30 rounded-full"></span>
-					<span>{readingTime} min lezen</span>
-					{updatedDate && (
-						<>
-							<span class="w-1 h-1 bg-ink/30 rounded-full"></span>
-							<span>Bijgewerkt: {updatedDate}</span>
-						</>
+					<!-- Tags -->
+					{post.data.tags.length > 0 && (
+						<div class="flex flex-wrap gap-2 mb-4">
+							{post.data.tags.map((tag) => (
+								<span class="px-3 py-1 bg-acid text-ink text-xs font-bold rounded-full">
+									{tag}
+								</span>
+							))}
+						</div>
 					)}
-				</div>
 
-				<!-- Title -->
-				<h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[0.95] mb-6">
-					{post.data.title}
-				</h1>
+					<!-- Title -->
+					<h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-6">
+						{post.data.title}
+					</h1>
 
-				<!-- Tags -->
-				{post.data.tags.length > 0 && (
-					<div class="flex flex-wrap gap-2 mb-8">
-						{post.data.tags.map((tag) => (
-							<span class="px-3 py-1 bg-acid text-ink text-xs font-mono font-bold uppercase tracking-wider">
-								{tag}
-							</span>
-						))}
-					</div>
-				)}
+					<!-- Description -->
+					<p class="text-xl text-ink/60 leading-relaxed mb-6">
+						{post.data.description}
+					</p>
 
-				<!-- Description -->
-				<p class="text-xl text-ink/70 leading-relaxed">
-					{post.data.description}
-				</p>
-			</div>
-		</article>
-
-		<!-- Article Content -->
-		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-ink text-canvas bg-grid-dark">
-			<div class="max-w-3xl mx-auto">
-				<div class="blog-content">
-					<Content />
-				</div>
-			</div>
-		</section>
-
-		<!-- Author Section -->
-		<section class="py-16 md:py-24 px-6 md:px-12 lg:px-16 bg-canvas bg-grid-light">
-			<div class="max-w-3xl mx-auto">
-				<div class="border border-ink/10 p-8">
-					<div class="flex items-start gap-4">
-						<img
-							src="/assets/yannick.webp"
-							alt="Yannick"
-							class="w-12 h-12 rounded-full object-cover object-top flex-shrink-0"
-						/>
+					<!-- Author & Meta -->
+					<div class="flex items-center gap-4 pt-6 border-t border-ink/10">
+						<a href="/over-mij" class="flex-shrink-0">
+							<img
+								src="/assets/yannick.webp"
+								alt="Yannick Veldhuisen"
+								width="48"
+								height="48"
+								class="w-12 h-12 rounded-full object-cover object-top hover:opacity-80 transition-opacity"
+								loading="lazy"
+								decoding="async"
+							/>
+						</a>
 						<div>
-							<p class="font-bold text-lg mb-1">{post.data.author}</p>
-							<p class="text-ink/60 text-sm leading-relaxed">
-								Ik bouw slimme websites voor ondernemers. Snel, zonder gedoe, met automatisering die voor je werkt.
+							<a href="/over-mij" class="font-semibold text-ink hover:text-ink/70 transition-colors">
+								{post.data.author}
+							</a>
+							<div class="flex flex-wrap items-center gap-2 text-sm text-ink/50">
+								<time datetime={post.data.publishDate.toISOString()}>
+									{publishDate}
+								</time>
+								<span>&middot;</span>
+								<span>{readingTime} min lezen</span>
+								{updatedDate && (
+									<>
+										<span>&middot;</span>
+										<span>Bijgewerkt {updatedDate}</span>
+									</>
+								)}
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<!-- Featured Image -->
+			<div class="px-6 md:px-12 lg:px-16 pb-8 md:pb-12">
+				<div class="max-w-2xl mx-auto">
+					<div class="aspect-[2/1] rounded-xl overflow-hidden bg-ink">
+						<img
+							src={post.data.image}
+							alt={post.data.imageAlt || post.data.title}
+							class="w-full h-full object-cover"
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<!-- Content -->
+			<div class="px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
+				<div class="max-w-2xl mx-auto">
+					<div class="blog-content-light">
+						<Content />
+					</div>
+				</div>
+			</div>
+
+			<!-- Author Bio -->
+			<section class="px-6 md:px-12 lg:px-16 py-12 bg-ink/[0.02] border-y border-ink/10">
+				<div class="max-w-2xl mx-auto">
+					<div class="flex items-start gap-4">
+						<a href="/over-mij" class="flex-shrink-0">
+							<img
+								src="/assets/yannick.webp"
+								alt="Yannick Veldhuisen"
+								width="64"
+								height="64"
+								class="w-16 h-16 rounded-full object-cover object-top hover:opacity-80 transition-opacity"
+								loading="lazy"
+								decoding="async"
+							/>
+						</a>
+						<div>
+							<p class="text-xs font-medium text-ink/40 uppercase tracking-wider mb-1">Geschreven door</p>
+							<a href="/over-mij" class="font-bold text-lg mb-2 block hover:text-ink/70 transition-colors">
+								{post.data.author}
+							</a>
+							<p class="text-ink/60 leading-relaxed">
+								Ik help ondernemers met websites die niet alleen mooi zijn, maar ook echt meewerken. Gevestigd in Buren, werkend door heel Nederland.
 							</p>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+
+			<!-- More Articles -->
+			{otherPosts.length > 0 && (
+				<section class="px-6 md:px-12 lg:px-16 py-12 md:py-16">
+					<div class="max-w-2xl mx-auto">
+						<h2 class="text-2xl font-bold mb-8">Meer artikelen</h2>
+						<div class="space-y-6">
+							{otherPosts.map((otherPost) => {
+								const otherReadingTime = otherPost.data.readingTime || Math.ceil(otherPost.body.split(/\s+/).length / 200);
+								const otherDate = otherPost.data.publishDate.toLocaleDateString("nl-NL", {
+									year: "numeric",
+									month: "short",
+									day: "numeric",
+								});
+								return (
+									<a href={`/blog/${otherPost.slug}`} class="group block py-4 border-b border-ink/10 hover:border-ink/20 transition-colors">
+										<h3 class="text-lg font-semibold text-ink leading-tight mb-2 group-hover:text-ink/70 transition-colors">
+											{otherPost.data.title}
+										</h3>
+										<p class="text-ink/60 text-sm leading-relaxed mb-2 line-clamp-2">
+											{otherPost.data.description}
+										</p>
+										<div class="flex items-center gap-2 text-xs text-ink/40">
+											<time datetime={otherPost.data.publishDate.toISOString()}>
+												{otherDate}
+											</time>
+											<span>&middot;</span>
+											<span>{otherReadingTime} min</span>
+										</div>
+									</a>
+								);
+							})}
+						</div>
+					</div>
+				</section>
+			)}
+
+			<!-- Back to All Articles -->
+			<section class="px-6 md:px-12 lg:px-16 pb-16 md:pb-24">
+				<div class="max-w-2xl mx-auto">
+					<a
+						href="/blog"
+						class="inline-flex items-center gap-2 text-ink/40 hover:text-ink text-sm transition-colors"
+					>
+						<span>&larr;</span>
+						<span>Alle artikelen</span>
+					</a>
+				</div>
+			</section>
+
+		</article>
 
 		<Footer />
 	</main>
