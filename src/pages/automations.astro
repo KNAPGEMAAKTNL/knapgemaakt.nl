@@ -337,7 +337,7 @@ const steps = [
 					Elk bedrijf is anders. Vertel me wat je nodig hebt, dan stuur ik je een voorstel op maat.
 				</p>
 
-				<form id="automation-form" class="space-y-8">
+				<form id="automation-form" class="space-y-8 bg-canvas border border-ink/10 p-8 md:p-10 relative z-10">
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div class="space-y-2">
 							<label for="auto-naam" class="block font-mono text-xs uppercase tracking-widest text-ink/60">Naam</label>
@@ -348,7 +348,7 @@ const steps = [
 								required
 								oninvalid="this.setCustomValidity('Dit veld is verplicht')"
 								oninput="this.setCustomValidity('')"
-								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-acid transition-colors rounded-none placeholder:text-ink/20"
+								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-electric transition-colors rounded-none placeholder:text-ink/20"
 								placeholder="Je volledige naam"
 							/>
 						</div>
@@ -358,7 +358,7 @@ const steps = [
 								type="text"
 								id="auto-bedrijf"
 								name="bedrijfsnaam"
-								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-acid transition-colors rounded-none placeholder:text-ink/20"
+								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-electric transition-colors rounded-none placeholder:text-ink/20"
 								placeholder="Je bedrijfsnaam"
 							/>
 						</div>
@@ -371,7 +371,7 @@ const steps = [
 								required
 								oninvalid="this.setCustomValidity('Dit veld is verplicht')"
 								oninput="this.setCustomValidity('')"
-								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-acid transition-colors rounded-none placeholder:text-ink/20"
+								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-electric transition-colors rounded-none placeholder:text-ink/20"
 								placeholder="je@email.nl"
 							/>
 						</div>
@@ -381,7 +381,7 @@ const steps = [
 								type="tel"
 								id="auto-telefoon"
 								name="telefoon"
-								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-acid transition-colors rounded-none placeholder:text-ink/20"
+								class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-electric transition-colors rounded-none placeholder:text-ink/20"
 								placeholder="06 12345678"
 							/>
 						</div>
@@ -405,7 +405,7 @@ const steps = [
 										type="checkbox"
 										name="interesse"
 										value={option}
-										class="w-4 h-4 shrink-0 accent-acid"
+										class="w-4 h-4 shrink-0 accent-electric"
 									/>
 									<span class="text-ink/70 group-hover:text-ink transition-colors">{option}</span>
 								</label>
@@ -419,7 +419,7 @@ const steps = [
 							id="auto-bericht"
 							name="bericht"
 							rows={4}
-							class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-acid transition-colors rounded-none placeholder:text-ink/20 resize-none"
+							class="w-full bg-canvas border-b-2 border-ink/20 py-3 text-lg font-medium focus:outline-none focus:border-electric transition-colors rounded-none placeholder:text-ink/20 resize-none"
 							placeholder="Vertel kort wat je zou willen automatiseren"
 						></textarea>
 					</div>
@@ -433,7 +433,7 @@ const steps = [
 							required
 							oninvalid="this.setCustomValidity('Je moet akkoord gaan met de privacyverklaring')"
 							oninput="this.setCustomValidity('')"
-							class="mt-1 w-4 h-4 shrink-0 accent-acid"
+							class="mt-1 w-4 h-4 shrink-0 accent-electric"
 						/>
 						<label for="auto-privacy" class="text-sm text-ink/60">
 							Ik ga akkoord met de <a href="/privacy" class="underline hover:text-ink transition-colors">privacyverklaring</a>

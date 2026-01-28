@@ -320,6 +320,22 @@ import Footer from "../components/Footer.astro";
                     </div>
                 </div>
 
+                <!-- Privacy checkbox -->
+                <div class="flex items-start gap-3 pt-4">
+                    <input
+                        type="checkbox"
+                        id="aanvraag-privacy"
+                        name="privacy"
+                        required
+                        oninvalid="this.setCustomValidity('Je moet akkoord gaan met de privacyverklaring')"
+                        oninput="this.setCustomValidity('')"
+                        class="mt-1 w-4 h-4 shrink-0 accent-electric"
+                    />
+                    <label for="aanvraag-privacy" class="text-sm text-ink/60">
+                        Ik ga akkoord met de <a href="/privacy" class="underline hover:text-ink transition-colors">privacyverklaring</a>
+                    </label>
+                </div>
+
                 <!-- Submit -->
                 <div class="pt-8">
                     <button
@@ -327,7 +343,7 @@ import Footer from "../components/Footer.astro";
                         id="submit-btn"
                         class="w-full md:w-auto px-8 py-5 bg-acid text-ink font-bold uppercase tracking-tight hover:bg-ink hover:text-acid transition-colors duration-300 inline-flex items-center justify-center gap-3 group cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        <span id="btn-text">Laten we kennismaken</span>
+                        <span id="btn-text">Afspraak inplannen</span>
                         <span id="btn-arrow" class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                         <span id="btn-loading" class="hidden">
                             <svg
