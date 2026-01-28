@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/compare/v1.7.0...v1.8.0) (2026-01-28)
+
+
+### Features
+
+* **forms:** add privacy consent checkbox to audit form ✨ ([#179](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/179)) ([14b9230](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/commit/14b9230a4c914c25f435e8227dce5850b3bb15f7)), closes [#177](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/issues/177)
+
 ## [1.7.0](https://github.com/KNAPGEMAAKTNL-Projects/knapgemaakt.nl/compare/v1.6.0...v1.7.0) (2026-01-28)
 
 
