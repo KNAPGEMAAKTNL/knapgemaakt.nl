@@ -464,7 +464,7 @@ export default function BookingCalendar({ onSlotSelect, selectedSlot: selectedSl
         <div className="space-y-6">
 
           <div className="space-y-2">
-            <h3 className="text-2xl font-black text-white uppercase tracking-tighter leading-none">Intro Call<span className="text-[var(--color-acid)]">.</span></h3>
+            <h3 className="text-2xl font-black text-white uppercase tracking-tight leading-none">Intro Call<span className="text-[var(--color-acid)]">.</span></h3>
           </div>
 
           <div className="flex flex-col gap-4 text-zinc-400 font-medium text-sm">
