@@ -261,12 +261,12 @@ const projects = getAllProjects();
 					</div>
 					<div class="flex flex-col sm:flex-row gap-3">
 						<input
-							type="url"
+							type="text"
 							id="audit-website"
 							name="website"
 							required
 							class="flex-1 px-4 py-4 bg-canvas border-2 border-ink/10 text-ink placeholder-ink/40 focus:border-ink focus:outline-none transition-colors"
-							placeholder="https://jouwwebsite.nl"
+							placeholder="jouwwebsite.nl"
 						/>
 						<button
 							type="submit"
@@ -344,6 +344,16 @@ const projects = getAllProjects();
 </Layout>
 
 <script>
+	// Normalize URL - add https:// if missing
+	function normalizeUrl(url: string): string {
+		if (!url || !url.trim()) return '';
+		url = url.trim();
+		if (!/^https?:\/\//i.test(url)) {
+			url = 'https://' + url;
+		}
+		return url;
+	}
+
 	// Audit form submission handler
 	function attachAuditFormHandler() {
 		const form = document.getElementById('audit-form');
@@ -355,6 +365,10 @@ const projects = getAllProjects();
 			const formData = new FormData(form as HTMLFormElement);
 			const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
 			const originalText = submitBtn.textContent;
+
+			// Normalize the website URL
+			const rawUrl = formData.get('website') as string;
+			const websiteUrl = normalizeUrl(rawUrl);
 
 			// Show loading state
 			submitBtn.disabled = true;
@@ -369,7 +383,7 @@ const projects = getAllProjects();
 						specification: 'Gratis website-audit',
 						name: formData.get('name'),
 						email: formData.get('email'),
-						website_url: formData.get('website'),
+						website_url: websiteUrl,
 					}),
 				});
 
