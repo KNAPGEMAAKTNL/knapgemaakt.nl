@@ -28,11 +28,10 @@ import TextRevealCSS from "../components/TextRevealCSS.astro";
 			<div class="grid md:grid-cols-5 gap-12 mb-24">
 				<!-- Contact Form (3 cols) -->
 				<div class="md:col-span-3">
-					<h2 class="text-2xl font-black uppercase tracking-tighter mb-8">
-						Stuur Een Bericht
-					</h2>
-
-					<form id="contact-form" class="space-y-8">
+					<form id="contact-form" class="space-y-8 bg-canvas border border-ink/10 p-8 md:p-10 relative z-10">
+						<h2 class="text-2xl font-black uppercase tracking-tighter">
+							Stuur Een Bericht
+						</h2>
 						<!-- Company -->
 						<div class="space-y-2">
 							<label for="company" class="block font-mono text-xs uppercase tracking-widest opacity-60">
@@ -199,11 +198,11 @@ import TextRevealCSS from "../components/TextRevealCSS.astro";
 									Liever Zelf Een Afspraak Inplannen?
 								</h2>
 								<p class="text-canvas/60 mb-6">
-									Kies een moment dat jou uitkomt. 20 minuten, vrijblijvend.
+									Kies een moment dat jou uitkomt. 15 minuten, vrijblijvend.
 								</p>
 								<a
 									href="/aanvragen"
-									class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-acid text-ink font-bold uppercase tracking-tight text-sm hover:bg-acid/80 transition-colors duration-300 group w-full"
+									class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-acid text-ink font-bold uppercase tracking-tight text-sm hover:bg-canvas hover:text-ink transition-colors duration-300 group w-full"
 								>
 									Plan een gesprek in
 									<span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
@@ -337,15 +336,16 @@ import TextRevealCSS from "../components/TextRevealCSS.astro";
 			try {
 				const formData = new FormData(form);
 				const data = {
+					type: 'contact',
+					specification: formData.get('subject'),
 					company: formData.get('company'),
 					name: formData.get('name'),
 					email: formData.get('email'),
 					phone: formData.get('phone'),
-					subject: formData.get('subject'),
 					message: formData.get('message')
 				};
 
-				const res = await fetch('/api/contact', {
+				const res = await fetch('/api/submissions', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(data)
